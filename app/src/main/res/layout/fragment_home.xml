@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".ui.HomeFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/spacing_xl">
+
+        <!-- Header Container / Hero Background -->
+        <View
+            android:id="@+id/hero_background"
+            android:layout_width="0dp"
+            android:layout_height="320dp"
+            android:background="@color/navy_blue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Header App Bar Title -->
+        <TextView
+            android:id="@+id/tv_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:fontFamily="@font/fredoka"
+            android:text="@string/app_name"
+            android:textColor="@color/gold_yellow"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_app_tagline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:fontFamily="@font/poppins"
+            android:text="¡Aprende, experimenta y diviértete!"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_app_title" />
+
+        <!-- HERO SLIDER (ViewPager2 emulating Swiper.js) -->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/view_pager_hero"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/hero_slider_height"
+            android:layout_marginTop="@dimen/spacing_s"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_app_tagline" />
+
+        <!-- TAB LAYOUT / DOTS INDICATOR FOR SLIDER -->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_pager_hero"
+            app:tabBackground="@drawable/bg_indicator_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp"
+            app:tabMaxWidth="16dp" />
+
+        <!-- WAVE DIVIDER DECORATIVA -->
+        <ImageView
+            android:id="@+id/iv_wave_divider"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/app_name"
+            android:scaleType="fitXY"
+            android:src="@drawable/wave_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hero_background" />
+
+        <!-- SECCIÓN: NUESTROS SERVICIOS -->
+        <TextView
+            android:id="@+id/tv_services_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:fontFamily="@font/fredoka"
+            android:text="@string/services_title"
+            android:textColor="@color/navy_blue"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_wave_divider" />
+
+        <TextView
+            android:id="@+id/tv_services_sub"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:fontFamily="@font/poppins"
+            android:text="@string/services_subtitle"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_services_header" />
+
+        <!-- RecyclerView para Tarjetas de Servicios -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_services"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_services_sub" />
+
+        <!-- SECCIÓN: PREVIEW DE PERSONAJES (TITAN Y TESLA) -->
+        <TextView
+            android:id="@+id/tv_characters_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:fontFamily="@font/fredoka"
+            android:text="@string/characters_title"
+            android:textColor="@color/navy_blue"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_services" />
+
+        <!-- PERSONAJE 1: TITAN -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_titan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            app:cardBackgroundColor="@color/titan_bg"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_characters_header"
+            app:strokeColor="@color/titan_accent"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_m">
+
+                <ImageView
+                    android:id="@+id/iv_titan_avatar"
+                    android:layout_width="@dimen/avatar_size"
+                    android:layout_height="@dimen/avatar_size"
+                    android:contentDescription="@string/titan_name"
+                    android:src="@drawable/ic_titan_avatar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_titan_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/titan_badge"
+                    android:textColor="@color/primary_blue"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_titan_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:fontFamily="@font/fredoka"
+                    android:text="@string/titan_name"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/tv_titan_badge"
+                    app:layout_constraintStart_toEndOf="@id/iv_titan_avatar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_titan_role"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/titan_role"
+                    android:textColor="@color/primary_blue"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_titan_avatar"
+                    app:layout_constraintTop_toBottomOf="@id/tv_titan_name" />
+
+                <TextView
+                    android:id="@+id/tv_titan_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/titan_desc"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_titan_avatar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- PERSONAJE 2: TESLA -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_tesla"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            app:cardBackgroundColor="@color/tesla_bg"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_titan"
+            app:strokeColor="@color/tesla_accent"
+            app:strokeWidth="1dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_m">
+
+                <ImageView
+                    android:id="@+id/iv_tesla_avatar"
+                    android:layout_width="@dimen/avatar_size"
+                    android:layout_height="@dimen/avatar_size"
+                    android:contentDescription="@string/tesla_name"
+                    android:src="@drawable/ic_tesla_avatar"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_tesla_badge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/tesla_badge"
+                    android:textColor="@color/tesla_accent"
+                    android:textSize="11sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_tesla_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:fontFamily="@font/fredoka"
+                    android:text="@string/tesla_name"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/tv_tesla_badge"
+                    app:layout_constraintStart_toEndOf="@id/iv_tesla_avatar"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_tesla_role"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_m"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/tesla_role"
+                    android:textColor="@color/tesla_accent"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/iv_tesla_avatar"
+                    app:layout_constraintTop_toBottomOf="@id/tv_tesla_name" />
+
+                <TextView
+                    android:id="@+id/tv_tesla_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/tesla_desc"
+                    android:textColor="@color/text_secondary"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/iv_tesla_avatar" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- BANNER DE CONTACTO / WHATSAPP CTA -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_cta_whatsapp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_xl"
+            android:layout_marginEnd="@dimen/spacing_m"
+            app:cardBackgroundColor="@color/navy_blue"
+            app:cardCornerRadius="@dimen/card_corner_radius"
+            app:cardElevation="@dimen/card_elevation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_tesla">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_l">
+
+                <TextView
+                    android:id="@+id/tv_cta_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="@string/cta_title"
+                    android:textColor="@color/gold_yellow"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_cta_subtitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:fontFamily="@font/poppins"
+                    android:text="@string/cta_subtitle"
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cta_title" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_whatsapp_cta"
+                    style="@style/Widget.MiniCientificos.Button.WhatsApp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:fontFamily="@font/fredoka"
+                    android:text="@string/cta_whatsapp_btn"
+                    android:textSize="15sp"
+                    app:icon="@drawable/ic_whatsapp"
+                    app:iconGravity="textStart"
+                    app:iconPadding="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_cta_subtitle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

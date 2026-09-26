@@ -1,0 +1,47 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base Application Theme Mini Científicos (Material 3) -->
+    <style name="Base.Theme.MiniCientificosAndroid" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Colores Primarios M3 -->
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/colorPrimaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/colorOnPrimaryContainer</item>
+
+        <!-- Colores Secundarios M3 -->
+        <item name="colorSecondary">@color/gold_yellow</item>
+        <item name="colorOnSecondary">@color/navy_blue</item>
+
+        <!-- Fondos y Superficies -->
+        <item name="android:windowBackground">@color/bg_light</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/dark_blue</item>
+
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/navy_blue</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.MiniCientificosAndroid" parent="Base.Theme.MiniCientificosAndroid" />
+
+    <!-- Estilos de Botones Personalizados -->
+    <style name="Widget.MiniCientificos.Button.Primary" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/primary_blue</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.MiniCientificos.Button.Accent" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/gold_yellow</item>
+        <item name="android:textColor">@color/navy_blue</item>
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.MiniCientificos.Button.WhatsApp" parent="Widget.Material3.Button">
+        <item name="backgroundTint">@color/whatsapp_green</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="cornerRadius">@dimen/button_corner_radius</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+</resources>

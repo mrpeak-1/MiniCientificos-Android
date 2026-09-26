@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mini Científicos</string>
+
+    <!-- Navegación Principal -->
+    <string name="nav_home">Inicio</string>
+    <string name="nav_workshops">Talleres</string>
+    <string name="nav_shop">Tienda</string>
+    <string name="nav_gallery">Galería</string>
+    <string name="nav_contact">Contacto</string>
+
+    <!-- Hero Slider Content -->
+    <string name="hero_title_1">¡Bienvenido a Mini Científicos!</string>
+    <string name="hero_subtitle_1">Aprender ciencia nunca fue tan divertido. Experimentos interactivos para niños inquisitivos.</string>
+    <string name="hero_badge_1">¡Diviértete!</string>
+    <string name="hero_btn_1">Explorar Talleres</string>
+
+    <string name="hero_title_2">Fiestas Científicas Inolvidables</string>
+    <string name="hero_subtitle_2">Celebra tu cumpleaños con experimentos sorprendentes, reacciones químicas y nieve artificial.</string>
+    <string name="hero_badge_2">¡Especial!</string>
+    <string name="hero_btn_2">Reservar Evento</string>
+
+    <string name="hero_title_3">Kits de Ciencia en Casa</string>
+    <string name="hero_subtitle_3">Lleva el laboratorio a tu hogar con nuestros kits educativos listos para usar.</string>
+    <string name="hero_badge_3">¡Popular!</string>
+    <string name="hero_btn_3">Ver Tienda</string>
+
+    <!-- Sección Servicios -->
+    <string name="services_title">Nuestros Servicios</string>
+    <string name="services_subtitle">Descubre todas las actividades y experiencias científicas que tenemos para ti</string>
+
+    <string name="service_1_title">Talleres Interactivos</string>
+    <string name="service_1_desc">Sesiones prácticas donde los niños construyen, mezclan y descubren principios de física y química.</string>
+    <string name="service_1_badge">Educativo</string>
+
+    <string name="service_2_title">Experimentos en Vivo</string>
+    <string name="service_2_desc">Demostraciones espectaculares de slime, volcanes de lava, cohetes de agua y electricidad estática.</string>
+    <string name="service_2_badge">¡En Vivo!</string>
+
+    <string name="service_3_title">Fiestas Científicas</string>
+    <string name="service_3_desc">Un show interactivo lleno de magia científica, sorpresas y diplomas para los pequeños científicos.</string>
+    <string name="service_3_badge">Cumpleaños</string>
+
+    <string name="service_4_title">Shows de Ciencia</string>
+    <string name="service_4_desc">Espectáculos masivos para colegios y eventos con explosiones de espuma y reacciones divertidas.</string>
+    <string name="service_4_badge">Escolar</string>
+
+    <string name="btn_more_info">Más información</string>
+
+    <!-- Sección Personajes -->
+    <string name="characters_title">Nuestros Personajes</string>
+
+    <string name="titan_name">Titan</string>
+    <string name="titan_role">El Experimento Viviente</string>
+    <string name="titan_desc">Curioso, intrépido y apasionado por las reacciones químicas. A Titan le encanta hacer explotar volcanes de espuma y crear slime gigante.</string>
+    <string name="titan_badge">Líder de Campo</string>
+
+    <string name="tesla_name">Tesla</string>
+    <string name="tesla_role">La Mente Brillante</string>
+    <string name="tesla_desc">Ingeniosa y analítica. A Tesla le apasionan la electricidad, la robótica y resolver acertijos científicos antes que nadie.</string>
+    <string name="tesla_badge">Genio Creativo</string>
+
+    <!-- Sección CTA / Contacto -->
+    <string name="cta_title">¿Tienes preguntas o quieres reservar?</string>
+    <string name="cta_subtitle">Escríbenos directamente por WhatsApp y te ayudaremos a planificar tu experiencia científica.</string>
+    <string name="cta_whatsapp_btn">Contactar por WhatsApp</string>
+
+    <!-- Títulos de Fragments Placeholder -->
+    <string name="title_workshops">Talleres y Experimentos</string>
+    <string name="title_shop">Tienda Científica</string>
+    <string name="title_gallery">Galería de Fotos</string>
+    <string name="title_contact">Contáctanos</string>
+</resources>

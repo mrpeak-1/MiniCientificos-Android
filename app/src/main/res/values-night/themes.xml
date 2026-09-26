@@ -1,0 +1,10 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.MiniCientificosAndroid" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/gold_yellow</item>
+        <item name="colorOnSecondary">@color/navy_blue</item>
+        <item name="android:statusBarColor">@color/navy_blue</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>

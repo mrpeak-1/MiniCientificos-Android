@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/spacing_m"
+    android:layout_marginVertical="@dimen/spacing_s"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:strokeColor="@color/card_stroke"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_m">
+
+        <!-- Icon container -->
+        <ImageView
+            android:id="@+id/iv_service_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_badge_rounded"
+            android:contentDescription="@string/services_title"
+            android:padding="10dp"
+            android:src="@drawable/ic_flask"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/primary_blue" />
+
+        <!-- Badge -->
+        <TextView
+            android:id="@+id/tv_service_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_badge_rounded"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/primary_blue"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Educativo" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/tv_service_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:fontFamily="@font/fredoka"
+            android:textColor="@color/navy_blue"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_service_icon"
+            tools:text="Talleres Interactivos" />
+
+        <!-- Description -->
+        <TextView
+            android:id="@+id/tv_service_desc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_service_title"
+            tools:text="Sesiones prácticas donde los niños construyen, mezclan y descubren principios de física y química." />
+
+        <!-- Button More Info -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_service_more"
+            style="@style/Widget.Material3.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins"
+            android:text="@string/btn_more_info"
+            android:textColor="@color/primary_blue"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_nav_workshops"
+            app:iconGravity="end"
+            app:iconTint="@color/primary_blue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_service_desc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
