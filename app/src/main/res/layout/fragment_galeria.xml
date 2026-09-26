@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light"
+    tools:context=".ui.GaleriaFragment">
+
+    <!-- Header / Banner de Título -->
+    <LinearLayout
+        android:id="@+id/ll_header_galeria"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/navy_blue"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_m"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tv_galeria_header_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka"
+            android:text="Galería de Fotos Científicas"
+            android:textColor="@color/gold_yellow"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_galeria_header_sub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/poppins"
+            android:text="Explora los mejores momentos de nuestros talleres y proyectos"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Scroll de Chips de Filtro Temático -->
+    <HorizontalScrollView
+        android:id="@+id/hsv_chips"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/spacing_m"
+        android:paddingVertical="@dimen/spacing_s"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_header_galeria">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_galeria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:selectionRequired="true"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_todos"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Todos"
+                android:textColor="@color/navy_blue"
+                app:chipBackgroundColor="@color/colorPrimaryContainer" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_fotocatalisis"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fotocatálisis" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_minibiohuertos"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minibiohuertos" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_minicompostaje"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Minicompostaje" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_voluntariado"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Voluntariado" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- RecyclerView Grid de 2 Columnas -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_galeria"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/spacing_s"
+        android:paddingBottom="@dimen/spacing_m"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hsv_chips"
+        tools:listitem="@layout/item_galeria" />
+
+    <!-- Estado vacío / Sin resultados -->
+    <TextView
+        android:id="@+id/tv_galeria_vacio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="No se encontraron imágenes en esta categoría."
+        android:textColor="@color/text_secondary"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hsv_chips" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

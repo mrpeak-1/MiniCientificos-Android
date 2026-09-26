@@ -44,4 +44,9 @@
         <item name="cornerRadius">@dimen/button_corner_radius</item>
         <item name="android:textStyle">bold</item>
     </style>
+
+    <!-- Estilo de Imagen Circular -->
+    <style name="ShapeAppearance.Circle" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>

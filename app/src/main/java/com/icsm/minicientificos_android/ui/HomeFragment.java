@@ -74,8 +74,15 @@ public class HomeFragment extends Fragment {
                 R.drawable.ic_nav_shop
         ));
 
-        SliderAdapter adapter = new SliderAdapter(sliderItems, item ->
-                Toast.makeText(requireContext(), "Seleccionado: " + item.getTitle(), Toast.LENGTH_SHORT).show());
+        SliderAdapter adapter = new SliderAdapter(sliderItems, item -> {
+            if (item.getTitle().contains("Talleres")) {
+                abrirFragment(new WorkshopsFragment());
+            } else if (item.getTitle().contains("Tienda") || item.getTitle().contains("Kits")) {
+                abrirFragment(new ShopFragment());
+            } else {
+                abrirFragment(new ContactoFragment());
+            }
+        });
 
         binding.viewPagerHero.setAdapter(adapter);
 
@@ -112,19 +119,23 @@ public class HomeFragment extends Fragment {
                 R.drawable.ic_nav_contact
         ));
 
-        ServiceAdapter serviceAdapter = new ServiceAdapter(serviceItems, item ->
-                Toast.makeText(requireContext(), "Servicio: " + item.getTitle(), Toast.LENGTH_SHORT).show());
+        ServiceAdapter serviceAdapter = new ServiceAdapter(serviceItems, item -> {
+            if (item.getTitle().contains("Talleres")) {
+                abrirFragment(new WorkshopsFragment());
+            } else if (item.getTitle().contains("Fiestas")) {
+                abrirFragment(new GaleriaFragment());
+            } else {
+                abrirFragment(new NosotrosFragment());
+            }
+        });
 
         binding.rvServices.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvServices.setAdapter(serviceAdapter);
     }
 
     private void setupCharactersSection() {
-        binding.cardTitan.setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Titan: El Experimento Viviente", Toast.LENGTH_SHORT).show());
-
-        binding.cardTesla.setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Tesla: La Mente Brillante", Toast.LENGTH_SHORT).show());
+        binding.cardTitan.setOnClickListener(v -> abrirFragment(new PersonajesFragment()));
+        binding.cardTesla.setOnClickListener(v -> abrirFragment(new PersonajesFragment()));
     }
 
     private void setupCtaWhatsApp() {
@@ -137,6 +148,16 @@ public class HomeFragment extends Fragment {
                 Toast.makeText(requireContext(), "Visita nuestra web oficial: " + url, Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void abrirFragment(Fragment fragment) {
+        if (getActivity() != null) {
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, fragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
     }
 
     @Override
