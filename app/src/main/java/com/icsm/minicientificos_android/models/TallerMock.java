@@ -139,7 +139,7 @@ public class TallerMock implements Serializable {
                 "8 vacantes disponibles",
                 "• Edad sugerida: 6 a 12 años\n• Incluye kit de semillas y tierra viva\n• Asistir con ropa cómoda",
                 "S/ 90.00 / mes",
-                R.drawable.ic_flask
+                R.drawable.compostaje
         ));
 
         lista.add(new TallerMock(
@@ -153,7 +153,7 @@ public class TallerMock implements Serializable {
                 "5 vacantes disponibles",
                 "• Edad sugerida: 8 a 14 años\n• Traer laptop o tablet (opcional)\n• No requiere experiencia previa",
                 "S/ 120.00 / mes",
-                R.drawable.ic_tesla_avatar
+                R.drawable.bobina
         ));
 
         lista.add(new TallerMock(
@@ -167,7 +167,7 @@ public class TallerMock implements Serializable {
                 "15 vacantes disponibles",
                 "• Edad sugerida: 5 a 10 años\n• Conexión Zoom\n• Se envía guía de materiales caseros previa",
                 "S/ 60.00 / mes",
-                R.drawable.ic_titan_avatar
+                R.drawable.ia
         ));
 
         return lista;

@@ -47,12 +47,11 @@
 
             <ImageView
                 android:id="@+id/iv_producto_imagen"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:contentDescription="Imagen del producto"
-                android:src="@drawable/ic_flask"
-                app:tint="@color/primary_blue" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_flask" />
         </FrameLayout>
 
         <!-- Categoría -->

@@ -48,12 +48,11 @@
 
             <ImageView
                 android:id="@+id/iv_modal_taller_image"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:contentDescription="Imagen del taller"
-                android:src="@drawable/ic_flask"
-                app:tint="@color/primary_blue" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_flask" />
         </FrameLayout>
 
         <!-- Badge Modalidad y Categoría -->

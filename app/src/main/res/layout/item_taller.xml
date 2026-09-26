@@ -29,12 +29,11 @@
 
             <ImageView
                 android:id="@+id/iv_taller_image"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:contentDescription="Imagen del taller"
-                android:src="@drawable/ic_flask"
-                app:tint="@color/primary_blue" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_flask" />
         </FrameLayout>
 
         <!-- Badge Modalidad -->
