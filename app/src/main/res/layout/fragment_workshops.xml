@@ -4,43 +4,178 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_light"
-    android:padding="@dimen/spacing_m">
+    android:background="@color/bg_light">
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:layout_width="wrap_content"
+    <!-- Encabezado de la Pantalla -->
+    <LinearLayout
+        android:id="@+id/ll_header_talleres"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/fredoka"
-        android:text="@string/title_workshops"
-        android:textColor="@color/navy_blue"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/spacing_m"
+        android:paddingTop="@dimen/spacing_m"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/iv_illustration"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:contentDescription="@string/title_workshops"
-        android:src="@drawable/ic_flask"
+        <TextView
+            android:id="@+id/tv_title_talleres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka"
+            android:text="Talleres Científicos"
+            android:textColor="@color/navy_blue"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_subtitle_talleres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/poppins"
+            android:text="Descubre y participa en nuestras experiencias científicas"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp" />
+
+        <!-- Barra de Búsqueda -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_search_talleres"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            app:boxBackgroundColor="@color/white"
+            app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
+            app:boxCornerRadiusTopStart="@dimen/card_corner_radius"
+            app:boxStrokeColor="@color/primary_blue"
+            app:hintEnabled="false"
+            app:startIconDrawable="@drawable/ic_search"
+            app:startIconTint="@color/primary_blue">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_search_talleres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:hint="Buscar talleres por nombre o tema..."
+                android:inputType="text"
+                android:paddingVertical="12dp"
+                android:textColor="@color/navy_blue"
+                android:textColorHint="@color/text_light"
+                android:textSize="14sp" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Filtro Horizontal Chips/Categories -->
+    <HorizontalScrollView
+        android:id="@+id/hsv_filtros_talleres"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_s"
+        android:clipToPadding="false"
+        android:paddingHorizontal="@dimen/spacing_m"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_header_talleres">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_group_talleres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:singleLine="true"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_todas"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:fontFamily="@font/fredoka"
+                android:text="Todas"
+                app:chipCornerRadius="@dimen/corner_radius_pill" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_presencial"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="Presencial"
+                app:chipCornerRadius="@dimen/corner_radius_pill" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_virtual"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="Virtual"
+                app:chipCornerRadius="@dimen/corner_radius_pill" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_hibrido"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="Híbrido"
+                app:chipCornerRadius="@dimen/corner_radius_pill" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_ecologia"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="Ecología"
+                app:chipCornerRadius="@dimen/corner_radius_pill" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_robotica"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="Robótica"
+                app:chipCornerRadius="@dimen/corner_radius_pill" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- RecyclerView de Talleres -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_talleres"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/spacing_s"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_xl"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        app:tint="@color/primary_blue" />
+        app:layout_constraintTop_toBottomOf="@id/hsv_filtros_talleres"
+        tools:listitem="@layout/item_taller" />
 
+    <!-- Estado Vacío / Sin Resultados -->
     <TextView
+        android:id="@+id/tv_empty_talleres"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_m"
+        android:drawablePadding="@dimen/spacing_s"
         android:fontFamily="@font/poppins"
-        android:text="¡Próximamente catálogo completo de talleres!"
+        android:text="No se encontraron talleres con este criterio"
         android:textColor="@color/text_secondary"
         android:textSize="14sp"
+        android:visibility="gone"
+        app:drawableTopCompat="@drawable/ic_flask"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_illustration" />
+        app:layout_constraintTop_toBottomOf="@id/hsv_filtros_talleres" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

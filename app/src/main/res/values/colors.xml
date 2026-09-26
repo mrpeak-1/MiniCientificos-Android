@@ -40,4 +40,16 @@
     <color name="nav_item_selected">#00A8E8</color>
     <color name="nav_item_unselected">#8D99AE</color>
     <color name="nav_bg">#00204A</color>
+
+    <!-- Badges Modalidad y Stock -->
+    <color name="badge_presencial_bg">#E3F2FD</color>
+    <color name="badge_presencial_text">#1565C0</color>
+    <color name="badge_virtual_bg">#EDE7F6</color>
+    <color name="badge_virtual_text">#512DA8</color>
+    <color name="badge_hibrido_bg">#E8F5E9</color>
+    <color name="badge_hibrido_text">#2E7D32</color>
+    <color name="badge_stock_bg">#E8F5E9</color>
+    <color name="badge_stock_text">#2E7D32</color>
+    <color name="badge_pocas_unidades_bg">#FFF3E0</color>
+    <color name="badge_pocas_unidades_text">#E65100</color>
 </resources>

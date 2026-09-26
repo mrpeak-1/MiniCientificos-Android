@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_rounded"
+    android:backgroundTint="@color/white"
+    android:padding="@dimen/spacing_l">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Drag Handle Indicator -->
+        <View
+            android:id="@+id/v_drag_handle"
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="@color/card_stroke"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Botón Cerrar -->
+        <ImageButton
+            android:id="@+id/btn_close_sheet"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Cerrar"
+            android:src="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/text_secondary" />
+
+        <!-- Encabezado con Icono / Badge -->
+        <FrameLayout
+            android:id="@+id/fl_modal_image_container"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="@color/titan_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_drag_handle">
+
+            <ImageView
+                android:id="@+id/iv_modal_taller_image"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:contentDescription="Imagen del taller"
+                android:src="@drawable/ic_flask"
+                app:tint="@color/primary_blue" />
+        </FrameLayout>
+
+        <!-- Badge Modalidad y Categoría -->
+        <LinearLayout
+            android:id="@+id/ll_badges_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@id/btn_close_sheet"
+            app:layout_constraintStart_toEndOf="@id/fl_modal_image_container"
+            app:layout_constraintTop_toTopOf="@id/fl_modal_image_container">
+
+            <TextView
+                android:id="@+id/tv_modal_modalidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_rounded"
+                android:backgroundTint="@color/badge_presencial_bg"
+                android:fontFamily="@font/poppins"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:textColor="@color/badge_presencial_text"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="Presencial" />
+
+            <TextView
+                android:id="@+id/tv_modal_categoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_s"
+                android:background="@drawable/bg_badge_rounded"
+                android:backgroundTint="@color/colorPrimaryContainer"
+                android:fontFamily="@font/poppins"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:textColor="@color/primary_blue"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="Ecología" />
+        </LinearLayout>
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tv_modal_titulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/fredoka"
+            android:textColor="@color/navy_blue"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fl_modal_image_container"
+            app:layout_constraintTop_toBottomOf="@id/ll_badges_container"
+            tools:text="Pequeños Botánicos y Biohuertos" />
+
+        <!-- Separador -->
+        <View
+            android:id="@+id/v_modal_divider1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:background="@color/card_stroke"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_modal_image_container" />
+
+        <!-- Sección Descripción Completa -->
+        <TextView
+            android:id="@+id/tv_label_descripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:fontFamily="@font/fredoka"
+            android:text="Descripción del Taller"
+            android:textColor="@color/navy_blue"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_modal_divider1" />
+
+        <TextView
+            android:id="@+id/tv_modal_descripcion_completa"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_descripcion"
+            tools:text="En este taller interactivo, los niños explorarán los secretos del reino vegetal, construirán su propio mini macetero con materiales reciclados y aprenderán el arte del compost en casa." />
+
+        <!-- Sección Horario y Vacantes -->
+        <LinearLayout
+            android:id="@+id/ll_info_row"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_modal_descripcion_completa">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:contentDescription="Horario"
+                    android:src="@drawable/ic_calendar"
+                    app:tint="@color/primary_blue" />
+
+                <TextView
+                    android:id="@+id/tv_modal_fecha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_s"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    tools:text="Sábados 10:00 AM - 12:00 PM" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:contentDescription="Vacantes"
+                    android:src="@drawable/ic_users"
+                    app:tint="@color/primary_blue" />
+
+                <TextView
+                    android:id="@+id/tv_modal_cupos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/spacing_s"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/text_primary"
+                    android:textSize="13sp"
+                    tools:text="8 vacantes disponibles" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Sección Requisitos -->
+        <TextView
+            android:id="@+id/tv_label_requisitos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:fontFamily="@font/fredoka"
+            android:text="Requisitos e Inclusión"
+            android:textColor="@color/navy_blue"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ll_info_row" />
+
+        <TextView
+            android:id="@+id/tv_modal_requisitos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_requisitos"
+            tools:text="• Edad sugerida: 6 a 12 años\n• Incluye kit de semillas y tierra viva\n• Asistir con ropa cómoda" />
+
+        <!-- Precio Inversión -->
+        <TextView
+            android:id="@+id/tv_modal_precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:fontFamily="@font/fredoka"
+            android:textColor="@color/primary_blue"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_modal_requisitos"
+            tools:text="Inversión: S/ 90.00 / mes" />
+
+        <!-- Botón WhatsApp -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_whatsapp_inscribirse"
+            style="@style/Widget.MiniCientificos.Button.WhatsApp"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="@dimen/spacing_l"
+            android:fontFamily="@font/fredoka"
+            android:text="Inscribirse por WhatsApp"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_whatsapp"
+            app:iconGravity="textStart"
+            app:iconPadding="10dp"
+            app:iconSize="24dp"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_modal_precio" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

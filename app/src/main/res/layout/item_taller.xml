@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/spacing_m"
+    android:layout_marginVertical="@dimen/spacing_s"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:strokeColor="@color/card_stroke"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/spacing_m">
+
+        <!-- Contenedor Imagen Header / Icono -->
+        <FrameLayout
+            android:id="@+id/fl_image_container"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="@color/titan_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/iv_taller_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:contentDescription="Imagen del taller"
+                android:src="@drawable/ic_flask"
+                app:tint="@color/primary_blue" />
+        </FrameLayout>
+
+        <!-- Badge Modalidad -->
+        <TextView
+            android:id="@+id/tv_modalidad_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="@color/badge_presencial_bg"
+            android:fontFamily="@font/poppins"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:textColor="@color/badge_presencial_text"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/fl_image_container"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Presencial" />
+
+        <!-- Título del Taller -->
+        <TextView
+            android:id="@+id/tv_taller_titulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/fredoka"
+            android:textColor="@color/navy_blue"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fl_image_container"
+            app:layout_constraintTop_toBottomOf="@id/tv_modalidad_badge"
+            tools:text="Pequeños Botánicos y Biohuertos" />
+
+        <!-- Descripción Corta -->
+        <TextView
+            android:id="@+id/tv_taller_descripcion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:ellipsize="end"
+            android:fontFamily="@font/poppins"
+            android:maxLines="2"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_image_container"
+            tools:text="Aprende sobre la vida de las plantas, germinación y creación de compostaje infantil." />
+
+        <!-- Divider ligero -->
+        <View
+            android:id="@+id/v_divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:background="@color/card_stroke"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_taller_descripcion" />
+
+        <!-- Icono + Fecha -->
+        <ImageView
+            android:id="@+id/iv_ic_calendar"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:contentDescription="Fecha"
+            android:src="@drawable/ic_calendar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_divider"
+            app:tint="@color/primary_blue" />
+
+        <TextView
+            android:id="@+id/tv_taller_fecha"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_ic_calendar"
+            app:layout_constraintEnd_toStartOf="@id/btn_ver_detalle"
+            app:layout_constraintStart_toEndOf="@id/iv_ic_calendar"
+            app:layout_constraintTop_toTopOf="@id/iv_ic_calendar"
+            tools:text="Sábados 10:00 AM" />
+
+        <!-- Icono + Cupos -->
+        <ImageView
+            android:id="@+id/iv_ic_users"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:contentDescription="Cupos"
+            android:src="@drawable/ic_users"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_ic_calendar"
+            app:tint="@color/primary_blue" />
+
+        <TextView
+            android:id="@+id/tv_taller_cupos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_ic_users"
+            app:layout_constraintEnd_toStartOf="@id/btn_ver_detalle"
+            app:layout_constraintStart_toEndOf="@id/iv_ic_users"
+            app:layout_constraintTop_toTopOf="@id/iv_ic_users"
+            tools:text="8 vacantes" />
+
+        <!-- Botón Ver Detalle -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_ver_detalle"
+            style="@style/Widget.MiniCientificos.Button.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka"
+            android:paddingHorizontal="16dp"
+            android:text="Ver Detalle"
+            android:textSize="13sp"
+            app:cornerRadius="@dimen/button_corner_radius"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_divider" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
