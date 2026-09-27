@@ -1,21 +1,18 @@
-# 🔬 Mini Científicos - App Nativa Android
-
-![Banner](.github-assets/inicio.png)
+# 🔬 Mini Científicos - App Android
 
 ## 📌 Descripción del Proyecto
+
 **Mini Científicos** es una aplicación nativa para Android desarrollada en **Java**, diseñada para trasladar la experiencia de la plataforma web oficial a una interfaz móvil interactiva, colorida y optimizada. Su objetivo es acercar la ciencia a niños, padres de familia y colegios mediante talleres, experimentos en vivo, espectáculos y kits educativos.
+
 
 ---
 
-## 📸 Capturas de Pantalla
+## 📱 Interfaz de Usuario
 
-| Inicio | Talleres | Tienda |
-| :---: | :---: | :---: |
-| ![Inicio](.github-assets/inicio.png) | ![Talleres](.github-assets/talleres.png) | ![Tienda](.github-assets/tienda.png) |
 
-| Galería | Contacto |
-| :---: | :---: |
-| ![Galería](.github-assets/galeria.png) | ![Contacto](.github-assets/contacto.png) |
+| Inicio | Talleres | Tienda | Galería | Contacto |
+| :---: | :---: | :---: | :---: | :---: |
+| <img src=".github-assets/inicio.png" width="180" alt="Inicio"> | <img src=".github-assets/talleres.png" width="180" alt="Talleres"> | <img src=".github-assets/tienda.png" width="180" alt="Tienda"> | <img src=".github-assets/galeria.png" width="180" alt="Galería"> | <img src=".github-assets/contacto.png" width="180" alt="Contacto"> |
 
 ---
 
@@ -94,6 +91,14 @@ app/src/main/java/com/icsm/minicientificos_android/
 ---
 
 ## 👨‍💻 Desarrollado por
-* **Usuario:** mrpeak-1
-* **Correo:** geronimo.star.246@gmail.com
-* **Proyecto:** Informe de Formación Práctica / Migración Nativa Android
+
+*   **Miguel Córdova**
+*   **Mateo Vicente**
+*   **Oscar Quille**
+
+<br>
+
+<p align="center">
+  <strong>© 2026 MiniCientíficos.</strong>
+</p>
+
