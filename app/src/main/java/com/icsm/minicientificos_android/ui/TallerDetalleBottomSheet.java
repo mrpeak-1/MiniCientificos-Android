@@ -95,7 +95,7 @@ public class TallerDetalleBottomSheet extends BottomSheetDialogFragment {
     private void abrirWhatsappInscripcion() {
         try {
             String mensaje = "Hola Mini Científicos, deseo inscribirme en el taller: *" + taller.getTitulo() + "* (" + taller.getModalidad() + ").";
-            String url = "https://api.whatsapp.com/send?phone=51987654321&text=" + URLEncoder.encode(mensaje, StandardCharsets.UTF_8.name());
+            String url = "https://api.whatsapp.com/send?phone=51930754024&text=" + URLEncoder.encode(mensaje, StandardCharsets.UTF_8.name());
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             startActivity(intent);
         } catch (Exception e) {

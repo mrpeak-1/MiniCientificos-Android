@@ -140,12 +140,12 @@ public class HomeFragment extends Fragment {
 
     private void setupCtaWhatsApp() {
         binding.btnWhatsappCta.setOnClickListener(v -> {
-            String url = "https://minicientificos-proces.vercel.app/";
+            String url = "https://api.whatsapp.com/send?phone=51930754024&text=Hola%20Mini%20Cient%C3%ADficos%2C%20deseo%20m%C3%A1s%20informaci%C3%B3n.";
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             try {
                 startActivity(intent);
             } catch (Exception e) {
-                Toast.makeText(requireContext(), "Visita nuestra web oficial: " + url, Toast.LENGTH_SHORT).show();
+                Toast.makeText(requireContext(), "Abrir WhatsApp: " + url, Toast.LENGTH_SHORT).show();
             }
         });
     }

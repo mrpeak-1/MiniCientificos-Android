@@ -94,7 +94,7 @@ public class ShopFragment extends Fragment implements ProductoAdapter.OnProducto
         try {
             String mensaje = "Hola Mini Científicos, deseo consultar/comprar el producto: *"
                     + producto.getNombre() + "* (" + producto.getPrecioFormateado() + ").";
-            String url = "https://api.whatsapp.com/send?phone=51987654321&text="
+            String url = "https://api.whatsapp.com/send?phone=51930754024&text="
                     + URLEncoder.encode(mensaje, StandardCharsets.UTF_8.name());
             startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
         } catch (Exception e) {
