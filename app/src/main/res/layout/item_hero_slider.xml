@@ -43,7 +43,7 @@
             app:layout_constraintEnd_toStartOf="@id/iv_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_badge"
-            tools:text="¡Bienvenido a Mini Científicos!" />
+            tools:text="Bienvenido a MiniCientíficos!" />
 
         <!-- Subtitle -->
         <TextView
