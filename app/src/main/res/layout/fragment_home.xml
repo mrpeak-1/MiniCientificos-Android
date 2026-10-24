@@ -130,6 +130,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_services_sub" />
 
+        <!-- SECCIÓN INTERACTIVA: EXPLORA EL MINI PLANETA 3D -->
+        <include
+            android:id="@+id/section_mini_planeta"
+            layout="@layout/layout_home_mini_planeta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_services" />
+
         <!-- SECCIÓN: PREVIEW DE PERSONAJES (TITAN Y TESLA) -->
         <TextView
             android:id="@+id/tv_characters_header"
@@ -145,7 +155,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_services" />
+            app:layout_constraintTop_toBottomOf="@id/section_mini_planeta" />
 
         <!-- PERSONAJE 1: TITAN -->
         <com.google.android.material.card.MaterialCardView
@@ -390,16 +400,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- SECCIÓN INTERACTIVA: EXPLORA EL MINI PLANETA 3D -->
-        <include
-            android:id="@+id/section_mini_planeta"
-            layout="@layout/layout_home_mini_planeta"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_cta_whatsapp" />
-
         <!-- PIE DE PÁGINA CORPORATIVO UNIFICADO -->
         <include
             android:id="@+id/section_corporate_footer"
@@ -408,7 +408,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/section_mini_planeta" />
+            app:layout_constraintTop_toBottomOf="@id/card_cta_whatsapp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
