@@ -35,7 +35,25 @@ public class MiniPlanetaController {
     public void setup() {
         if (planetView instanceof Planet3DView) {
             Planet3DView pView = (Planet3DView) planetView;
-            pView.setOnPlanetChangeListener(this::actualizarPinSegunAngulo3D);
+            pView.setOnPlanetChangeListener(new Planet3DView.OnPlanetChangeListener() {
+                @Override
+                public void onAngleChanged(float longitudeDeg) {
+                    actualizarPinSegunAngulo3D(longitudeDeg);
+                }
+
+                @Override
+                public void onHotspotTapped(com.icsm.minicientificos_android.models.PlanetaHotspotItem item) {
+                    if (fragmentManager != null) {
+                        PlanetaExperimentoBottomSheet bottomSheet = PlanetaExperimentoBottomSheet.newInstance(
+                                item.getNombreExperimento(),
+                                item.getExplicacionParaNinos(),
+                                item.getRetoRapidoPregunta(),
+                                item.getDrawableResId()
+                        );
+                        bottomSheet.show(fragmentManager, "PlanetaExperimentoBottomSheet");
+                    }
+                }
+            });
         }
         setupChips();
     }
