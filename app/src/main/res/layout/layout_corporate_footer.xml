@@ -8,7 +8,9 @@
     android:layout_marginTop="@dimen/spacing_xxl"
     android:background="@color/pc_navy"
     android:orientation="vertical"
-    android:padding="@dimen/spacing_l">
+    android:paddingHorizontal="@dimen/spacing_l"
+    android:paddingTop="@dimen/spacing_l"
+    android:paddingBottom="84dp">
 
     <!-- Marca e Identidad -->
     <TextView
@@ -39,12 +41,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:baselineAligned="false"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:orientation="vertical">
 
             <TextView
@@ -60,7 +63,7 @@
                 android:id="@+id/tv_footer_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:fontFamily="@font/nunito"
                 android:text="📞 +51 930 754 024"
                 android:textColor="@color/white"
@@ -70,16 +73,19 @@
                 android:id="@+id/tv_footer_web"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
                 android:fontFamily="@font/nunito"
+                android:maxLines="1"
                 android:text="🌐 minicientificos-proces.vercel.app"
                 android:textColor="@color/primary_blue"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -96,21 +102,21 @@
                 android:id="@+id/tv_footer_facebook"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="6dp"
                 android:fontFamily="@font/nunito"
                 android:text="Facebook / Mini Científicos"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
 
             <TextView
                 android:id="@+id/tv_footer_instagram"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="4dp"
                 android:fontFamily="@font/nunito"
-                android:text="Instagram @minicientificosoficial"
+                android:text="Instagram @minicientificos"
                 android:textColor="@color/white"
-                android:textSize="12sp" />
+                android:textSize="11sp" />
         </LinearLayout>
     </LinearLayout>
 
