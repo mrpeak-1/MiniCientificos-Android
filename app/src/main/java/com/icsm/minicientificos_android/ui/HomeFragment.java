@@ -140,7 +140,7 @@ public class HomeFragment extends Fragment {
     private void setupMiniPlaneta() {
         miniPlanetaController = new MiniPlanetaController(
                 binding.sectionMiniPlaneta.flPlanetaContainer,
-                binding.sectionMiniPlaneta.ivPlaneta3d,
+                binding.sectionMiniPlaneta.planet3dView,
                 binding.sectionMiniPlaneta.tvPlanetaPin,
                 binding.sectionMiniPlaneta.chipGroupPlaneta,
                 getChildFragmentManager()

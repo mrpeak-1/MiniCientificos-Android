@@ -142,14 +142,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/hsv_planeta_chips">
 
-            <!-- Imagen del Planeta Giratorio 3D -->
-            <ImageView
-                android:id="@+id/iv_planeta_3d"
+            <!-- Planeta 3D Real Esférico (Proyección de Canvas en 360°) -->
+            <com.icsm.minicientificos_android.views.Planet3DView
+                android:id="@+id/planet_3d_view"
                 android:layout_width="190dp"
                 android:layout_height="190dp"
-                android:layout_gravity="center"
-                android:contentDescription="Planeta 3D"
-                android:src="@drawable/ic_planet_globe_vector" />
+                android:layout_gravity="center" />
 
             <!-- Pin / Indicador de Ecosistema Seleccionado -->
             <TextView
