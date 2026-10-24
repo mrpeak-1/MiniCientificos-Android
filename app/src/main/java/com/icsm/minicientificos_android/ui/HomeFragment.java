@@ -17,6 +17,8 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.icsm.minicientificos_android.R;
 import com.icsm.minicientificos_android.adapters.ServiceAdapter;
 import com.icsm.minicientificos_android.adapters.SliderAdapter;
+import com.icsm.minicientificos_android.controllers.HeroSliderController;
+import com.icsm.minicientificos_android.controllers.MiniPlanetaController;
 import com.icsm.minicientificos_android.databinding.FragmentHomeBinding;
 import com.icsm.minicientificos_android.models.ServiceItem;
 import com.icsm.minicientificos_android.models.SliderItem;
@@ -27,6 +29,8 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
+    private HeroSliderController heroSliderController;
+    private MiniPlanetaController miniPlanetaController;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -47,7 +51,9 @@ public class HomeFragment extends Fragment {
         setupHeroSlider();
         setupServicesList();
         setupCharactersSection();
+        setupMiniPlaneta();
         setupCtaWhatsApp();
+        setupFooter();
     }
 
     private void setupHeroSlider() {
@@ -74,7 +80,8 @@ public class HomeFragment extends Fragment {
                 R.drawable.ic_nav_shop
         ));
 
-        SliderAdapter adapter = new SliderAdapter(sliderItems, item -> {
+        heroSliderController = new HeroSliderController(binding.viewPagerHero, binding.tabLayoutDots);
+        heroSliderController.setup(sliderItems, item -> {
             if (item.getTitle().contains("Talleres")) {
                 abrirFragment(new WorkshopsFragment());
             } else if (item.getTitle().contains("Tienda") || item.getTitle().contains("Kits")) {
@@ -83,13 +90,6 @@ public class HomeFragment extends Fragment {
                 abrirFragment(new ContactoFragment());
             }
         });
-
-        binding.viewPagerHero.setAdapter(adapter);
-
-        // Vincula los puntos indicadores (TabLayout) con el ViewPager2 (Emulando Swiper.js)
-        new TabLayoutMediator(binding.tabLayoutDots, binding.viewPagerHero, (tab, position) -> {
-            // Los indicadores son formas personalizadas vía selector XML
-        }).attach();
     }
 
     private void setupServicesList() {
@@ -138,6 +138,17 @@ public class HomeFragment extends Fragment {
         binding.cardTesla.setOnClickListener(v -> abrirFragment(new PersonajesFragment()));
     }
 
+    private void setupMiniPlaneta() {
+        miniPlanetaController = new MiniPlanetaController(
+                binding.sectionMiniPlaneta.flPlanetaContainer,
+                binding.sectionMiniPlaneta.ivPlaneta3d,
+                binding.sectionMiniPlaneta.tvPlanetaPin,
+                binding.sectionMiniPlaneta.chipGroupPlaneta,
+                getChildFragmentManager()
+        );
+        miniPlanetaController.setup();
+    }
+
     private void setupCtaWhatsApp() {
         binding.btnWhatsappCta.setOnClickListener(v -> {
             String url = "https://api.whatsapp.com/send?phone=51930754024&text=Hola%20Mini%20Cient%C3%ADficos%2C%20deseo%20m%C3%A1s%20informaci%C3%B3n.";
@@ -147,6 +158,18 @@ public class HomeFragment extends Fragment {
             } catch (Exception e) {
                 Toast.makeText(requireContext(), "Abrir WhatsApp: " + url, Toast.LENGTH_SHORT).show();
             }
+        });
+    }
+
+    private void setupFooter() {
+        binding.sectionCorporateFooter.tvFooterPhone.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+51930754024"));
+            startActivity(intent);
+        });
+
+        binding.sectionCorporateFooter.tvFooterWeb.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://minicientificos-proces.vercel.app/"));
+            startActivity(intent);
         });
     }
 
@@ -161,8 +184,27 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        if (heroSliderController != null) {
+            heroSliderController.startAutoSlide();
+        }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (heroSliderController != null) {
+            heroSliderController.stopAutoSlide();
+        }
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (heroSliderController != null) {
+            heroSliderController.stopAutoSlide();
+        }
         binding = null;
     }
 }

@@ -390,5 +390,25 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
+        <!-- SECCIÓN INTERACTIVA: EXPLORA EL MINI PLANETA 3D -->
+        <include
+            android:id="@+id/section_mini_planeta"
+            layout="@layout/layout_home_mini_planeta"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_cta_whatsapp" />
+
+        <!-- PIE DE PÁGINA CORPORATIVO UNIFICADO -->
+        <include
+            android:id="@+id/section_corporate_footer"
+            layout="@layout/layout_corporate_footer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/section_mini_planeta" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

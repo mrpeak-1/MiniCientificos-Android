@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_card_rounded"
+    android:backgroundTint="@color/white"
+    android:padding="@dimen/spacing_l">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Drag Handle Indicator -->
+        <View
+            android:id="@+id/v_drag_handle_planeta"
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="@color/card_stroke"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Botón Cerrar -->
+        <ImageButton
+            android:id="@+id/btn_close_planeta_sheet"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Cerrar"
+            android:src="@drawable/ic_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/text_secondary" />
+
+        <!-- Icono Imagen Ecosistema -->
+        <FrameLayout
+            android:id="@+id/fl_planeta_image_container"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="@color/titan_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_drag_handle_planeta">
+
+            <ImageView
+                android:id="@+id/iv_planeta_ecosistema_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Ecosistema Planeta"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_flask" />
+        </FrameLayout>
+
+        <!-- Badges -->
+        <LinearLayout
+            android:id="@+id/ll_planeta_badges"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@id/btn_close_planeta_sheet"
+            app:layout_constraintStart_toEndOf="@id/fl_planeta_image_container"
+            app:layout_constraintTop_toTopOf="@id/fl_planeta_image_container">
+
+            <TextView
+                android:id="@+id/tv_planeta_badge_categoria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_rounded"
+                android:backgroundTint="@color/colorPrimaryContainer"
+                android:fontFamily="@font/poppins"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="4dp"
+                android:textColor="@color/primary_blue"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="Ecosistema 3D" />
+        </LinearLayout>
+
+        <!-- Título Ecosistema -->
+        <TextView
+            android:id="@+id/tv_planeta_titulo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/fredoka"
+            android:textColor="@color/navy_blue"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fl_planeta_image_container"
+            app:layout_constraintTop_toBottomOf="@id/ll_planeta_badges"
+            tools:text="Ecosistema Mini Huerto &amp; Compost" />
+
+        <View
+            android:id="@+id/v_planeta_divider1"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:background="@color/card_stroke"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_planeta_image_container" />
+
+        <!-- Descripción Científica -->
+        <TextView
+            android:id="@+id/tv_label_planeta_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:fontFamily="@font/fredoka"
+            android:text="💡 Concepto Científico del Planeta"
+            android:textColor="@color/navy_blue"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_planeta_divider1" />
+
+        <TextView
+            android:id="@+id/tv_planeta_descripcion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_planeta_desc"
+            tools:text="Explora cómo la germinación y el compostaje convierten los desechos orgánicos en tierra nutrida viva para nuestro planeta." />
+
+        <!-- Experimento Sugerido -->
+        <TextView
+            android:id="@+id/tv_label_experimento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:fontFamily="@font/fredoka"
+            android:text="🔬 Experimento Interactivo Sugerido"
+            android:textColor="@color/navy_blue"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_planeta_descripcion" />
+
+        <TextView
+            android:id="@+id/tv_planeta_experimento_pasos"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:fontFamily="@font/poppins"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/text_primary"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_label_experimento"
+            tools:text="1. Junta cáscaras de manzana y plátano.\n2. Colócalas en una maceta ecológica con tierra vegetal.\n3. Riega cada 2 días y observa la transformación en 10 días." />
+
+        <!-- Botón WhatsApp -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_planeta_whatsapp"
+            style="@style/Widget.MiniCientificos.Button.WhatsApp"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:layout_marginTop="@dimen/spacing_l"
+            android:fontFamily="@font/fredoka"
+            android:text="Consultar Taller de este Ecosistema"
+            android:textSize="15sp"
+            app:icon="@drawable/ic_whatsapp"
+            app:iconGravity="textStart"
+            app:iconPadding="10dp"
+            app:iconSize="24dp"
+            app:iconTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_planeta_experimento_pasos" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
