@@ -34,19 +34,22 @@ public class Planet3DView extends View {
 
     private Paint oceanPaint;
     private Paint landPaint;
-    private Paint desertPaint;
     private Paint icePaint;
     private Paint shadowPaint;
     private Paint atmospherePaint;
+    private Paint highlightPaint;
     private Paint orbBorderPaint;
     private Paint orbActiveBorderPaint;
     private Paint orbGlowPaint;
+    private Paint labelBgPaint;
+    private Paint labelTextPaint;
 
     private Path sphereClipPath;
     private Path orbClipPath;
+    private Path continentPath;
 
     private float longitudeDeg = 0f; // 0 a 360 grados
-    private float latitudeTiltDeg = 12f; // -30 a +30 grados
+    private float latitudeTiltDeg = 10f; // -30 a +30 grados
 
     private float lastTouchX = 0f;
     private float lastTouchY = 0f;
@@ -56,7 +59,6 @@ public class Planet3DView extends View {
 
     private final List<PlanetaHotspotItem> hotspots = PlanetaHotspotCatalog.getNodes();
     private final Bitmap[] hotspotBitmaps = new Bitmap[7];
-    private final RectF orbRect = new RectF();
 
     public Planet3DView(Context context) {
         super(context);
@@ -77,38 +79,45 @@ public class Planet3DView extends View {
         oceanPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         landPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        landPaint.setColor(Color.parseColor("#388E3C"));
+        landPaint.setColor(Color.parseColor("#2E7D32")); // Verde boscoso realista
         landPaint.setStyle(Paint.Style.FILL);
 
-        desertPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        desertPaint.setColor(Color.parseColor("#FBC02D"));
-        desertPaint.setStyle(Paint.Style.FILL);
-
         icePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        icePaint.setColor(Color.parseColor("#FFFFFF"));
+        icePaint.setColor(Color.parseColor("#F5F5F5")); // Blanco glaciar
         icePaint.setStyle(Paint.Style.FILL);
 
         shadowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         atmospherePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        highlightPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
         orbBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         orbBorderPaint.setColor(Color.parseColor("#FFFFFF"));
         orbBorderPaint.setStyle(Paint.Style.STROKE);
-        orbBorderPaint.setStrokeWidth(3f);
+        orbBorderPaint.setStrokeWidth(3.5f);
 
         orbActiveBorderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         orbActiveBorderPaint.setColor(Color.parseColor("#FDC500"));
         orbActiveBorderPaint.setStyle(Paint.Style.STROKE);
-        orbActiveBorderPaint.setStrokeWidth(5f);
+        orbActiveBorderPaint.setStrokeWidth(6f);
 
         orbGlowPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        orbGlowPaint.setColor(Color.parseColor("#80FDC500"));
+        orbGlowPaint.setColor(Color.parseColor("#90FDC500"));
         orbGlowPaint.setStyle(Paint.Style.FILL);
+
+        labelBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        labelBgPaint.setColor(Color.parseColor("#CC0B2C5E"));
+        labelBgPaint.setStyle(Paint.Style.FILL);
+
+        labelTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        labelTextPaint.setColor(Color.parseColor("#FFFFFF"));
+        labelTextPaint.setTextSize(26f);
+        labelTextPaint.setFakeBoldText(true);
+        labelTextPaint.setTextAlign(Paint.Align.CENTER);
 
         sphereClipPath = new Path();
         orbClipPath = new Path();
+        continentPath = new Path();
 
-        // Carga Bitmaps reales para cada uno de los 7 Ecosistemas
         loadHotspotBitmaps();
     }
 
@@ -127,7 +136,7 @@ public class Planet3DView extends View {
             try {
                 hotspotBitmaps[i] = BitmapFactory.decodeResource(getResources(), resIds[i]);
             } catch (Exception e) {
-                e.printStackTrace();
+                // Ignore
             }
         }
     }
@@ -177,31 +186,42 @@ public class Planet3DView extends View {
         float cy = height / 2f;
         float radius = Math.min(width, height) / 2f - 40f;
 
-        // 1. Océano Fotorrealista 3D con Gradiente Radial de Brillo Esférico
+        // 1. Océano Fotorrealista con Iluminación Esférica 3D
         RadialGradient oceanGradient = new RadialGradient(
                 cx - radius * 0.35f, cy - radius * 0.35f, radius * 1.35f,
-                new int[]{Color.parseColor("#4AD3FF"), Color.parseColor("#0081C9"), Color.parseColor("#002B49")},
+                new int[]{Color.parseColor("#4AD3FF"), Color.parseColor("#0077C8"), Color.parseColor("#002B49")},
                 new float[]{0f, 0.65f, 1f}, Shader.TileMode.CLAMP
         );
         oceanPaint.setShader(oceanGradient);
 
-        // Clip circular de la esfera
         sphereClipPath.reset();
         sphereClipPath.addCircle(cx, cy, radius, Path.Direction.CW);
 
         canvas.save();
         canvas.clipPath(sphereClipPath);
 
-        // Dibujar Océano Esférico
+        // Dibujar Océano Esférico Base
         canvas.drawCircle(cx, cy, radius, oceanPaint);
 
-        // 2. Continentes Realistas
-        drawRealistic3DContinents(canvas, cx, cy, radius);
+        // 2. Continentes Fotorrealistas Continuos (Sin círculos ni puntos vacíos)
+        drawRealistic3DContinentPaths(canvas, cx, cy, radius);
 
-        // 3. Sombra 3D de Profundidad Nocturna Curva
+        // 3. Casquetes Polares (Ártico y Antártida)
+        drawPolarGlaciers(canvas, cx, cy, radius);
+
+        // 4. Brillo Especular de Sol 3D (Esquina superior izquierda)
+        RadialGradient highlightGradient = new RadialGradient(
+                cx - radius * 0.40f, cy - radius * 0.40f, radius * 0.60f,
+                new int[]{Color.parseColor("#60FFFFFF"), Color.TRANSPARENT},
+                new float[]{0f, 1f}, Shader.TileMode.CLAMP
+        );
+        highlightPaint.setShader(highlightGradient);
+        canvas.drawCircle(cx, cy, radius, highlightPaint);
+
+        // 5. Sombra de Profundidad Nocturna Curva 3D
         RadialGradient shadowGradient = new RadialGradient(
                 cx + radius * 0.45f, cy + radius * 0.45f, radius * 1.15f,
-                new int[]{Color.TRANSPARENT, Color.parseColor("#C80B2C5E")},
+                new int[]{Color.TRANSPARENT, Color.parseColor("#D50B2C5E")},
                 new float[]{0.45f, 1f}, Shader.TileMode.CLAMP
         );
         shadowPaint.setShader(shadowGradient);
@@ -209,117 +229,124 @@ public class Planet3DView extends View {
 
         canvas.restore();
 
-        // 4. Brillo de Atmósfera Exterior
+        // 6. Resplandor de Atmósfera Exterior
         RadialGradient atmosGradient = new RadialGradient(
-                cx, cy, radius + 20f,
+                cx, cy, radius + 18f,
                 new int[]{Color.TRANSPARENT, Color.parseColor("#90B8E8FF"), Color.TRANSPARENT},
                 new float[]{0.82f, 0.94f, 1f}, Shader.TileMode.CLAMP
         );
         atmospherePaint.setShader(atmosGradient);
-        canvas.drawCircle(cx, cy, radius + 20f, atmospherePaint);
+        canvas.drawCircle(cx, cy, radius + 18f, atmospherePaint);
 
-        // 5. Orbes Fotorrealistas 3D de los 7 Ecosistemas Orbitando sobre el Planeta
+        // 7. Orbes Fotorrealistas 3D de los 7 Ecosistemas
         drawOrbitingHotspotOrbs(canvas, cx, cy, radius);
     }
 
-    private void drawRealistic3DContinents(Canvas canvas, float cx, float cy, float radius) {
-        // Renderiza masas continentales continuas usando proyección esférica 3D
-        float[][] landmasses = {
-                {0f, 25f, 55f, 40f, 0},     // América del Norte
-                {10f, -20f, 45f, 50f, 0},    // América del Sur
-                {75f, 40f, 45f, 35f, 0},     // Europa
-                {85f, 0f, 50f, 45f, 1},      // África / Sahara (Desierto)
-                {145f, 35f, 65f, 50f, 0},    // Asia
-                {225f, -25f, 45f, 35f, 1},   // Australia / Desierto
-                {290f, 15f, 35f, 25f, 0}     // Islas Pacífico
-        };
-
+    private void drawRealistic3DContinentPaths(Canvas canvas, float cx, float cy, float radius) {
+        // Renderiza trazos continentales continuos y orgánicos con proyección esférica 3D
         float radTilt = (float) Math.toRadians(latitudeTiltDeg);
 
-        for (float[] land : landmasses) {
-            float baseLon = land[0];
-            float baseLat = land[1];
-            float lonSpan = land[2];
-            float latSpan = land[3];
-            boolean isDesert = land[4] == 1;
+        // Definición de las 4 masas continentales principales [longitudCentral, latitudCentral, anchoLon, altoLat]
+        float[][] continents = {
+                {0f, 15f, 90f, 70f},    // América del Norte y Sur
+                {90f, 20f, 80f, 80f},   // Europa y África
+                {170f, 30f, 100f, 75f},  // Asia y Oceanía
+                {270f, 10f, 70f, 60f}   // Pacífico e Islas
+        };
 
-            Paint paintToUse = isDesert ? desertPaint : landPaint;
+        for (float[] cont : continents) {
+            float baseLon = cont[0];
+            float baseLat = cont[1];
+            float lonWidth = cont[2];
+            float latHeight = cont[3];
 
-            for (float dLon = -lonSpan / 2f; dLon <= lonSpan / 2f; dLon += 6f) {
-                float currentLon = (baseLon + dLon + longitudeDeg) % 360f;
-                if (currentLon < 0) currentLon += 360f;
+            continentPath.reset();
+            boolean pathStarted = false;
 
-                double radLon = Math.toRadians(currentLon);
+            int stepsLon = 16;
+            int stepsLat = 12;
+
+            for (int i = 0; i <= stepsLon; i++) {
+                float lonRatio = (float) i / stepsLon - 0.5f; // [-0.5, 0.5]
+                float curLon = (baseLon + lonRatio * lonWidth + longitudeDeg) % 360f;
+                if (curLon < 0) curLon += 360f;
+
+                double radLon = Math.toRadians(curLon);
                 double cosLon = Math.cos(radLon);
 
-                if (cosLon > 0) { // Cara frontal visible de la esfera
+                if (cosLon > 0) { // Cara visible 3D
                     double sinLon = Math.sin(radLon);
 
-                    for (float dLat = -latSpan / 2f; dLat <= latSpan / 2f; dLat += 6f) {
-                        float currentLat = baseLat + dLat;
-                        double radLat = Math.toRadians(currentLat);
+                    for (int j = 0; j <= stepsLat; j++) {
+                        float latRatio = (float) j / stepsLat - 0.5f;
+                        float curLat = baseLat + latRatio * latHeight;
+                        double radLat = Math.toRadians(curLat);
 
                         float px = (float) (cx + radius * sinLon * Math.cos(radLat));
                         float py = (float) (cy - radius * (Math.sin(radLat) * Math.cos(radTilt) - Math.cos(radLat) * Math.sin(radTilt) * cosLon));
 
-                        float spotRadius = (float) (radius * 0.08f * cosLon * Math.cos(radLat));
-                        if (spotRadius > 1.2f) {
-                            canvas.drawCircle(px, py, spotRadius, paintToUse);
+                        if (!pathStarted) {
+                            continentPath.moveTo(px, py);
+                            pathStarted = true;
+                        } else {
+                            continentPath.lineTo(px, py);
                         }
                     }
                 }
             }
+
+            if (pathStarted) {
+                continentPath.close();
+                canvas.drawPath(continentPath, landPaint);
+            }
         }
+    }
 
-        // Casquetes polares glaciares de nieve
-        float pyNorth = (float) (cy - radius * (Math.sin(Math.toRadians(75)) * Math.cos(radTilt)));
-        canvas.drawCircle(cx, pyNorth, radius * 0.35f, icePaint);
+    private void drawPolarGlaciers(Canvas canvas, float cx, float cy, float radius) {
+        float radTilt = (float) Math.toRadians(latitudeTiltDeg);
 
-        float pySouth = (float) (cy - radius * (Math.sin(Math.toRadians(-75)) * Math.cos(radTilt)));
-        canvas.drawCircle(cx, pySouth, radius * 0.30f, icePaint);
+        // Polo Norte
+        float pyNorth = (float) (cy - radius * (Math.sin(Math.toRadians(70)) * Math.cos(radTilt)));
+        canvas.drawCircle(cx, pyNorth, radius * 0.38f, icePaint);
+
+        // Polo Sur
+        float pySouth = (float) (cy - radius * (Math.sin(Math.toRadians(-70)) * Math.cos(radTilt)));
+        canvas.drawCircle(cx, pySouth, radius * 0.32f, icePaint);
     }
 
     private void drawOrbitingHotspotOrbs(Canvas canvas, float cx, float cy, float radius) {
         if (hotspots == null || hotspots.isEmpty()) return;
 
-        float orbitRadius = radius * 0.88f; // Radio dentro de la superficie esférica
+        float orbitRadius = radius * 0.85f;
         float radTilt = (float) Math.toRadians(latitudeTiltDeg);
 
         for (int i = 0; i < hotspots.size(); i++) {
             PlanetaHotspotItem item = hotspots.get(i);
             float targetAngle = item.getAnguloObjetivoGrados();
 
-            // Ángulo de longitud actual en la esfera
             float currentLon = (targetAngle + longitudeDeg) % 360f;
             if (currentLon < 0) currentLon += 360f;
 
             double radLon = Math.toRadians(currentLon);
             double cosLon = Math.cos(radLon);
 
-            // Se dibuja si está en la cara frontal visible (cosLon > -0.2f)
-            if (cosLon > -0.2f) {
+            if (cosLon > -0.2f) { // Cara visible 3D
                 double sinLon = Math.sin(radLon);
-                double radLat = Math.toRadians(0); // Ecuador
+                double radLat = Math.toRadians(0);
 
                 float px = (float) (cx + orbitRadius * sinLon * Math.cos(radLat));
                 float py = (float) (cy - orbitRadius * (Math.sin(radLat) * Math.cos(radTilt) - Math.cos(radLat) * Math.sin(radTilt) * cosLon));
 
-                // Escala de tamaño 3D según la profundidad Z
-                float depthFactor = (float) Math.max(0.4f, (cosLon + 0.2f) / 1.2f);
+                float depthFactor = (float) Math.max(0.45f, (cosLon + 0.2f) / 1.2f);
                 float orbSize = getOrbBaseSizePx() * depthFactor;
 
-                // Es el ítem más enfocado al frente
                 boolean isFrontActive = Math.abs(currentLon) < 25f || Math.abs(currentLon - 360f) < 25f;
 
                 if (isFrontActive) {
-                    orbSize *= 1.25f;
-                    // Resplandor de oro
-                    canvas.drawCircle(px, py, orbSize + 8f, orbGlowPaint);
+                    orbSize *= 1.30f;
+                    canvas.drawCircle(px, py, orbSize + 10f, orbGlowPaint);
                 }
 
-                orbRect.set(px - orbSize, py - orbSize, px + orbSize, py + orbSize);
-
-                // Dibuja la foto real del ecosistema dentro del orbe de cristal 3D
                 Bitmap bitmap = (i < hotspotBitmaps.length) ? hotspotBitmaps[i] : null;
                 if (bitmap != null && !bitmap.isRecycled()) {
                     canvas.save();
@@ -327,7 +354,6 @@ public class Planet3DView extends View {
                     orbClipPath.addCircle(px, py, orbSize, Path.Direction.CW);
                     canvas.clipPath(orbClipPath);
 
-                    // Escala y dibuja el bitmap dentro del círculo
                     Matrix matrix = new Matrix();
                     float scaleX = (orbSize * 2f) / bitmap.getWidth();
                     float scaleY = (orbSize * 2f) / bitmap.getHeight();
@@ -338,9 +364,22 @@ public class Planet3DView extends View {
                     canvas.restore();
                 }
 
-                // Anillo de cristal del Orbe
                 Paint border = isFrontActive ? orbActiveBorderPaint : orbBorderPaint;
                 canvas.drawCircle(px, py, orbSize, border);
+
+                // Etiqueta de Texto si está enfocado
+                if (isFrontActive) {
+                    String label = item.getEmojiIcono() + " " + item.getNombreExperimento();
+                    float textWidth = labelTextPaint.measureText(label);
+                    RectF bgRect = new RectF(
+                            px - textWidth / 2f - 14f,
+                            py + orbSize + 8f,
+                            px + textWidth / 2f + 14f,
+                            py + orbSize + 42f
+                    );
+                    canvas.drawRoundRect(bgRect, 20f, 20f, labelBgPaint);
+                    canvas.drawText(label, px, py + orbSize + 32f, labelTextPaint);
+                }
             }
         }
     }
@@ -362,7 +401,6 @@ public class Planet3DView extends View {
             case MotionEvent.ACTION_DOWN:
                 lastTouchX = x;
                 lastTouchY = y;
-                // Verifica si tocó directamente uno de los Orbes 3D
                 checkOrbsClick(x, y);
                 return true;
 
@@ -402,7 +440,7 @@ public class Planet3DView extends View {
         float cx = width / 2f;
         float cy = height / 2f;
         float radius = Math.min(width, height) / 2f - 40f;
-        float orbitRadius = radius * 0.88f;
+        float orbitRadius = radius * 0.85f;
         float radTilt = (float) Math.toRadians(latitudeTiltDeg);
 
         for (int i = 0; i < hotspots.size(); i++) {
@@ -415,19 +453,18 @@ public class Planet3DView extends View {
             double radLon = Math.toRadians(currentLon);
             double cosLon = Math.cos(radLon);
 
-            if (cosLon > 0) { // En la cara frontal
+            if (cosLon > 0) {
                 double sinLon = Math.sin(radLon);
                 double radLat = Math.toRadians(0);
 
                 float px = (float) (cx + orbitRadius * sinLon * Math.cos(radLat));
                 float py = (float) (cy - orbitRadius * (Math.sin(radLat) * Math.cos(radTilt) - Math.cos(radLat) * Math.sin(radTilt) * cosLon));
 
-                float depthFactor = (float) Math.max(0.4f, (cosLon + 0.2f) / 1.2f);
+                float depthFactor = (float) Math.max(0.45f, (cosLon + 0.2f) / 1.2f);
                 float orbSize = getOrbBaseSizePx() * depthFactor;
 
-                // Distancia euclidiana del toque al orbe
                 float dist = (float) Math.hypot(touchX - px, touchY - py);
-                if (dist <= orbSize * 1.4f) {
+                if (dist <= orbSize * 1.5f) {
                     listener.onHotspotTapped(item);
                     rotateToLongitude(360f - targetAngle);
                     break;
