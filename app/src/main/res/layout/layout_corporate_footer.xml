@@ -10,7 +10,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="@dimen/spacing_l"
     android:paddingTop="@dimen/spacing_l"
-    android:paddingBottom="84dp">
+    android:paddingBottom="36dp">
 
     <!-- Marca e Identidad -->
     <TextView

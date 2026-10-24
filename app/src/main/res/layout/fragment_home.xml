@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/spacing_xl">
+        android:paddingBottom="0dp">
 
         <!-- Header Container / Hero Background (Degradado Celeste Hero-Sky Kawaii) -->
         <View
