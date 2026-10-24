@@ -52,10 +52,10 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
         }
 
         public void bind(ServiceItem item, OnServiceClickListener listener) {
-            binding.tvServiceTitle.setText(item.getTitle());
-            binding.tvServiceDesc.setText(item.getDescription());
-            binding.tvServiceBadge.setText(item.getBadge());
-            binding.ivServiceIcon.setImageResource(item.getIconResId());
+            binding.tvServiceTitle.setText(item.getTitulo());
+            binding.tvServiceDesc.setText(item.getDescripcionCorta());
+            binding.tvServiceBadge.setText(item.getCategoriaGaleriaAsociada());
+            binding.ivServiceIcon.setImageResource(item.getIconoResId());
 
             binding.btnServiceMore.setOnClickListener(v -> {
                 if (listener != null) {
