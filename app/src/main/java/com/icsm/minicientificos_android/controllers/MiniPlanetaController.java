@@ -1,11 +1,10 @@
 package com.icsm.minicientificos_android.controllers;
 
+import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,9 +14,6 @@ import com.google.android.material.chip.ChipGroup;
 import com.icsm.minicientificos_android.R;
 import com.icsm.minicientificos_android.ui.PlanetaExperimentoBottomSheet;
 
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
-
 public class MiniPlanetaController {
 
     private final View container;
@@ -26,8 +22,12 @@ public class MiniPlanetaController {
     private final ChipGroup chipGroup;
     private final FragmentManager fragmentManager;
 
-    private float currentAngle = 0f;
-    private float lastTouchAngle = 0f;
+    // Ángulos 3D (Eje Y = Rotación horizontal, Eje X = Inclinación vertical)
+    private float currentRotationY = 0f;
+    private float currentRotationX = 0f;
+
+    private float lastTouchX = 0f;
+    private float lastTouchY = 0f;
 
     public MiniPlanetaController(View container, ImageView ivPlaneta, TextView tvPin,
                                 ChipGroup chipGroup, FragmentManager fragmentManager) {
@@ -39,38 +39,54 @@ public class MiniPlanetaController {
     }
 
     public void setup() {
+        setup3DPerspective();
         setupTouchGesture();
         setupChips();
+    }
+
+    private void setup3DPerspective() {
+        if (ivPlaneta == null || container == null) return;
+        // Ajusta la distancia de cámara para dar perspectiva 3D realista sin deformación
+        float distance = 10000 * container.getResources().getDisplayMetrics().density;
+        ivPlaneta.setCameraDistance(distance);
     }
 
     private void setupTouchGesture() {
         if (container == null || ivPlaneta == null) return;
 
         container.setOnTouchListener((v, event) -> {
-            // REQUISITO TÉCNICO: Evita que el NestedScrollView padre robe el gesto táctil del planeta
+            // Evita que el ScrollView padre intercepte el gesto táctil 3D
             if (v.getParent() != null) {
                 v.getParent().requestDisallowInterceptTouchEvent(true);
             }
 
             float x = event.getX();
             float y = event.getY();
-            float centerX = v.getWidth() / 2f;
-            float centerY = v.getHeight() / 2f;
 
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
-                    lastTouchAngle = (float) Math.toDegrees(Math.atan2(y - centerY, x - centerX));
+                    lastTouchX = x;
+                    lastTouchY = y;
                     return true;
 
                 case MotionEvent.ACTION_MOVE:
-                    float currentTouchAngle = (float) Math.toDegrees(Math.atan2(y - centerY, x - centerX));
-                    float deltaAngle = currentTouchAngle - lastTouchAngle;
+                    float deltaX = x - lastTouchX;
+                    float deltaY = y - lastTouchY;
+
+                    // Giro 3D Horizontal (Eje Y)
+                    currentRotationY += deltaX * 0.6f;
                     
-                    currentAngle += deltaAngle;
-                    ivPlaneta.setRotation(currentAngle);
-                    
-                    lastTouchAngle = currentTouchAngle;
-                    actualizarPinSegunAngulo(currentAngle);
+                    // Inclinación 3D Vertical (Eje X) clamp a [-45°, 45°]
+                    currentRotationX -= deltaY * 0.4f;
+                    currentRotationX = Math.max(-45f, Math.min(45f, currentRotationX));
+
+                    ivPlaneta.setRotationY(currentRotationY);
+                    ivPlaneta.setRotationX(currentRotationX);
+
+                    lastTouchX = x;
+                    lastTouchY = y;
+
+                    actualizarPinSegunAngulo3D(currentRotationY);
                     return true;
 
                 case MotionEvent.ACTION_UP:
@@ -92,44 +108,50 @@ public class MiniPlanetaController {
 
             int chipId = checkedIds.get(0);
             if (chipId == R.id.chip_eco_huerto) {
-                rotarYMostrar("🌱 Mini Huerto", "Concepto de germinación y compost orgánico en casa.", 
+                rotar3DYMostrar("🌱 Mini Huerto", "Concepto de germinación y compost orgánico en casa.", 
                         "1. Junta cáscaras de vegetales.\n2. Mezcla con tierra viva.\n3. Observa el abono en 10 días.", 
-                        R.drawable.compostaje, 0f);
+                        R.drawable.compostaje, 0f, 10f);
             } else if (chipId == R.id.chip_eco_energia) {
-                rotarYMostrar("⚡ Energías Renovables", "Transformación del sol y viento en luz limpia.", 
+                rotar3DYMostrar("⚡ Energías Renovables", "Transformación del sol y viento en luz limpia.", 
                         "1. Conecta un mini panel solar a un LED.\n2. Colócalo al sol.\n3. Encenderá sin baterías.", 
-                        R.drawable.energias_reno, 51f);
+                        R.drawable.energias_reno, 51f, -15f);
             } else if (chipId == R.id.chip_eco_reciclaje) {
-                rotarYMostrar("♻️ Reciclaje Creativo", "Economía circular y transformación de plásticos.", 
+                rotar3DYMostrar("♻️ Reciclaje Creativo", "Economía circular y transformación de plásticos.", 
                         "1. Reutiliza tapas plásticas para hacer engranajes.\n2. Pinta y arma un robot.", 
-                        R.drawable.reciclaje, 102f);
+                        R.drawable.reciclaje, 102f, 12f);
             } else if (chipId == R.id.chip_eco_geologia) {
-                rotarYMostrar("🌋 Geología & Volcanes", "Rocas volcánicas y erupción maquetada segura.", 
+                rotar3DYMostrar("🌋 Geología & Volcanes", "Rocas volcánicas y erupción maquetada segura.", 
                         "1. Mezcla vinagre con bicarbonato en la maqueta.\n2. Añade tinte rojo.", 
-                        R.drawable.geologia, 154f);
+                        R.drawable.geologia, 154f, -20f);
             } else if (chipId == R.id.chip_eco_hidroponia) {
-                rotarYMostrar("💧 Hidroponía", "Cultivos verticales de vegetales sumergidos en agua.", 
+                rotar3DYMostrar("💧 Hidroponía", "Cultivos verticales de vegetales sumergidos en agua.", 
                         "1. Coloca brotes en agua con sales de nutrientes.\n2. Mantenlo en luz indirecta.", 
-                        R.drawable.hidroponia, 205f);
+                        R.drawable.hidroponia, 205f, 15f);
             } else if (chipId == R.id.chip_eco_astronomia) {
-                rotarYMostrar("🚀 Astronomía", "Órbitas planetarias y cohetes de propulsión.", 
+                rotar3DYMostrar("🚀 Astronomía", "Órbitas planetarias y cohetes de propulsión.", 
                         "1. Llena 1/3 de botella con agua.\n2. Bombea aire y lanza el cohete.", 
-                        R.drawable.astronomia, 257f);
+                        R.drawable.astronomia, 257f, -10f);
             } else if (chipId == R.id.chip_eco_fisica) {
-                rotarYMostrar("🔬 Física Loca", "Leyes de la fuerza, gravedad y fluidos no newtonianos.", 
+                rotar3DYMostrar("🔬 Física Loca", "Leyes de la fuerza, gravedad y fluidos no newtonianos.", 
                         "1. Mezcla fécula de maíz con agua.\n2. Golpea rápido (sólido) o lento (líquido).", 
-                        R.drawable.expe_fisi, 308f);
+                        R.drawable.expe_fisi, 308f, 18f);
             }
         });
     }
 
-    private void rotarYMostrar(String titulo, String concepto, String experimento, int imgResId, float targetAngle) {
-        ObjectAnimator animator = ObjectAnimator.ofFloat(ivPlaneta, "rotation", currentAngle, targetAngle);
-        animator.setDuration(600);
-        animator.setInterpolator(new DecelerateInterpolator());
-        animator.start();
+    private void rotar3DYMostrar(String titulo, String concepto, String experimento, int imgResId, float targetY, float targetX) {
+        ObjectAnimator animY = ObjectAnimator.ofFloat(ivPlaneta, "rotationY", currentRotationY, targetY);
+        ObjectAnimator animX = ObjectAnimator.ofFloat(ivPlaneta, "rotationX", currentRotationX, targetX);
 
-        currentAngle = targetAngle;
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(animY, animX);
+        set.setDuration(700);
+        set.setInterpolator(new OvershootInterpolator(0.8f));
+        set.start();
+
+        currentRotationY = targetY;
+        currentRotationX = targetX;
+
         if (tvPin != null) {
             tvPin.setText("📍 " + titulo);
         }
@@ -142,9 +164,9 @@ public class MiniPlanetaController {
         }
     }
 
-    private void actualizarPinSegunAngulo(float angle) {
+    private void actualizarPinSegunAngulo3D(float angleY) {
         if (tvPin == null) return;
-        float norm = (angle % 360 + 360) % 360;
+        float norm = (angleY % 360 + 360) % 360;
 
         if (norm >= 0 && norm < 45) {
             tvPin.setText("📍 🌱 Mini Huerto");

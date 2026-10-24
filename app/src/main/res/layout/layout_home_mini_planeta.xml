@@ -177,7 +177,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_s"
             android:fontFamily="@font/nunito"
-            android:text="👆 Arrastra en círculo para girar el planeta"
+            android:text="👆 Arrastra en cualquier dirección para girar el planeta en 3D"
             android:textColor="@color/primary_blue"
             android:textSize="12sp"
             android:textStyle="italic"
