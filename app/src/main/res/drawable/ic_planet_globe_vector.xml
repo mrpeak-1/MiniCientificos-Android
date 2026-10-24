@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- Fondo de órbita y brillo -->
+    <path
+        android:fillColor="#E0F2FE"
+        android:pathData="M100,100m-95,0a95,95 0 1,0 190,0a95,95 0 1,0 -190,0" />
+
+    <!-- Océano Principal -->
+    <path
+        android:fillColor="#00A8E8"
+        android:pathData="M100,100m-80,0a80,80 0 1,0 160,0a80,80 0 1,0 -160,0" />
+
+    <!-- Sombra 3D del Planeta -->
+    <path
+        android:fillColor="#0086BA"
+        android:pathData="M100,20 C144.18,20 180,55.82 180,100 C180,144.18 144.18,180 100,180 C125,180 160,150 160,100 C160,50 125,20 100,20 Z" />
+
+    <!-- Continentes Verdes Kawaii -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M60,40 C75,35 95,45 90,60 C85,75 65,80 50,70 C40,60 45,45 60,40 Z" />
+    <path
+        android:fillColor="#43A047"
+        android:pathData="M120,50 C140,45 155,60 150,75 C145,90 125,95 115,80 C105,70 110,55 120,50 Z" />
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M70,120 C90,110 110,125 105,145 C100,165 75,160 65,145 C55,130 60,125 70,120 Z" />
+    <path
+        android:fillColor="#66BB6A"
+        android:pathData="M130,125 C145,120 155,135 150,145 C145,155 130,155 125,145 C120,135 125,128 130,125 Z" />
+
+    <!-- Volcán / Montaña con nieve -->
+    <path
+        android:fillColor="#795548"
+        android:pathData="M80,55 L90,35 L100,55 Z" />
+    <path
+        android:fillColor="#FF5722"
+        android:pathData="M87,38 L90,32 L93,38 Z" />
+
+    <!-- Arbolitos Kawaii -->
+    <path
+        android:fillColor="#2E7D32"
+        android:pathData="M135,60m-8,0a8,8 0 1,0 16,0a8,8 0 1,0 -16,0" />
+    <path
+        android:fillColor="#5D4037"
+        android:pathData="M134,68 H136 V74 H134 Z" />
+
+    <!-- Molino Eólico -->
+    <path
+        android:fillColor="#ECEFF1"
+        android:pathData="M65,135 L67,135 L66,120 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M66,120 L72,116 L66,119 L60,116 Z" />
+
+    <!-- Nubes Blancas Exponenciales -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M40,90 C40,84 45,80 50,80 C53,80 56,82 58,84 C60,82 63,81 66,83 C70,85 71,90 70,93 C72,93 74,95 74,98 C74,102 70,105 65,105 L45,105 C40,105 36,101 36,96 C36,92 39,89 40,90 Z" />
+    <path
+        android:fillColor="#F1F8E9"
+        android:pathData="M120,105 C120,100 124,96 129,96 C131,96 133,97 135,99 C137,97 140,96 142,98 C146,100 147,104 146,107 C148,107 150,109 150,112 C150,116 146,119 141,119 L125,119 C121,119 117,115 117,111 C117,107 119,105 120,105 Z" />
+
+    <!-- Cohete Espacial en Órbita -->
+    <path
+        android:fillColor="#FFC107"
+        android:pathData="M165,30 Q140,15 100,10 Q60,15 35,30 Q60,25 100,25 Q140,25 165,30 Z" />
+    <path
+        android:fillColor="#F44336"
+        android:pathData="M158,22 L168,20 L165,28 Z" />
+    <path
+        android:fillColor="#ECEFF1"
+        android:pathData="M158,22 C162,20 166,22 165,28 C160,27 157,25 158,22 Z" />
+
+    <!-- Ojos Kawaii del Planeta -->
+    <path
+        android:fillColor="#0B2C5E"
+        android:pathData="M85,100m-4,0a4,4 0 1,0 8,0a4,4 0 1,0 -8,0" />
+    <path
+        android:fillColor="#0B2C5E"
+        android:pathData="M115,100m-4,0a4,4 0 1,0 8,0a4,4 0 1,0 -8,0" />
+    <!-- Sonrisa Kawaii -->
+    <path
+        android:strokeColor="#0B2C5E"
+        android:strokeWidth="2.5"
+        android:strokeLineCap="round"
+        android:pathData="M95,108 Q100,114 105,108" />
+
+    <!-- Rosado en Mejillas -->
+    <path
+        android:fillColor="#FF80AB"
+        android:pathData="M77,105m-3,0a3,3 0 1,0 6,0a3,3 0 1,0 -6,0" />
+    <path
+        android:fillColor="#FF80AB"
+        android:pathData="M123,105m-3,0a3,3 0 1,0 6,0a3,3 0 1,0 -6,0" />
+
+</vector>

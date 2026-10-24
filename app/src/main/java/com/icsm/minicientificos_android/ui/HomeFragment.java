@@ -16,8 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.icsm.minicientificos_android.R;
 import com.icsm.minicientificos_android.adapters.ServiceAdapter;
-import com.icsm.minicientificos_android.adapters.SliderAdapter;
-import com.icsm.minicientificos_android.controllers.HeroSliderController;
+import com.icsm.minicientificos_android.controllers.HeroSliderManager;
 import com.icsm.minicientificos_android.controllers.MiniPlanetaController;
 import com.icsm.minicientificos_android.databinding.FragmentHomeBinding;
 import com.icsm.minicientificos_android.models.ServiceItem;
@@ -29,7 +28,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
 
     private FragmentHomeBinding binding;
-    private HeroSliderController heroSliderController;
+    private HeroSliderManager heroSliderManager;
     private MiniPlanetaController miniPlanetaController;
 
     public HomeFragment() {
@@ -80,8 +79,8 @@ public class HomeFragment extends Fragment {
                 R.drawable.ic_nav_shop
         ));
 
-        heroSliderController = new HeroSliderController(binding.viewPagerHero, binding.tabLayoutDots);
-        heroSliderController.setup(sliderItems, item -> {
+        heroSliderManager = new HeroSliderManager(binding.viewPagerHero, binding.tabLayoutDots);
+        heroSliderManager.init(sliderItems, item -> {
             if (item.getTitle().contains("Talleres")) {
                 abrirFragment(new WorkshopsFragment());
             } else if (item.getTitle().contains("Tienda") || item.getTitle().contains("Kits")) {
@@ -162,15 +161,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupFooter() {
-        binding.sectionCorporateFooter.tvFooterPhone.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:+51930754024"));
-            startActivity(intent);
-        });
-
-        binding.sectionCorporateFooter.tvFooterWeb.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://minicientificos-proces.vercel.app/"));
-            startActivity(intent);
-        });
+        CorporateFooterHelper.setupFooter(requireContext(), binding.sectionCorporateFooter);
     }
 
     private void abrirFragment(Fragment fragment) {
@@ -186,24 +177,24 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        if (heroSliderController != null) {
-            heroSliderController.startAutoSlide();
+        if (heroSliderManager != null) {
+            heroSliderManager.startAutoPlay();
         }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        if (heroSliderController != null) {
-            heroSliderController.stopAutoSlide();
+        if (heroSliderManager != null) {
+            heroSliderManager.stopAutoPlay();
         }
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (heroSliderController != null) {
-            heroSliderController.stopAutoSlide();
+        if (heroSliderManager != null) {
+            heroSliderManager.stopAutoPlay();
         }
         binding = null;
     }

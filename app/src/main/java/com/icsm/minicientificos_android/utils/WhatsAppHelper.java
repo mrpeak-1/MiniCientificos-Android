@@ -49,6 +49,10 @@ public class WhatsAppHelper {
         enviarMensajeWhatsApp(context, mensaje);
     }
 
+    public static void abrirSoporteDirecto(Context context, String mensaje) {
+        enviarMensajeWhatsApp(context, mensaje);
+    }
+
     private static void enviarMensajeWhatsApp(Context context, String mensaje) {
         try {
             String url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + URLEncoder.encode(mensaje, "UTF-8");
