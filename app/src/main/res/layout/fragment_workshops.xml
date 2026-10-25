@@ -1,263 +1,474 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollWorkshops"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_light">
-
-    <!-- Hero Section con fondo y gradiente -->
-    <View
-        android:id="@+id/v_hero_bg"
-        android:layout_width="0dp"
-        android:layout_height="220dp"
-        android:background="@drawable/bg_hero_sky_gradient"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_title_talleres"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_m"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="@dimen/spacing_m"
-        android:fontFamily="@font/fredoka"
-        android:text="Conviértete en un Minicientífico"
-        android:textColor="@color/navy_blue"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tv_subtitle_talleres"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_m"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="@dimen/spacing_m"
-        android:fontFamily="@font/poppins"
-        android:text="Descubre y participa en nuestras experiencias"
-        android:textColor="@color/dark_blue"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_talleres" />
-
-    <!-- Iconos orbitales decorativos -->
-    <ImageView
-        android:id="@+id/iv_deco_flask"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:src="@drawable/ic_flask"
-        app:tint="@color/primary_blue"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_subtitle_talleres" />
-
-    <ImageView
-        android:id="@+id/iv_deco_star"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
-        android:src="@drawable/ic_star_decoration"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_subtitle_talleres" />
-
-    <!-- Search Bar flotante sobre el Hero -->
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/card_search"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_m"
-        android:layout_marginTop="12dp"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/card_corner_radius"
-        app:cardElevation="6dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_deco_flask">
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_search_talleres"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:boxBackgroundMode="none"
-            app:hintEnabled="false"
-            app:startIconDrawable="@drawable/ic_search"
-            app:startIconTint="@color/primary_blue">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_search_talleres"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:fontFamily="@font/poppins"
-                android:hint="Buscar talleres..."
-                android:inputType="text"
-                android:paddingVertical="14dp"
-                android:textColor="@color/navy_blue"
-                android:textColorHint="@color/text_light"
-                android:textSize="15sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-    </com.google.android.material.card.MaterialCardView>
+    android:background="@drawable/bg_workshops_page_gradient"
+    android:fillViewport="true">
 
     <LinearLayout
-        android:id="@+id/ll_filters_container"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_m"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_search">
+        android:paddingBottom="48dp">
 
-        <!-- Categorías -->
-        <HorizontalScrollView
-            android:id="@+id/hsv_filtros_categoria"
+        <!-- ========================================================= -->
+        <!-- BLOQUE 1 - HERO ILUSTRADO "CONVIÉRTETE EN UN MINICIENTÍFICO" -->
+        <!-- ========================================================= -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:paddingHorizontal="@dimen/spacing_m"
-            android:scrollbars="none">
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="32dp">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chip_group_categorias"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:singleLine="true"
-                app:singleSelection="true">
+                android:background="@drawable/bg_pill_12_talleres_badge"
+                android:fontFamily="@font/poppins"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="6dp"
+                android:text="⚛️ 12 talleres · presenciales y virtuales"
+                android:textColor="#0B2C5E"
+                android:textSize="12sp"
+                android:textStyle="bold" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_cat_todas"
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:fontFamily="@font/fredoka"
-                    android:text="Todas"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/fredoka"
+                android:text="Conviértete en un"
+                android:textColor="#0B2C5E"
+                android:textSize="32sp"
+                android:textStyle="bold" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_cat_ciencia"
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fredoka"
-                    android:text="Ciencia"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_cat_naturaleza"
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fredoka"
-                    android:text="Naturaleza"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_cat_robotica"
-                    style="@style/Widget.Material3.Chip.Filter"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka"
-                    android:text="Robótica"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+                    android:text="Minicientífico"
+                    android:textColor="#FF7A00"
+                    android:textSize="32sp"
+                    android:textStyle="bold" />
 
-            </com.google.android.material.chip.ChipGroup>
-        </HorizontalScrollView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:layout_marginTop="-4dp"
+                    android:background="@drawable/bg_underline_marker_orange" />
+            </LinearLayout>
 
-        <!-- Modalidades -->
-        <HorizontalScrollView
-            android:id="@+id/hsv_filtros_modalidad"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:text="Descubre el fascinante mundo de la ciencia y la naturaleza. Nuestros talleres están diseñados para despertar la curiosidad de los niños mientras se divierten aprendiendo y cuidando el planeta."
+                android:textColor="#546E7A"
+                android:textSize="15sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnHeroVerTalleres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_btn_hero_yellow"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="24dp"
+                    android:paddingVertical="12dp"
+                    android:text="Ver talleres ↓"
+                    android:textColor="#0B2C5E"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnHeroPedirInfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:background="@drawable/bg_btn_hero_outline_blue"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="24dp"
+                    android:paddingVertical="12dp"
+                    android:text="Pedir información"
+                    android:textColor="#0B2C5E"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginTop="32dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <!-- Marco de la foto -->
+                <ImageView
+                    android:id="@+id/cardHeroWorkshopImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/bg_hero_photo_frame"
+                    android:clipToOutline="true"
+                    android:contentDescription="Niños en taller científico"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/microbiologia" />
+
+                <!-- Burbujas flotantes animadas -->
+                <TextView
+                    android:id="@+id/orbTelescopio"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="top|start"
+                    android:background="@drawable/bg_floating_orb_white"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:text="🔭"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/orbMatraz"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_vertical|end"
+                    android:background="@drawable/bg_floating_orb_white"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:text="🧪"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:id="@+id/orbPlanta"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="bottom|start"
+                    android:layout_marginStart="40dp"
+                    android:background="@drawable/bg_floating_orb_white"
+                    android:elevation="4dp"
+                    android:gravity="center"
+                    android:text="🌱"
+                    android:textSize="22sp" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <!-- ========================================================= -->
+        <!-- BLOQUE 2 - BUSCADOR CIENTÍFICO Y SISTEMA DE DOBLE FILTRO CROSS -->
+        <!-- ========================================================= -->
+        <LinearLayout
+            android:id="@+id/layoutFiltrosTalleres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:clipToPadding="false"
-            android:paddingHorizontal="@dimen/spacing_m"
-            android:scrollbars="none">
+            android:layout_marginTop="40dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp">
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chip_group_modalidad"
+            <!-- Buscador -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:boxBackgroundColor="#FFFFFF"
+                app:boxCornerRadiusBottomEnd="24dp"
+                app:boxCornerRadiusBottomStart="24dp"
+                app:boxCornerRadiusTopEnd="24dp"
+                app:boxCornerRadiusTopStart="24dp"
+                app:boxStrokeColor="#64B5F6"
+                app:boxStrokeWidth="1.5dp"
+                app:boxStrokeWidthFocused="2dp"
+                app:hintEnabled="false"
+                app:startIconDrawable="@drawable/ic_search"
+                app:startIconTint="#64B5F6">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etBuscarTaller"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:hint="Busca un taller (Ej: Bobina Tesla, Huerto...)"
+                    android:inputType="text"
+                    android:paddingVertical="14dp"
+                    android:textColor="#0B2C5E"
+                    android:textColorHint="#90A4AE"
+                    android:textSize="14sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Categorías -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnCatTodo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_filter_pill_green_active"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="TODO"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnCatCiencia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_filter_pill_white_inactive"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="CIENCIA"
+                    android:textColor="#78909C"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnCatNaturaleza"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_filter_pill_white_inactive"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="NATURALEZA"
+                    android:textColor="#78909C"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Modalidades -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnModPresencial"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_filter_pill_white_inactive"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="PRESENCIAL"
+                    android:textColor="#78909C"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnModVirtual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_filter_pill_white_inactive"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="VIRTUAL"
+                    android:textColor="#78909C"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnModHibrido"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_filter_pill_white_inactive"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
+                    android:text="HÍBRIDO"
+                    android:textColor="#78909C"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="Elige tu próxima aventura:"
+                    android:textColor="#0B2C5E"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="todos nuestros TALLERES"
+                        android:textColor="#FF7A00"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="4dp"
+                        android:layout_marginTop="-2dp"
+                        android:background="@drawable/bg_underline_marker_orange" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvSubtituloFiltroDinamico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:text="Mostrando 12 talleres disponibles"
+                    android:textColor="#546E7A"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ========================================================= -->
+        <!-- BLOQUE 3 - CATÁLOGO DE LAS 12 TARJETAS ESTILO PÓSTER -->
+        <!-- ========================================================= -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTalleres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false"
+            android:paddingHorizontal="16dp"
+            tools:listitem="@layout/item_taller" />
+
+        <LinearLayout
+            android:id="@+id/layoutEmptyTalleres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/bg_floating_orb_white"
+                android:gravity="center"
+                android:text="🔍"
+                android:textSize="32sp" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:singleLine="true"
-                app:singleSelection="true">
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/fredoka"
+                android:text="¡Uy! No encontramos talleres"
+                android:textColor="#0B2C5E"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_mod_todas"
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:fontFamily="@font/fredoka"
-                    android:text="Todas"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:fontFamily="@font/nunito"
+                android:text="Intenta con otros filtros o términos de búsqueda."
+                android:textColor="#546E7A"
+                android:textSize="14sp" />
+        </LinearLayout>
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_mod_presencial"
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fredoka"
-                    android:text="Presencial"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+        <!-- ========================================================= -->
+        <!-- BLOQUE 4 - PIE DE PÁGINA CORPORATIVO -->
+        <!-- ========================================================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:background="#0B2C5E"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="32dp">
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_mod_virtual"
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fredoka"
-                    android:text="Virtual"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_flask"
+                app:tint="#FDC500" />
 
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_mod_hibrido"
-                    style="@style/Widget.Material3.Chip.Filter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fredoka"
-                    android:text="Híbrido"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/fredoka"
+                android:text="MINICIENTÍFICOS"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            </com.google.android.material.chip.ChipGroup>
-        </HorizontalScrollView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:text="Despertando la curiosidad y la pasión por la ciencia y la naturaleza en niños."
+                android:textColor="#90CAF9"
+                android:textSize="13sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginVertical="16dp"
+                android:background="#1E4785" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="WhatsApp: +51 916 313 634"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_talleres"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="@dimen/spacing_s"
-        android:clipToPadding="false"
-        android:paddingBottom="@dimen/spacing_xl"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_filters_container"
-        tools:listitem="@layout/item_taller" />
-
-    <TextView
-        android:id="@+id/tv_empty_talleres"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawablePadding="@dimen/spacing_s"
-        android:fontFamily="@font/poppins"
-        android:text="No se encontraron talleres."
-        android:textColor="@color/text_secondary"
-        android:textSize="14sp"
-        android:visibility="gone"
-        app:drawableTopCompat="@drawable/ic_flask"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_filters_container" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

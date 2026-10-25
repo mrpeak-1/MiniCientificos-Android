@@ -5,13 +5,13 @@
     android:id="@+id/card_taller_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/spacing_m"
-    android:layout_marginVertical="@dimen/spacing_s"
+    android:layout_marginHorizontal="6dp"
+    android:layout_marginVertical="10dp"
     android:clickable="true"
     android:focusable="true"
     app:cardBackgroundColor="@color/white"
-    app:cardCornerRadius="@dimen/card_corner_radius"
-    app:cardElevation="@dimen/card_elevation"
+    app:cardCornerRadius="22dp"
+    app:cardElevation="4dp"
     app:strokeColor="@color/card_stroke"
     app:strokeWidth="1dp">
 
@@ -19,146 +19,144 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Imagen principal (Banner temático con esquinas redondeadas superiores) -->
-        <ImageView
-            android:id="@+id/iv_taller_image"
+        <!-- Banner temático superior -->
+        <FrameLayout
+            android:id="@+id/fl_taller_banner"
             android:layout_width="0dp"
-            android:layout_height="160dp"
-            android:contentDescription="Imagen del taller"
-            android:scaleType="centerCrop"
+            android:layout_height="190dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/astronomia" />
+            app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Chip de Modalidad sobre la imagen -->
-        <TextView
-            android:id="@+id/tv_modalidad_badge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/spacing_s"
-            android:background="@drawable/bg_badge_rounded"
-            android:fontFamily="@font/poppins"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="4dp"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:backgroundTint="#FF9800"
-            tools:text="Híbrido" />
-
-        <!-- Contenedor Inferior con el resto de la info -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/spacing_m"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_taller_image">
-
-            <!-- Título en Fredoka -->
-            <TextView
-                android:id="@+id/tv_taller_titulo"
+            <ImageView
+                android:id="@+id/iv_taller_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/fredoka"
-                android:textColor="@color/navy_blue"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                tools:text="Astronomía y Exploración" />
+                android:layout_height="match_parent"
+                android:contentDescription="Imagen del taller"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/astronomia" />
 
-            <!-- Descripción en Nunito -->
-            <TextView
-                android:id="@+id/tv_taller_descripcion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/nunito"
-                android:lineSpacingExtra="2dp"
-                android:maxLines="2"
-                android:ellipsize="end"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp"
-                tools:text="Viaja al espacio sin salir de casa. Comprender el sistema solar y construir modelos a escala." />
-
+            <!-- Scrim oscuro para contraste de texto -->
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="@dimen/spacing_s"
-                android:background="#E2E8F0" />
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_taller_poster_scrim" />
 
-            <!-- Fila Informativa (Calendario y Personas) -->
+            <!-- Títulos tipo póster sobre el banner -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_gravity="bottom|start"
+                android:orientation="vertical"
+                android:padding="16dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_poster_linea1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:fontFamily="@font/fredoka"
+                    android:shadowColor="#FF000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="3"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    tools:text="ASTRONOMÍA" />
 
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:contentDescription="Calendario"
-                        android:src="@drawable/ic_calendar"
-                        app:tint="@color/primary_blue" />
-
-                    <TextView
-                        android:id="@+id/tv_taller_horario"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/poppins"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp"
-                        tools:text="Sábados 4:00 PM - 6:00 PM" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_poster_linea2"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:contentDescription="Vacantes"
-                        android:src="@drawable/ic_users"
-                        app:tint="@color/gold_yellow" />
-
-                    <TextView
-                        android:id="@+id/tv_taller_cupos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:fontFamily="@font/poppins"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp"
-                        tools:text="10 vacantes" />
-                </LinearLayout>
+                    android:fontFamily="@font/fredoka"
+                    android:shadowColor="#FF000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:textColor="#F1F5F9"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    tools:text="SOSTENIBLE PARA NIÑOS" />
             </LinearLayout>
 
-            <!-- Botón Ecológico Verde -->
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_ver_detalle"
+            <!-- Píldora de modalidad -->
+            <TextView
+                android:id="@+id/tv_badge_modalidad_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_margin="12dp"
+                android:background="@drawable/bg_badge_rounded"
+                android:fontFamily="@font/poppins"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="4dp"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:backgroundTint="#FF9800"
+                tools:text="Presencial / Virtual" />
+        </FrameLayout>
+
+        <!-- Contenedor Inferior Blanco -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="18dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fl_taller_banner">
+
+            <TextView
+                android:id="@+id/tv_titulo_corto_taller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:gravity="center"
+                android:textColor="#0B2C5E"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                tools:text="ASTRONOMÍA" />
+
+            <TextView
+                android:id="@+id/tv_descripcion_corta_taller"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_m"
-                android:backgroundTint="#89B45D"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:lineSpacingExtra="3dp"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:textColor="#546E7A"
+                android:textSize="13.5sp"
+                tools:text="¡Viaja al espacio sin salir de casa! Conviértete en un astronauta, descubre planetas lejanos y mira las estrellas." />
+
+            <TextView
+                android:id="@+id/tv_info_row_taller"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/text_secondary"
+                android:textSize="12sp"
+                tools:text="📅 Sábados 4:00 PM · 👥 10 cupos" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_ver_detalle_taller"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_btn_ver_detalle_eco"
                 android:fontFamily="@font/fredoka"
+                android:paddingHorizontal="28dp"
                 android:text="Ver detalle"
-                android:textColor="@color/white"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp"
-                app:cornerRadius="24dp" />
+                android:textStyle="bold"
+                app:backgroundTint="@null" />
 
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

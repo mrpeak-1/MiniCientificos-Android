@@ -66,10 +66,10 @@ public class TallerAdapter extends RecyclerView.Adapter<TallerAdapter.TallerView
             boolean coincideTexto = item.getTitulo().toLowerCase().contains(textoFiltroActual)
                     || item.getDescripcionCorta().toLowerCase().contains(textoFiltroActual);
 
-            boolean coincideCategoria = categoriaFiltroActual.equals("Todas")
+            boolean coincideCategoria = categoriaFiltroActual.equalsIgnoreCase("Todas")
                     || item.getCategoria().equalsIgnoreCase(categoriaFiltroActual);
 
-            boolean coincideModalidad = modalidadFiltroActual.equals("Todas")
+            boolean coincideModalidad = modalidadFiltroActual.equalsIgnoreCase("Todas")
                     || item.getModalidad().toLowerCase().contains(modalidadFiltroActual.toLowerCase());
 
             if (coincideTexto && coincideCategoria && coincideModalidad) {
@@ -90,34 +90,36 @@ public class TallerAdapter extends RecyclerView.Adapter<TallerAdapter.TallerView
 
         public void bind(Taller item) {
             Context context = itemView.getContext();
-            binding.tvTallerTitulo.setText(item.getTitulo());
-            binding.tvTallerDescripcion.setText(item.getDescripcionCorta());
-            binding.tvTallerHorario.setText(item.getHorario());
-            binding.tvTallerCupos.setText(item.getVacantes());
-            binding.tvModalidadBadge.setText(item.getModalidad());
-
-            // Image loading via getIdentifier
-            int resId = context.getResources().getIdentifier(item.getImageName(), "drawable", context.getPackageName());
+            
+            binding.tvPosterLinea1.setText(item.getPosterLinea1());
+            binding.tvPosterLinea2.setText(item.getPosterLinea2());
+            binding.tvBadgeModalidadCard.setText(item.getModalidad());
+            
+            binding.tvTituloCortoTaller.setText(item.getTituloCorto());
+            binding.tvDescripcionCortaTaller.setText(item.getDescripcionCorta());
+            
+            String infoRow = "📅 " + item.getHorario() + " · 👥 " + item.getVacantes();
+            binding.tvInfoRowTaller.setText(infoRow);
+            
+            int resId = context.getResources().getIdentifier(item.getDrawableName(), "drawable", context.getPackageName());
             if (resId != 0) {
                 binding.ivTallerImage.setImageResource(resId);
             } else {
-                binding.ivTallerImage.setImageResource(R.drawable.ic_flask); // fallback
+                binding.ivTallerImage.setImageResource(R.drawable.ic_flask);
             }
 
-            // Estilos del Badge según la modalidad
             if (item.getModalidad().contains("Presencial") && !item.getModalidad().contains("Híbrido")) {
-                binding.tvModalidadBadge.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.badge_presencial_bg));
-                binding.tvModalidadBadge.setTextColor(ContextCompat.getColor(context, R.color.badge_presencial_text));
+                binding.tvBadgeModalidadCard.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.badge_presencial_bg));
+                binding.tvBadgeModalidadCard.setTextColor(ContextCompat.getColor(context, R.color.badge_presencial_text));
             } else if (item.getModalidad().contains("Virtual")) {
-                binding.tvModalidadBadge.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.badge_virtual_bg));
-                binding.tvModalidadBadge.setTextColor(ContextCompat.getColor(context, R.color.badge_virtual_text));
+                binding.tvBadgeModalidadCard.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.badge_virtual_bg));
+                binding.tvBadgeModalidadCard.setTextColor(ContextCompat.getColor(context, R.color.badge_virtual_text));
             } else {
-                binding.tvModalidadBadge.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.badge_hibrido_bg));
-                binding.tvModalidadBadge.setTextColor(ContextCompat.getColor(context, R.color.badge_hibrido_text));
+                binding.tvBadgeModalidadCard.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.badge_hibrido_bg));
+                binding.tvBadgeModalidadCard.setTextColor(ContextCompat.getColor(context, R.color.badge_hibrido_text));
             }
 
-            // Click listener
-            binding.btnVerDetalle.setOnClickListener(v -> {
+            binding.btnVerDetalleTaller.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onVerDetalleClick(item);
                 }
