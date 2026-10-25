@@ -26,6 +26,7 @@ public class TallerAdapter extends RecyclerView.Adapter<TallerAdapter.TallerView
     private final OnTallerClickListener listener;
     private String textoFiltroActual = "";
     private String categoriaFiltroActual = "Todas";
+    private String modalidadFiltroActual = "Todas";
 
     public TallerAdapter(List<Taller> lista, OnTallerClickListener listener) {
         this.listaOriginal = new ArrayList<>(lista);
@@ -51,10 +52,13 @@ public class TallerAdapter extends RecyclerView.Adapter<TallerAdapter.TallerView
         return listaFiltrada.size();
     }
 
-    public void aplicarFiltros(String texto, String categoria) {
+    public void aplicarFiltros(String texto, String categoria, String modalidad) {
         this.textoFiltroActual = texto != null ? texto.toLowerCase().trim() : "";
         if (categoria != null) {
             this.categoriaFiltroActual = categoria;
+        }
+        if (modalidad != null) {
+            this.modalidadFiltroActual = modalidad;
         }
 
         listaFiltrada.clear();
@@ -63,10 +67,12 @@ public class TallerAdapter extends RecyclerView.Adapter<TallerAdapter.TallerView
                     || item.getDescripcionCorta().toLowerCase().contains(textoFiltroActual);
 
             boolean coincideCategoria = categoriaFiltroActual.equals("Todas")
-                    || item.getModalidad().equalsIgnoreCase(categoriaFiltroActual)
                     || item.getCategoria().equalsIgnoreCase(categoriaFiltroActual);
 
-            if (coincideTexto && coincideCategoria) {
+            boolean coincideModalidad = modalidadFiltroActual.equals("Todas")
+                    || item.getModalidad().toLowerCase().contains(modalidadFiltroActual.toLowerCase());
+
+            if (coincideTexto && coincideCategoria && coincideModalidad) {
                 listaFiltrada.add(item);
             }
         }
@@ -89,7 +95,14 @@ public class TallerAdapter extends RecyclerView.Adapter<TallerAdapter.TallerView
             binding.tvTallerHorario.setText(item.getHorario());
             binding.tvTallerCupos.setText(item.getVacantes());
             binding.tvModalidadBadge.setText(item.getModalidad());
-            binding.ivTallerImage.setImageResource(item.getBannerDrawable());
+
+            // Image loading via getIdentifier
+            int resId = context.getResources().getIdentifier(item.getImageName(), "drawable", context.getPackageName());
+            if (resId != 0) {
+                binding.ivTallerImage.setImageResource(resId);
+            } else {
+                binding.ivTallerImage.setImageResource(R.drawable.ic_flask); // fallback
+            }
 
             // Estilos del Badge según la modalidad
             if (item.getModalidad().contains("Presencial") && !item.getModalidad().contains("Híbrido")) {

@@ -3,20 +3,23 @@ package com.icsm.minicientificos_android.models;
 import java.io.Serializable;
 
 public class Taller implements Serializable {
-    private int id;
-    private String titulo;
-    private String categoria;
-    private String modalidad;
-    private String descripcionCorta;
-    private String objetivo;
-    private String[] temario;
-    private String[] materialesIncluidos;
-    private String horario;
-    private String vacantes;
-    private double precio;
-    private int bannerDrawable;
+    private final int id;
+    private final String titulo;
+    private final String categoria;
+    private final String modalidad;
+    private final String descripcionCorta;
+    private final String objetivo;
+    private final String[] temario;
+    private final String[] materialesIncluidos;
+    private final String horario;
+    private final String vacantes;
+    private final double precio;
+    private final String imageName;
+    private final String videoUrl; // Puede ser URL http o nombre de resource raw
 
-    public Taller(int id, String titulo, String categoria, String modalidad, String descripcionCorta, String objetivo, String[] temario, String[] materialesIncluidos, String horario, String vacantes, double precio, int bannerDrawable) {
+    public Taller(int id, String titulo, String categoria, String modalidad, String descripcionCorta,
+                  String objetivo, String[] temario, String[] materialesIncluidos, String horario,
+                  String vacantes, double precio, String imageName, String videoUrl) {
         this.id = id;
         this.titulo = titulo;
         this.categoria = categoria;
@@ -28,7 +31,8 @@ public class Taller implements Serializable {
         this.horario = horario;
         this.vacantes = vacantes;
         this.precio = precio;
-        this.bannerDrawable = bannerDrawable;
+        this.imageName = imageName;
+        this.videoUrl = videoUrl;
     }
 
     public int getId() { return id; }
@@ -42,5 +46,6 @@ public class Taller implements Serializable {
     public String getHorario() { return horario; }
     public String getVacantes() { return vacantes; }
     public double getPrecio() { return precio; }
-    public int getBannerDrawable() { return bannerDrawable; }
+    public String getImageName() { return imageName; }
+    public String getVideoUrl() { return videoUrl; }
 }

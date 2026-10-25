@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.material.chip.Chip;
-import com.icsm.minicientificos_android.R;
 import com.icsm.minicientificos_android.adapters.TallerAdapter;
 import com.icsm.minicientificos_android.databinding.FragmentWorkshopsBinding;
 import com.icsm.minicientificos_android.models.Taller;
@@ -26,6 +25,7 @@ public class WorkshopsFragment extends Fragment implements TallerAdapter.OnTalle
     private FragmentWorkshopsBinding binding;
     private TallerAdapter adapter;
     private String filtroCategoriaSeleccionada = "Todas";
+    private String filtroModalidadSeleccionada = "Todas";
     private String textoBusquedaActual = "";
 
     public WorkshopsFragment() {
@@ -64,7 +64,7 @@ public class WorkshopsFragment extends Fragment implements TallerAdapter.OnTalle
             public void afterTextChanged(Editable s) {}
         });
 
-        binding.chipGroupTalleres.setOnCheckedStateChangeListener((group, checkedIds) -> {
+        binding.chipGroupCategorias.setOnCheckedStateChangeListener((group, checkedIds) -> {
             if (checkedIds.isEmpty()) {
                 filtroCategoriaSeleccionada = "Todas";
             } else {
@@ -79,13 +79,29 @@ public class WorkshopsFragment extends Fragment implements TallerAdapter.OnTalle
             filtrarLista();
             actualizarSubtituloDinamico();
         });
+
+        binding.chipGroupModalidad.setOnCheckedStateChangeListener((group, checkedIds) -> {
+            if (checkedIds.isEmpty()) {
+                filtroModalidadSeleccionada = "Todas";
+            } else {
+                int selectedId = checkedIds.get(0);
+                Chip chip = group.findViewById(selectedId);
+                if (chip != null) {
+                    filtroModalidadSeleccionada = chip.getText().toString();
+                } else {
+                    filtroModalidadSeleccionada = "Todas";
+                }
+            }
+            filtrarLista();
+            actualizarSubtituloDinamico();
+        });
         
         actualizarSubtituloDinamico();
     }
 
     private void filtrarLista() {
         if (adapter != null) {
-            adapter.aplicarFiltros(textoBusquedaActual, filtroCategoriaSeleccionada);
+            adapter.aplicarFiltros(textoBusquedaActual, filtroCategoriaSeleccionada, filtroModalidadSeleccionada);
             actualizarEstadoVacio();
         }
     }
@@ -101,17 +117,21 @@ public class WorkshopsFragment extends Fragment implements TallerAdapter.OnTalle
     }
 
     private void actualizarSubtituloDinamico() {
-        String base = "Descubre y participa en nuestras experiencias";
-        if (!"Todas".equals(filtroCategoriaSeleccionada)) {
-            String categoria = filtroCategoriaSeleccionada.toLowerCase();
-            if (categoria.equals("presencial") || categoria.equals("virtual") || categoria.equals("híbrido")) {
-                binding.tvSubtitleTalleres.setText("Explora todos los talleres en modalidad " + categoria);
-            } else {
-                binding.tvSubtitleTalleres.setText("Explora todos los talleres de " + categoria);
-            }
+        String cat = filtroCategoriaSeleccionada.equals("Todas") ? "" : filtroCategoriaSeleccionada;
+        String mod = filtroModalidadSeleccionada.equals("Todas") ? "" : filtroModalidadSeleccionada;
+        
+        String texto = "Explora todos los talleres";
+        if (!cat.isEmpty() && !mod.isEmpty()) {
+            texto += " de " + cat + " en modalidad " + mod;
+        } else if (!cat.isEmpty()) {
+            texto += " de " + cat;
+        } else if (!mod.isEmpty()) {
+            texto += " en modalidad " + mod;
         } else {
-            binding.tvSubtitleTalleres.setText(base);
+            texto = "Descubre y participa en nuestras experiencias";
         }
+        
+        binding.tvSubtitleTalleres.setText(texto);
     }
 
     @Override

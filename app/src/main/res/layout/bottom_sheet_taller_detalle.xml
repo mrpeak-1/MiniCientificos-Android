@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/bg_card_rounded">
 
     <androidx.core.widget.NestedScrollView
@@ -16,17 +16,43 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/spacing_xl">
 
-            <!-- Banner temático grande -->
-            <ImageView
-                android:id="@+id/iv_modal_taller_image"
+            <!-- Banner / Video Híbrido ExoPlayer -->
+            <FrameLayout
+                android:id="@+id/fl_media_container"
                 android:layout_width="0dp"
                 android:layout_height="220dp"
-                android:contentDescription="Banner del Taller"
-                android:scaleType="centerCrop"
+                android:background="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/astronomia" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/iv_modal_taller_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="Banner del Taller"
+                    android:scaleType="centerCrop"
+                    android:visibility="visible"
+                    tools:src="@drawable/astronomia" />
+
+                <!-- ExoPlayer View (Media3) -->
+                <androidx.media3.ui.PlayerView
+                    android:id="@+id/exo_player_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone"
+                    app:use_controller="true"
+                    app:show_buffering="when_playing"
+                    app:resize_mode="fit" />
+
+                <ProgressBar
+                    android:id="@+id/pb_video_loading"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:indeterminateTint="@color/primary_blue" />
+            </FrameLayout>
 
             <!-- Botón Cerrar Flotante -->
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -42,23 +68,23 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/navy_blue" />
 
-            <!-- Degradado semitransparente -->
+            <!-- Degradado semitransparente para textos sobre el hero -->
             <View
                 android:layout_width="0dp"
                 android:layout_height="100dp"
                 android:background="@drawable/bg_gradient_scrim"
-                app:layout_constraintBottom_toBottomOf="@id/iv_modal_taller_image"
+                app:layout_constraintBottom_toBottomOf="@id/fl_media_container"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <!-- Modalidad y Categoría sobre la imagen -->
+            <!-- Modalidad y Categoría -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_m"
                 android:layout_marginBottom="@dimen/spacing_m"
                 android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="@id/iv_modal_taller_image"
+                app:layout_constraintBottom_toBottomOf="@id/fl_media_container"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <TextView
@@ -91,13 +117,29 @@
                     tools:text="Ciencia" />
             </LinearLayout>
 
+            <!-- Play Video Button (Solo si no hay autostart o se quiere manual) -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn_play_video"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:layout_marginBottom="-28dp"
+                android:contentDescription="Reproducir video"
+                android:src="@drawable/ic_search"
+                android:visibility="gone"
+                app:backgroundTint="@color/primary_blue"
+                app:fabSize="normal"
+                app:layout_constraintBottom_toBottomOf="@id/fl_media_container"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/white" />
+
             <!-- Título Principal -->
             <TextView
                 android:id="@+id/tv_modal_titulo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/spacing_m"
-                android:layout_marginTop="@dimen/spacing_m"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="@dimen/spacing_m"
                 android:fontFamily="@font/fredoka"
                 android:textColor="@color/navy_blue"
@@ -105,7 +147,7 @@
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/iv_modal_taller_image"
+                app:layout_constraintTop_toBottomOf="@id/fl_media_container"
                 tools:text="Astronomía" />
 
             <!-- Precio en Soles -->
@@ -163,62 +205,73 @@
                 android:background="#E2E8F0"
                 app:layout_constraintTop_toBottomOf="@id/tv_modal_objetivo_desc" />
 
-            <!-- Lista de Temario -->
-            <TextView
-                android:id="@+id/tv_modal_temario_titulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_m"
-                android:layout_marginTop="@dimen/spacing_m"
-                android:fontFamily="@font/fredoka"
-                android:text="Temario (Qué aprenderemos)"
-                android:textColor="@color/navy_blue"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/divider_1" />
-
+            <!-- Layout horizontal para Temario y Materiales (Tabulación simple) -->
             <LinearLayout
-                android:id="@+id/ll_temario_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_m"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/tv_modal_temario_titulo" />
-
-            <!-- Materiales Incluidos -->
-            <TextView
-                android:id="@+id/tv_modal_materiales_titulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_m"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/spacing_m"
                 android:layout_marginTop="@dimen/spacing_m"
-                android:fontFamily="@font/fredoka"
-                android:text="Materiales Incluidos"
-                android:textColor="@color/navy_blue"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ll_temario_container" />
+                app:layout_constraintTop_toBottomOf="@id/divider_1"
+                app:layout_constraintBottom_toTopOf="@id/divider_2">
 
-            <LinearLayout
-                android:id="@+id/ll_materiales_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/spacing_m"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/tv_modal_materiales_titulo" />
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="Temario"
+                        android:textColor="@color/navy_blue"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_temario_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="Materiales"
+                        android:textColor="@color/navy_blue"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:id="@+id/ll_materiales_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="vertical" />
+                </LinearLayout>
+
+            </LinearLayout>
 
             <View
                 android:id="@+id/divider_2"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginHorizontal="@dimen/spacing_m"
-                android:layout_marginVertical="@dimen/spacing_m"
+                android:layout_marginTop="200dp"
                 android:background="#E2E8F0"
-                app:layout_constraintTop_toBottomOf="@id/ll_materiales_container" />
+                app:layout_constraintTop_toBottomOf="@id/divider_1" />
 
             <!-- Info Adicional (Horario y Vacantes) -->
             <LinearLayout
