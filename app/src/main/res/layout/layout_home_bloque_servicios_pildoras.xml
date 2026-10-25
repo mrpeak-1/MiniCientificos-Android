@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="10dp">
+
+    <!-- Badge Contador Centrado -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_pill_500_kids"
+        android:elevation="2dp"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="6dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🧪 "
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka"
+            android:text="+500 niños "
+            android:textColor="#FF6D00"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:text="ya son minicientíficos"
+            android:textColor="#0B2C5E"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Título Principal Institucional -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/fredoka"
+        android:letterSpacing="0.03"
+        android:text="MINICIENTÍFICOS"
+        android:textColor="#0077CC"
+        android:textSize="28sp"
+        android:textStyle="bold" />
+
+    <!-- Subtítulo -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/nunito"
+        android:text="Despierta el científico en ti"
+        android:textColor="#0B2C5E"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <!-- Línea Decorativa Bicolor -->
+    <View
+        android:layout_width="56dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/bg_line_accent_title" />
+
+    <!-- Párrafo Descriptivo -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingHorizontal="20dp"
+        android:text="En Minicientíficos, ofrecemos talleres interactivos en ciencia, ecología y tecnología para mentes curiosas, ¡de una manera que parece magia pero es ciencia!"
+        android:textColor="#4A6583"
+        android:textSize="14sp" />
+
+    <!-- CONTENEDOR DE LAS 3 TARJETAS 3D DE SERVICIOS -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+
+        <!-- Tarjeta 1: Talleres Científicos -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardServicioTalleres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_service_3d_blue"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <FrameLayout
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:background="@drawable/bg_icon_pedestal_soft"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img_servicio_talleres_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Talleres Científicos"
+                        android:src="@drawable/ic_flask"
+                        app:tint="#00A8E8" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/fredoka"
+                    android:text="Talleres Científicos"
+                    android:textColor="#0B2C5E"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:gravity="center"
+                    android:lineSpacingExtra="3dp"
+                    android:text="¡Aprende jugando con experimentos divertidos! Cursos presenciales y virtuales para pequeños científicos como tú. ¡La ciencia nunca fue tan emocionante!"
+                    android:textColor="#546E7A"
+                    android:textSize="13.5sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_pill_500_kids"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="6dp"
+                    android:text="Toca para descubrir más ✨"
+                    android:textColor="#00A8E8"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tarjeta 2: Eventos Científicos -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardServicioEventos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_service_3d_pink"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <FrameLayout
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:background="@drawable/bg_icon_pedestal_soft"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img_servicio_eventos_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Eventos Científicos"
+                        android:src="@drawable/ic_nav_workshops"
+                        app:tint="#FF2A85" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/fredoka"
+                    android:text="Eventos Científicos"
+                    android:textColor="#0B2C5E"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:gravity="center"
+                    android:lineSpacingExtra="3dp"
+                    android:text="¡Celebramos la ciencia con eventos increíbles! Demostraciones, shows y actividades especiales donde tú eres el protagonista. ¡Cada evento es una nueva aventura!"
+                    android:textColor="#546E7A"
+                    android:textSize="13.5sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_pill_500_kids"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="6dp"
+                    android:text="Toca para descubrir más ✨"
+                    android:textColor="#FF2A85"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tarjeta 3: Feria Científica -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardServicioFeria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="8dp"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="22dp"
+            app:cardElevation="2dp"
+            app:strokeWidth="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_card_service_3d_yellow"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <FrameLayout
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:background="@drawable/bg_icon_pedestal_soft"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/img_servicio_feria_icon"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Feria Científica"
+                        android:src="@drawable/ic_nav_gallery"
+                        app:tint="#FDC500" />
+                </FrameLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:fontFamily="@font/fredoka"
+                    android:text="Feria Científica"
+                    android:textColor="#0B2C5E"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/nunito"
+                    android:gravity="center"
+                    android:lineSpacingExtra="3dp"
+                    android:text="¡Participa en nuestra feria de ciencias! Exhibe tus proyectos, descubre inventos asombrosos y comparte tus ideas con otros pequeños genios. ¡Todos somos científicos!"
+                    android:textColor="#546E7A"
+                    android:textSize="13.5sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_pill_500_kids"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="14dp"
+                    android:paddingVertical="6dp"
+                    android:text="Toca para descubrir más ✨"
+                    android:textColor="#E5AC00"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+
+    <!-- SECCIÓN: MAPA DE 12 PÍLDORAS E TICKET CENTRAL -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <!-- Banner / Ticket Central -->
+        <FrameLayout
+            android:id="@+id/btn_ticket_talleres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:id="@+id/imgTicketTalleres"
+                android:layout_width="match_parent"
+                android:layout_height="72dp"
+                android:contentDescription="Conoce todos nuestros talleres"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bg_card_titan_tesla_gold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fredoka"
+                android:text="🎫 CONOCE TODOS NUESTROS TALLERES ✨"
+                android:textColor="#0B2C5E"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <!-- RecyclerView Grilla 2 Columnas para 12 Píldoras -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHomePildorasTalleres"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="false"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2" />
+    </LinearLayout>
+
+</LinearLayout>
