@@ -11,6 +11,7 @@ import com.icsm.minicientificos_android.cart.CartManager;
 import com.icsm.minicientificos_android.databinding.ItemCartProductBinding;
 
 import java.util.List;
+import java.util.Locale;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
@@ -51,28 +52,30 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
         public void bind(CartItem item) {
             binding.tvCartProductoNombre.setText(item.getProducto().getNombre());
-            binding.tvCartProductoPrecio.setText(item.getSubtotalFormateado());
-            binding.tvCartCantidad.setText(String.valueOf(item.getCantidad()));
+            String precioUnitarioStr = String.format(Locale.US, "S/ %.2f c/u", item.getProducto().getPrecio());
+            binding.tvCartProductoPrecio.setText(precioUnitarioStr);
+            binding.tvCantidadItem.setText(String.valueOf(item.getCantidad()));
+            binding.tvSubtotalItem.setText(item.getSubtotalFormateado());
             binding.ivCartProductoImagen.setImageResource(item.getProducto().getDrawableResId());
 
-            // Aumentar cantidad
-            binding.btnCartPlus.setOnClickListener(v -> {
+            // Incremento [+]
+            binding.btnIncrementarItem.setOnClickListener(v -> {
                 cartManager.actualizarCantidad(
-                        String.valueOf(item.getProducto().getId()), 
+                        String.valueOf(item.getProducto().getId()),
                         item.getCantidad() + 1
                 );
             });
 
-            // Disminuir cantidad
-            binding.btnCartMinus.setOnClickListener(v -> {
+            // Decremento [-]
+            binding.btnDecrementarItem.setOnClickListener(v -> {
                 cartManager.actualizarCantidad(
-                        String.valueOf(item.getProducto().getId()), 
+                        String.valueOf(item.getProducto().getId()),
                         item.getCantidad() - 1
                 );
             });
 
-            // Eliminar producto
-            binding.btnCartRemoveItem.setOnClickListener(v -> {
+            // Eliminar [🗑️]
+            binding.btnEliminarItem.setOnClickListener(v -> {
                 cartManager.quitarProducto(String.valueOf(item.getProducto().getId()));
             });
         }

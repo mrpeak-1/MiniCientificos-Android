@@ -4,69 +4,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_card_rounded"
-    android:backgroundTint="@color/white"
-    android:paddingTop="12dp">
+    android:background="#F8FAFC">
 
-    <!-- Drag Handle Indicator -->
-    <View
-        android:id="@+id/v_drag_handle_cart"
-        android:layout_width="40dp"
-        android:layout_height="4dp"
-        android:background="@drawable/bg_badge_rounded"
-        android:backgroundTint="@color/card_stroke"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Cabecera Carrito -->
+    <!-- 1. CABECERA AZUL MARINO CORPORATIVO -->
     <LinearLayout
-        android:id="@+id/ll_cart_header"
+        android:id="@+id/ll_cart_header_navy"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_s"
+        android:background="@drawable/bg_cart_header_navy"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/spacing_m"
-        android:paddingBottom="@dimen/spacing_m"
-        app:layout_constraintTop_toBottomOf="@id/v_drag_handle_cart">
+        android:padding="18dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:contentDescription="Mascota Carrito"
+            android:scaleType="fitCenter"
+            android:src="@drawable/mascota_camion" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="Mi carrito 🛍️"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvCartHeaderItemsBadge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:backgroundTint="#FDC500"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="3dp"
+                    android:textColor="#081E4A"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    tools:text="2 ítems" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvCartHeaderSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/nunito"
+                android:text="2 unidades en tu carrito · MiniCientificos"
+                android:textColor="#CBD5E1"
+                android:textSize="12.5sp" />
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCloseCart"
+            style="@style/Widget.Material3.Button.Icon"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:backgroundTint="#FFFFFF"
+            android:contentDescription="Cerrar"
+            android:fontFamily="@font/fredoka"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            android:padding="0dp"
+            android:text="✕"
+            android:textColor="#081E4A"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="50dp" />
+    </LinearLayout>
+
+    <!-- 2. SUB-FRANJA DE EXPEDICIÓN -->
+    <LinearLayout
+        android:id="@+id/ll_cart_expedition_substrip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#051536"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="18dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintTop_toBottomOf="@id/ll_cart_header_navy">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:fontFamily="@font/fredoka"
-            android:text="Tu Carrito Científico 🛒"
-            android:textColor="@color/navy_blue"
-            android:textSize="20sp"
+            android:fontFamily="@font/nunito"
+            android:text="🚀 ¡Gran expedición en marcha!"
+            android:textColor="#FFFFFF"
+            android:textSize="12.5sp"
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tv_cart_total_items_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/spacing_s"
-            android:fontFamily="@font/poppins"
-            android:textColor="@color/text_secondary"
-            android:textSize="13sp"
-            tools:text="3 artículos" />
-
-        <ImageButton
-            android:id="@+id/btn_close_cart"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Cerrar"
-            android:src="@drawable/ic_close"
-            app:tint="@color/text_secondary" />
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="#FDC500"
+            android:fontFamily="@font/fredoka"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="2dp"
+            android:text="★ OFICIAL"
+            android:textColor="#081E4A"
+            android:textSize="11sp"
+            android:textStyle="bold" />
     </LinearLayout>
-
-    <View
-        android:id="@+id/v_divider_cart_header"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/card_stroke"
-        app:layout_constraintTop_toBottomOf="@id/ll_cart_header" />
 
     <!-- Estado Vacío -->
     <LinearLayout
@@ -77,12 +138,13 @@
         android:orientation="vertical"
         android:padding="32dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@id/v_divider_cart_footer"
-        app:layout_constraintTop_toBottomOf="@id/v_divider_cart_header">
+        app:layout_constraintBottom_toTopOf="@id/layoutCartFooter"
+        app:layout_constraintTop_toBottomOf="@id/ll_cart_expedition_substrip">
 
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:contentDescription="Carrito Vacío"
             android:src="@drawable/ic_shopping_cart"
             app:tint="@color/text_light" />
 
@@ -92,7 +154,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/fredoka"
             android:text="Tu carrito espacial está vacío"
-            android:textColor="@color/navy_blue"
+            android:textColor="#081E4A"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -100,157 +162,176 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:fontFamily="@font/poppins"
+            android:fontFamily="@font/nunito"
             android:gravity="center"
             android:text="¡Explora nuestros kits científicos y empieza tu aventura!"
-            android:textColor="@color/text_secondary"
+            android:textColor="#64748B"
             android:textSize="14sp" />
     </LinearLayout>
 
-    <!-- Lista de Productos -->
+    <!-- 3. LISTA DE PRODUCTOS EN TARJETAS CON BORDE AMARILLO -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_cart_items"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_default="wrap"
-        app:layout_constraintHeight_max="300dp"
         android:clipToPadding="false"
-        android:paddingVertical="@dimen/spacing_s"
-        app:layout_constraintBottom_toTopOf="@id/til_cart_notes"
-        app:layout_constraintTop_toBottomOf="@id/v_divider_cart_header"
+        android:paddingVertical="8dp"
+        app:layout_constraintBottom_toTopOf="@id/layoutCartFooter"
+        app:layout_constraintHeight_default="wrap"
+        app:layout_constraintHeight_max="280dp"
+        app:layout_constraintTop_toBottomOf="@id/ll_cart_expedition_substrip"
         tools:listitem="@layout/item_cart_product" />
 
-    <!-- Notas -->
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_cart_notes"
-        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/spacing_m"
-        android:layout_marginTop="@dimen/spacing_s"
-        android:layout_marginBottom="@dimen/spacing_m"
-        app:boxCornerRadiusBottomEnd="@dimen/card_corner_radius"
-        app:boxCornerRadiusBottomStart="@dimen/card_corner_radius"
-        app:boxCornerRadiusTopEnd="@dimen/card_corner_radius"
-        app:boxCornerRadiusTopStart="@dimen/card_corner_radius"
-        app:boxStrokeColor="@color/primary_blue"
-        app:layout_constraintBottom_toTopOf="@id/v_divider_cart_footer">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_cart_notes"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:hint="Notas especiales o dedicatoria (Opcional)"
-            android:inputType="textMultiLine"
-            android:maxLines="3"
-            android:textColor="@color/text_primary"
-            android:textSize="13sp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <View
-        android:id="@+id/v_divider_cart_footer"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/card_stroke"
-        app:layout_constraintBottom_toTopOf="@id/ll_cart_summary" />
-
-    <!-- Resumen y Pago -->
+    <!-- 4. PIE DE RESUMEN Y 3 BOTONES DE ACCIÓN -->
     <LinearLayout
-        android:id="@+id/ll_cart_summary"
+        android:id="@+id/layoutCartFooter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg_light"
+        android:background="#FFFFFF"
+        android:elevation="8dp"
         android:orientation="vertical"
-        android:padding="@dimen/spacing_m"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
+        <!-- Fila superior de control -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/tvResumenConteoProductos"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="@font/poppins"
-                android:text="Subtotal"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
-
-            <TextView
-                android:id="@+id/tv_cart_subtotal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/text_primary"
-                android:textSize="14sp"
-                tools:text="S/ 195.00" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/poppins"
-                android:text="Envío"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="A coordinar"
-                android:textColor="@color/primary_blue"
-                android:textSize="14sp"
-                android:textStyle="italic" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/fredoka"
-                android:text="TOTAL A PAGAR"
-                android:textColor="@color/navy_blue"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tv_cart_total_final"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/fredoka"
-                android:textColor="@color/navy_blue"
-                android:textSize="22sp"
+                android:fontFamily="@font/nunito"
+                android:textColor="#475569"
+                android:textSize="13.5sp"
                 android:textStyle="bold"
-                tools:text="S/ 195.00" />
+                tools:text="📦 2 productos" />
+
+            <TextView
+                android:id="@+id/btnVaciarCarrito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/fredoka"
+                android:padding="4dp"
+                android:text="🗑️ Vaciar carrito"
+                android:textColor="#0056B3"
+                android:textSize="13sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_cart_checkout_whatsapp"
-            style="@style/Widget.MiniCientificos.Button.WhatsApp"
+        <View
             android:layout_width="match_parent"
-            android:layout_height="54dp"
-            android:layout_marginTop="@dimen/spacing_l"
+            android:layout_height="1dp"
+            android:layout_marginVertical="8dp"
+            android:background="#E2E8F0" />
+
+        <!-- Fila principal de Subtotal -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="Subtotal"
+                    android:textColor="#081E4A"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:text="Moneda oficial en Soles (S/)"
+                    android:textColor="#64748B"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvCartSubtotalGeneral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:textColor="#081E4A"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                tools:text="S/ 134.80" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:fontFamily="@font/nunito"
+            android:text="El cupón, los datos de envío y el costo de envío se completan en el siguiente paso."
+            android:textColor="#475569"
+            android:textSize="12.5sp" />
+
+        <!-- LOS 3 BOTONES INFERIORES DE ACCIÓN -->
+        <!-- Botón 1: Ver Carrito Completo -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVerCarritoCompleto"
+            style="@style/Widget.Material3.Button.UnelevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#081E4A"
             android:fontFamily="@font/fredoka"
-            android:text="PEDIR POR WHATSAPP 💬"
-            android:textSize="16sp"
-            app:cornerRadius="@dimen/button_corner_radius" />
+            android:text="Ver carrito completo →"
+            android:textColor="#FDC500"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:cornerRadius="50dp" />
+
+        <!-- Botón 2: Continuar con la Compra (Abre Paso 2) -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnContinuarCompraPaso2"
+            style="@style/Widget.Material3.Button.UnelevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:layout_marginTop="10dp"
+            android:backgroundTint="#FDC500"
+            android:fontFamily="@font/fredoka"
+            android:text="CONTINUAR CON LA COMPRA →"
+            android:textColor="#081E4A"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:cornerRadius="50dp"
+            app:strokeColor="#081E4A"
+            app:strokeWidth="1.5dp" />
+
+        <!-- Botón 3: Seguir Comprando -->
+        <TextView
+            android:id="@+id/btnSeguirComprando"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/fredoka"
+            android:padding="6dp"
+            android:text="← Seguir comprando"
+            android:textColor="#081E4A"
+            android:textSize="14sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

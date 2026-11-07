@@ -1,111 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
-    android:paddingHorizontal="@dimen/spacing_m"
-    android:paddingVertical="@dimen/spacing_s">
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="6dp"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="18dp"
+    app:cardElevation="2dp"
+    app:strokeColor="#FACC15"
+    app:strokeWidth="1.5dp">
 
-    <!-- Imagen del Producto -->
-    <FrameLayout
-        android:id="@+id/fl_cart_image"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/bg_badge_rounded"
-        android:backgroundTint="@color/tesla_bg"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/iv_cart_producto_imagen"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:contentDescription="Imagen producto"
-            android:scaleType="centerCrop"
-            android:src="@drawable/ic_flask" />
-    </FrameLayout>
-
-    <!-- Información -->
-    <TextView
-        android:id="@+id/tv_cart_producto_nombre"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_m"
-        android:layout_marginEnd="@dimen/spacing_s"
-        android:ellipsize="end"
-        android:fontFamily="@font/fredoka"
-        android:maxLines="2"
-        android:textColor="@color/navy_blue"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/btn_cart_remove_item"
-        app:layout_constraintStart_toEndOf="@id/fl_cart_image"
-        app:layout_constraintTop_toTopOf="@id/fl_cart_image"
-        tools:text="Kit Bobina Tesla Experimentos" />
+        android:padding="12dp">
 
-    <TextView
-        android:id="@+id/tv_cart_producto_precio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins"
-        android:textColor="@color/text_secondary"
-        android:textSize="13sp"
-        app:layout_constraintStart_toStartOf="@id/tv_cart_producto_nombre"
-        app:layout_constraintTop_toBottomOf="@id/tv_cart_producto_nombre"
-        tools:text="S/ 65.00" />
+        <!-- Imagen en Recuadro Celeste Suave -->
+        <FrameLayout
+            android:id="@+id/fl_cart_image"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="#EAF6FF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <!-- Controles de Cantidad -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_cart_producto_nombre"
-        app:layout_constraintTop_toBottomOf="@id/tv_cart_producto_precio">
+            <ImageView
+                android:id="@+id/iv_cart_producto_imagen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Imagen producto"
+                android:padding="6dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_flask" />
+        </FrameLayout>
 
-        <ImageButton
-            android:id="@+id/btn_cart_minus"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:background="@drawable/bg_circle_action"
-            android:contentDescription="Disminuir"
-            android:src="@drawable/ic_remove" />
+        <!-- Información Central -->
+        <TextView
+            android:id="@+id/tv_cart_producto_nombre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/fredoka"
+            android:maxLines="2"
+            android:textColor="#081E4A"
+            android:textSize="16.5sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/btnEliminarItem"
+            app:layout_constraintStart_toEndOf="@id/fl_cart_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Peluche Dino Científico" />
 
         <TextView
-            android:id="@+id/tv_cart_cantidad"
-            android:layout_width="32dp"
+            android:id="@+id/tv_cart_producto_precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/nunito"
+            android:textColor="#475569"
+            android:textSize="13sp"
+            app:layout_constraintStart_toEndOf="@id/fl_cart_image"
+            app:layout_constraintTop_toBottomOf="@id/tv_cart_producto_nombre"
+            tools:text="S/ 54.90 c/u" />
+
+        <!-- Control de Cantidad Píldora -->
+        <LinearLayout
+            android:id="@+id/ll_quantity_controls"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_cart_qty_pill"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/fl_cart_image"
+            app:layout_constraintTop_toBottomOf="@id/tv_cart_producto_precio">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDecrementarItem"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:backgroundTint="#FFFFFF"
+                android:contentDescription="Disminuir"
+                android:fontFamily="@font/fredoka"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="-"
+                android:textColor="#081E4A"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="50dp"
+                app:strokeColor="#CBD5E1"
+                app:strokeWidth="1dp" />
+
+            <TextView
+                android:id="@+id/tvCantidadItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:gravity="center"
+                android:paddingHorizontal="14dp"
+                android:textColor="#081E4A"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="1" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnIncrementarItem"
+                style="@style/Widget.Material3.Button.Icon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:backgroundTint="#FDC500"
+                android:contentDescription="Aumentar"
+                android:fontFamily="@font/fredoka"
+                android:insetLeft="0dp"
+                android:insetTop="0dp"
+                android:insetRight="0dp"
+                android:insetBottom="0dp"
+                android:padding="0dp"
+                android:text="+"
+                android:textColor="#081E4A"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:cornerRadius="50dp"
+                app:strokeWidth="0dp" />
+        </LinearLayout>
+
+        <!-- Botón Eliminar Arriba a la Derecha -->
+        <FrameLayout
+            android:id="@+id/btnEliminarItem"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="#EAF6FF"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:layout_gravity="center"
+                android:contentDescription="Eliminar"
+                android:src="@drawable/ic_trash"
+                app:tint="#0056B3" />
+        </FrameLayout>
+
+        <!-- Subtotal Ítem en Grande -->
+        <TextView
+            android:id="@+id/tvSubtotalItem"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/fredoka"
-            android:gravity="center"
-            android:textColor="@color/text_primary"
-            android:textSize="14sp"
+            android:textColor="#081E4A"
+            android:textSize="17sp"
             android:textStyle="bold"
-            tools:text="2" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="S/ 54.90" />
 
-        <ImageButton
-            android:id="@+id/btn_cart_plus"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
-            android:background="@drawable/bg_circle_action"
-            android:contentDescription="Aumentar"
-            android:src="@drawable/ic_add" />
-    </LinearLayout>
-
-    <!-- Botón Eliminar -->
-    <ImageButton
-        android:id="@+id/btn_cart_remove_item"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Eliminar"
-        android:src="@drawable/ic_trash"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

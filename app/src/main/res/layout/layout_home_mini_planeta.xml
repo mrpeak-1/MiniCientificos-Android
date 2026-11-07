@@ -6,57 +6,115 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="@dimen/spacing_m"
-    android:layout_marginTop="36dp"
-    android:layout_marginBottom="36dp"
-    app:cardBackgroundColor="@color/pc_navy"
-    app:cardCornerRadius="@dimen/card_corner_radius"
-    app:cardElevation="@dimen/card_elevation"
-    app:strokeColor="@color/gold_yellow"
-    app:strokeWidth="2dp">
+    android:layout_marginTop="24dp"
+    android:layout_marginBottom="24dp"
+    app:cardBackgroundColor="#F0F8FF"
+    app:cardCornerRadius="28dp"
+    app:cardElevation="3dp"
+    app:strokeColor="#BAE6FD"
+    app:strokeWidth="1.5dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_m">
+        android:padding="20dp">
+
+        <!-- Píldora Superior 3D -->
+        <TextView
+            android:id="@+id/tv_badge_planeta_3d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="2dp"
+            android:fontFamily="@font/fredoka"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="5dp"
+            android:text="🌍 ¡Interactivo en 3D!"
+            android:textColor="#0077CC"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Título -->
         <TextView
             android:id="@+id/tv_planeta_header"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/fredoka"
-            android:text="🌍 Explora el Mini Planeta 3D"
-            android:textColor="@color/gold_yellow"
-            android:textSize="22sp"
+            android:text="Explora el Mini Planeta"
+            android:textColor="#0B2C5E"
+            android:textSize="28sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/tv_badge_planeta_3d" />
 
         <TextView
             android:id="@+id/tv_planeta_sub"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="4dp"
             android:fontFamily="@font/nunito"
-            android:text="Gira el planeta con tu dedo o toca una insignia científica"
-            android:textColor="@color/white"
-            android:textSize="13sp"
+            android:text="Gira el planeta con tu dedo o toca cada objeto para descubrir el taller que se esconde ahí."
+            android:textColor="#334155"
+            android:textSize="14.5sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_planeta_header" />
+
+        <!-- Indicador Flotante Centrado -->
+        <TextView
+            android:id="@+id/tv_planeta_pin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="#FFFFFF"
+            android:elevation="3dp"
+            android:fontFamily="@font/fredoka"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="6dp"
+            android:textColor="#0B2C5E"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_planeta_sub"
+            tools:text="🔄 Arrastra para girar · Toca un objeto" />
+
+        <!-- Contenedor del Planeta Interactivo -->
+        <FrameLayout
+            android:id="@+id/fl_planeta_container"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_planeta_pin">
+
+            <!-- Planeta 3D Real Esférico -->
+            <com.icsm.minicientificos_android.views.Planet3DView
+                android:id="@+id/planet_3d_view"
+                android:layout_width="210dp"
+                android:layout_height="210dp"
+                android:layout_gravity="center" />
+
+        </FrameLayout>
 
         <!-- Chips de Ecosistemas Científicos -->
         <HorizontalScrollView
             android:id="@+id/hsv_planeta_chips"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginTop="16dp"
             android:clipToPadding="false"
             android:scrollbars="none"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_planeta_sub">
+            app:layout_constraintTop_toBottomOf="@id/fl_planeta_container">
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chip_group_planeta"
@@ -71,8 +129,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka"
-                    android:text="🌱 Mini Huerto"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+                    android:text="🍎 Mini Huerto"
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="#BAE6FD"
+                    app:chipStrokeWidth="1.5dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_eco_energia"
@@ -80,8 +140,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka"
-                    android:text="⚡ Energías Renovables"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+                    android:text="💨 Energías Renovables"
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="#BAE6FD"
+                    app:chipStrokeWidth="1.5dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_eco_reciclaje"
@@ -89,8 +151,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka"
-                    android:text="♻️ Reciclaje Creativo"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+                    android:text="♻️ Reciclaje"
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="#BAE6FD"
+                    app:chipStrokeWidth="1.5dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_eco_geologia"
@@ -98,8 +162,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka"
-                    android:text="🌋 Geología &amp; Volcanes"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+                    android:text="🌋 Geología"
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="#BAE6FD"
+                    app:chipStrokeWidth="1.5dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_eco_hidroponia"
@@ -108,7 +174,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka"
                     android:text="💧 Hidroponía"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="#BAE6FD"
+                    app:chipStrokeWidth="1.5dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_eco_astronomia"
@@ -117,7 +185,9 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka"
                     android:text="🚀 Astronomía"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="#BAE6FD"
+                    app:chipStrokeWidth="1.5dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_eco_fisica"
@@ -125,64 +195,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/fredoka"
-                    android:text="🔬 Física Loca"
-                    app:chipCornerRadius="@dimen/corner_radius_pill" />
+                    android:text="⚛️ Física Loca"
+                    app:chipCornerRadius="50dp"
+                    app:chipStrokeColor="#BAE6FD"
+                    app:chipStrokeWidth="1.5dp" />
 
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 
-        <!-- Contenedor del Planeta Interactivo -->
-        <FrameLayout
-            android:id="@+id/fl_planeta_container"
-            android:layout_width="220dp"
-            android:layout_height="220dp"
-            android:layout_marginTop="@dimen/spacing_m"
-            android:background="@drawable/bg_circle_action"
-            android:backgroundTint="#112244"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/hsv_planeta_chips">
-
-            <!-- Planeta 3D Real Esférico (Proyección de Canvas en 360°) -->
-            <com.icsm.minicientificos_android.views.Planet3DView
-                android:id="@+id/planet_3d_view"
-                android:layout_width="190dp"
-                android:layout_height="190dp"
-                android:layout_gravity="center" />
-
-            <!-- Pin / Indicador de Ecosistema Seleccionado -->
-            <TextView
-                android:id="@+id/tv_planeta_pin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|center_horizontal"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_badge_rounded"
-                android:backgroundTint="@color/gold_yellow"
-                android:fontFamily="@font/fredoka"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="4dp"
-                android:textColor="@color/navy_blue"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                tools:text="📍 Mini Huerto" />
-
-        </FrameLayout>
-
-        <!-- Instrucción de interacción -->
         <TextView
             android:id="@+id/tv_planeta_hint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginTop="12dp"
             android:fontFamily="@font/nunito"
             android:text="👆 Arrastra en cualquier dirección para girar el planeta en 3D"
-            android:textColor="@color/primary_blue"
-            android:textSize="12sp"
+            android:textColor="#0284C7"
+            android:textSize="12.5sp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fl_planeta_container" />
+            app:layout_constraintTop_toBottomOf="@id/hsv_planeta_chips" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
