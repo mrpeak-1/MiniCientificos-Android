@@ -1,8 +1,6 @@
 package com.icsm.minicientificos_android.adapters;
 
 import android.graphics.Color;
-import android.graphics.drawable.GradientDrawable;
-import android.graphics.drawable.RippleDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.icsm.minicientificos_android.R;
 import com.icsm.minicientificos_android.models.PildoraTallerHome;
 
@@ -41,20 +40,22 @@ public class PildoraTallerHomeAdapter extends RecyclerView.Adapter<PildoraTaller
     @Override
     public void onBindViewHolder(@NonNull PildoraViewHolder holder, int position) {
         PildoraTallerHome pildora = pildoraList.get(position);
+        if (pildora == null) return;
+
         holder.tvEmoji.setText(pildora.getIconoEmoji());
         holder.tvNombre.setText(pildora.getNombre());
+        holder.tvModalidad.setText(pildora.getModalidad());
 
         try {
-            int colorTheme = Color.parseColor(pildora.getHexColor());
-            holder.tvEmoji.setTextColor(colorTheme);
-            holder.tvArrow.getBackground().setTint(colorTheme);
+            int borderTheme = Color.parseColor(pildora.getBorderHexColor());
+            int bgTheme = Color.parseColor(pildora.getBgHexColor());
+            int modalidadTheme = Color.parseColor(pildora.getModalidadColorHex());
 
-            if (holder.itemView.getBackground() instanceof RippleDrawable) {
-                RippleDrawable ripple = (RippleDrawable) holder.itemView.getBackground();
-                if (ripple.getDrawable(0) instanceof GradientDrawable) {
-                    GradientDrawable bg = (GradientDrawable) ripple.getDrawable(0);
-                    bg.setStroke(3, colorTheme);
-                }
+            holder.cardView.setCardBackgroundColor(bgTheme);
+            holder.cardView.setStrokeColor(borderTheme);
+            holder.tvModalidad.setTextColor(modalidadTheme);
+            if (holder.tvArrow.getBackground() != null) {
+                holder.tvArrow.getBackground().setTint(borderTheme);
             }
         } catch (Exception ignored) {}
 
@@ -82,14 +83,18 @@ public class PildoraTallerHomeAdapter extends RecyclerView.Adapter<PildoraTaller
     }
 
     static class PildoraViewHolder extends RecyclerView.ViewHolder {
+        MaterialCardView cardView;
         TextView tvEmoji;
         TextView tvNombre;
+        TextView tvModalidad;
         TextView tvArrow;
 
         public PildoraViewHolder(@NonNull View itemView) {
             super(itemView);
+            cardView = itemView.findViewById(R.id.card_pildora_taller);
             tvEmoji = itemView.findViewById(R.id.tv_pildora_emoji);
             tvNombre = itemView.findViewById(R.id.tv_pildora_nombre);
+            tvModalidad = itemView.findViewById(R.id.tv_pildora_modalidad);
             tvArrow = itemView.findViewById(R.id.tv_pildora_arrow);
         }
     }

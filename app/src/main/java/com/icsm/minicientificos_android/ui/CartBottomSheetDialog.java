@@ -14,7 +14,6 @@ import com.icsm.minicientificos_android.adapters.CartAdapter;
 import com.icsm.minicientificos_android.cart.CartItem;
 import com.icsm.minicientificos_android.cart.CartManager;
 import com.icsm.minicientificos_android.databinding.BottomSheetCartBinding;
-import com.icsm.minicientificos_android.utils.WhatsAppHelper;
 
 import java.util.List;
 import java.util.Locale;
@@ -47,7 +46,7 @@ public class CartBottomSheetDialog extends BottomSheetDialogFragment implements 
         actualizarUI();
 
         binding.btnCloseCart.setOnClickListener(v -> dismiss());
-        binding.btnCartCheckoutWhatsapp.setOnClickListener(v -> enviarPedidoWhatsApp());
+        binding.btnCartCheckoutWhatsapp.setOnClickListener(v -> abrirCheckoutPaso2());
     }
 
     private void setupRecyclerView() {
@@ -62,7 +61,6 @@ public class CartBottomSheetDialog extends BottomSheetDialogFragment implements 
         int totalItems = cartManager.obtenerConteoTotal();
         double totalMonto = cartManager.obtenerMontoTotal();
 
-        // Actualizar datos del adaptador sin recrearlo
         binding.rvCartItems.setAdapter(new CartAdapter(listaActual));
 
         if (totalItems == 0) {
@@ -91,15 +89,14 @@ public class CartBottomSheetDialog extends BottomSheetDialogFragment implements 
         actualizarUI();
     }
 
-    private void enviarPedidoWhatsApp() {
+    private void abrirCheckoutPaso2() {
         if (cartManager.obtenerConteoTotal() == 0) return;
 
-        List<CartItem> lista = cartManager.obtenerListaItems();
-        double totalMonto = cartManager.obtenerMontoTotal();
-        String notas = binding.etCartNotes.getText() != null ? binding.etCartNotes.getText().toString().trim() : "";
-
-        WhatsAppHelper.abrirPedidoCarrito(requireContext(), lista, totalMonto, notas);
         dismiss();
+        if (getParentFragmentManager() != null) {
+            CheckoutBottomSheetDialog checkoutDialog = new CheckoutBottomSheetDialog();
+            checkoutDialog.show(getParentFragmentManager(), "CheckoutBottomSheet");
+        }
     }
 
     @Override

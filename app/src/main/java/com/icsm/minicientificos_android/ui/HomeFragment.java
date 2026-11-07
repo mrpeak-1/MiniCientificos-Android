@@ -142,6 +142,11 @@ public class HomeFragment extends Fragment {
         binding.sectionServiciosPildoras.btnTicketTalleres.setOnClickListener(v -> {
             abrirFragment(new WorkshopsFragment());
         });
+
+        binding.sectionServiciosPildoras.btnHomeAsistenteTalleres.setOnClickListener(v -> {
+            AsistenteTallerBottomSheet asistenteModal = new AsistenteTallerBottomSheet();
+            asistenteModal.show(getChildFragmentManager(), "AsistenteTallerBottomSheet");
+        });
     }
 
     private void irATalleresYSeleccionar(String nombreTaller) {

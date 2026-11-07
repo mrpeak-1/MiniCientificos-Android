@@ -301,7 +301,7 @@
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
-    <!-- SECCIÓN: MAPA DE 12 PÍLDORAS E TICKET CENTRAL -->
+    <!-- SECCIÓN: MAPA DE 12 PÍLDORAS, TICKET CENTRAL Y ASISTENTE RECOMENDADOR -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -314,7 +314,7 @@
             android:id="@+id/btn_ticket_talleres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:clickable="true"
             android:focusable="true">
 
@@ -336,6 +336,71 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
         </FrameLayout>
+
+        <!-- Subtítulo Centrado -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="@font/fredoka"
+            android:text="12 talleres · presenciales y virtuales"
+            android:textColor="#0B2C5E"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <!-- Botón Verde 3D Asistente Recomendador -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHomeAsistenteTalleres"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@null"
+            android:background="@drawable/bg_btn_asistente_green_3d"
+            android:fontFamily="@font/fredoka"
+            android:paddingHorizontal="24dp"
+            android:text="💬 ¿No sabes cuál elegir? Te ayudamos"
+            android:textColor="#FFFFFF"
+            android:textSize="13.5sp"
+            android:textStyle="bold"
+            app:cornerRadius="50dp" />
+
+        <!-- Cabeceras por Área (2 Columnas) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_pill_header_dark_blue"
+                android:fontFamily="@font/fredoka"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="8dp"
+                android:text="🚀 Ciencia y Tecnología"
+                android:textColor="#FFFFFF"
+                android:textSize="12.5sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_pill_header_dark_blue"
+                android:fontFamily="@font/fredoka"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="8dp"
+                android:text="🌎 Naturaleza y Planeta"
+                android:textColor="#FFFFFF"
+                android:textSize="12.5sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <!-- RecyclerView Grilla 2 Columnas para 12 Píldoras -->
         <androidx.recyclerview.widget.RecyclerView

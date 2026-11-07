@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp"
+    app:strokeColor="#CBD5E1"
+    app:strokeWidth="1dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <!-- Miniatura en recuadro celeste -->
+        <FrameLayout
+            android:id="@+id/fl_checkout_row_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bg_info_box_celeste"
+            android:padding="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_checkout_row_icon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Producto"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_flask"
+                app:tint="#00A8E8" />
+        </FrameLayout>
+
+        <!-- Nombre y Precio Unitario -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_checkout_row_cantidad_badge"
+            app:layout_constraintStart_toEndOf="@id/fl_checkout_row_img"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_checkout_row_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/fredoka"
+                android:maxLines="1"
+                android:textColor="#0B2C5E"
+                android:textSize="13.5sp"
+                android:textStyle="bold"
+                tools:text="Kit Mini Científico Tesla" />
+
+            <TextView
+                android:id="@+id/tv_checkout_row_precio_unitario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/nunito"
+                android:textColor="#64748B"
+                android:textSize="12sp"
+                tools:text="S/ 54.90 c/u" />
+        </LinearLayout>
+
+        <!-- Badge Celeste de Cantidad (Arriba a la derecha) -->
+        <TextView
+            android:id="@+id/tv_checkout_row_cantidad_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_info_box_celeste"
+            android:fontFamily="@font/fredoka"
+            android:paddingHorizontal="8dp"
+            android:paddingVertical="3dp"
+            android:textColor="#00A8E8"
+            android:textSize="11.5sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1" />
+
+        <!-- Subtotal del ítem (Abajo a la derecha) -->
+        <TextView
+            android:id="@+id/tv_checkout_row_subtotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka"
+            android:textColor="#0B2C5E"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="S/ 54.90" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

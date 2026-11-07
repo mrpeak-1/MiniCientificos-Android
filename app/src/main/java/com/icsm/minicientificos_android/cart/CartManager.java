@@ -4,12 +4,17 @@ import com.icsm.minicientificos_android.models.Producto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class CartManager {
 
     private static CartManager instance;
     private final List<CartItem> items;
     private final List<OnCartChangeListener> listeners;
+
+    private String codigoCuponActivo;
+    private double porcentajeDescuento;
+    private double montoDescuentoFijo;
 
     public interface OnCartChangeListener {
         void onCartChanged();
@@ -18,6 +23,9 @@ public class CartManager {
     private CartManager() {
         items = new ArrayList<>();
         listeners = new ArrayList<>();
+        codigoCuponActivo = null;
+        porcentajeDescuento = 0.0;
+        montoDescuentoFijo = 0.0;
     }
 
     public static synchronized CartManager getInstance() {
@@ -84,7 +92,7 @@ public class CartManager {
 
     public void vaciarCarrito() {
         items.clear();
-        notifyListeners();
+        removerCupon();
     }
 
     public int obtenerConteoTotal() {
@@ -104,6 +112,61 @@ public class CartManager {
     }
 
     public List<CartItem> obtenerListaItems() {
-        return new ArrayList<>(items); // Retornar copia inmutable superficial
+        return new ArrayList<>(items);
+    }
+
+    // ==========================================
+    // MOTOR OFICIAL DE CUPONES (FASE 4)
+    // ==========================================
+
+    public boolean aplicarCupon(String codigo) {
+        if (codigo == null) return false;
+        String codigoLimpio = codigo.trim().toUpperCase(Locale.US);
+
+        if (codigoLimpio.equals("MINI10")) {
+            codigoCuponActivo = "MINI10";
+            porcentajeDescuento = 0.10; // 10%
+            montoDescuentoFijo = 0.0;
+            notifyListeners();
+            return true;
+        } else if (codigoLimpio.equals("CIENCIA20")) {
+            codigoCuponActivo = "CIENCIA20";
+            porcentajeDescuento = 0.20; // 20%
+            montoDescuentoFijo = 0.0;
+            notifyListeners();
+            return true;
+        } else if (codigoLimpio.equals("EXPLORADOR15")) {
+            codigoCuponActivo = "EXPLORADOR15";
+            porcentajeDescuento = 0.15; // 15%
+            montoDescuentoFijo = 0.0;
+            notifyListeners();
+            return true;
+        }
+
+        return false;
+    }
+
+    public void removerCupon() {
+        codigoCuponActivo = null;
+        porcentajeDescuento = 0.0;
+        montoDescuentoFijo = 0.0;
+        notifyListeners();
+    }
+
+    public String getCodigoCuponActivo() {
+        return codigoCuponActivo;
+    }
+
+    public double obtenerDescuentoCalculado() {
+        if (codigoCuponActivo == null) return 0.0;
+        double subtotal = obtenerMontoTotal();
+        double descuento = (subtotal * porcentajeDescuento) + montoDescuentoFijo;
+        return Math.min(subtotal, descuento);
+    }
+
+    public double obtenerTotalConDescuento() {
+        double subtotal = obtenerMontoTotal();
+        double descuento = obtenerDescuentoCalculado();
+        return Math.max(0.0, subtotal - descuento);
     }
 }

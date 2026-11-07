@@ -1,49 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/card_pildora_taller"
     android:layout_width="match_parent"
-    android:layout_height="52dp"
-    android:layout_margin="5dp"
-    android:background="@drawable/bg_workshop_pill_card"
-    android:gravity="center_vertical"
-    android:orientation="horizontal"
-    android:paddingHorizontal="10dp">
+    android:layout_height="56dp"
+    android:layout_margin="4dp"
+    app:cardBackgroundColor="#F3F4FF"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="1dp"
+    app:strokeColor="#818CF8"
+    app:strokeWidth="1.5dp">
 
-    <!-- Emoji / Icon Container -->
-    <TextView
-        android:id="@+id/tv_pildora_emoji"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:background="@drawable/bg_pill_500_kids"
-        android:gravity="center"
-        android:text="🔭"
-        android:textSize="18sp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp">
 
-    <!-- Name -->
-    <TextView
-        android:id="@+id/tv_pildora_nombre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="6dp"
-        android:layout_weight="1"
-        android:ellipsize="end"
-        android:fontFamily="@font/fredoka"
-        android:maxLines="2"
-        android:text="Astronomía"
-        android:textColor="#0B2C5E"
-        android:textSize="12.5sp"
-        android:textStyle="bold" />
+        <!-- Emoji / Icon Container -->
+        <TextView
+            android:id="@+id/tv_pildora_emoji"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_pill_500_kids"
+            android:gravity="center"
+            android:text="🔭"
+            android:textSize="16sp" />
 
-    <!-- Arrow Container -->
-    <TextView
-        android:id="@+id/tv_pildora_arrow"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:background="@drawable/bg_pill_500_kids"
-        android:gravity="center"
-        android:text="→"
-        android:textColor="#FFFFFF"
-        android:textSize="13sp"
-        android:textStyle="bold" />
+        <!-- Text Container (2 lines: Title + Modality) -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/tv_pildora_nombre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/fredoka"
+                android:maxLines="1"
+                android:textColor="#0B2C5E"
+                android:textSize="12.5sp"
+                android:textStyle="bold"
+                tools:text="Astronomía" />
+
+            <TextView
+                android:id="@+id/tv_pildora_modalidad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/nunito"
+                android:textColor="#EA580C"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                tools:text="PRESENCIAL" />
+        </LinearLayout>
+
+        <!-- Arrow Container -->
+        <TextView
+            android:id="@+id/tv_pildora_arrow"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:background="@drawable/bg_pill_500_kids"
+            android:gravity="center"
+            android:text="→"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

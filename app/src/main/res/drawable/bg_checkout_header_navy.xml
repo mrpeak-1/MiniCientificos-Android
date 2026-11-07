@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Fondo Azul Marino con esquinas superiores redondeadas -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#0B2C5E" />
+            <corners
+                android:topLeftRadius="24dp"
+                android:topRightRadius="24dp" />
+        </shape>
+    </item>
+    <!-- Borde/Línea Inferior Amarillo #FDC500 (4dp) -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <solid android:color="#FDC500" />
+            <size android:height="4dp" />
+        </shape>
+    </item>
+</layer-list>

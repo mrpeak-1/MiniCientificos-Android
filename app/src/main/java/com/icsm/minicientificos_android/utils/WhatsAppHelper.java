@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.widget.Toast;
 
 import com.icsm.minicientificos_android.cart.CartItem;
+import com.icsm.minicientificos_android.models.DatosEnvioCliente;
 import com.icsm.minicientificos_android.models.Taller;
 
 import java.net.URLEncoder;
@@ -40,6 +41,46 @@ public class WhatsAppHelper {
         enviarMensajeWhatsApp(context, sb.toString());
     }
 
+    public static void abrirPedidoCheckoutCompleto(Context context, List<CartItem> items, double subtotal,
+                                                    String cupon, double descuento, double totalFinal,
+                                                    DatosEnvioCliente envio) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("¡Hola Mini Científicos! 🚀 Deseo confirmar mi pedido con los siguientes datos:\n\n");
+
+        sb.append("🛒 *DETALLE DEL PEDIDO:*\n");
+        if (items != null) {
+            for (CartItem item : items) {
+                sb.append("• ").append(item.getProducto().getNombre())
+                  .append(" x").append(item.getCantidad())
+                  .append(" - S/ ").append(String.format(Locale.US, "%.2f", item.getSubtotal())).append("\n");
+            }
+        }
+
+        sb.append("\n*Subtotal:* S/ ").append(String.format(Locale.US, "%.2f", subtotal));
+        if (cupon != null && !cupon.trim().isEmpty() && descuento > 0) {
+            sb.append("\n*🏷️ Cupón aplicado:* ").append(cupon)
+              .append(" (-S/ ").append(String.format(Locale.US, "%.2f", descuento)).append(")");
+        }
+        sb.append("\n*💰 TOTAL ESTIMADO:* S/ ").append(String.format(Locale.US, "%.2f", totalFinal));
+
+        if (envio != null) {
+            sb.append("\n\n📦 *DATOS DE ENVÍO:*\n");
+            sb.append("👤 *Nombre:* ").append(envio.getNombreCompleto()).append("\n");
+            sb.append("📞 *Celular:* ").append(envio.getCelular()).append("\n");
+            if (envio.getCorreo() != null && !envio.getCorreo().trim().isEmpty()) {
+                sb.append("✉️ *Correo:* ").append(envio.getCorreo()).append("\n");
+            }
+            sb.append("📍 *Dirección:* ").append(envio.getDireccion()).append("\n");
+            sb.append("🏙️ *Ubicación:* ").append(envio.getDistrito())
+              .append(", ").append(envio.getProvincia())
+              .append(", ").append(envio.getDepartamento()).append("\n");
+        }
+
+        sb.append("\n🚚 *Nota:* Por favor confirmemos la disponibilidad y costo exacto de envío.");
+
+        enviarMensajeWhatsApp(context, sb.toString());
+    }
+
     public static void abrirConsultaContacto(Context context, String nombre, String email, String celular, String motivo, String mensajeLocal) {
         String mensaje = "🚀 *Transmisión Espacial de:* " + nombre + "\n" +
                 "📧 *Email:* " + email + "\n" +
@@ -57,13 +98,13 @@ public class WhatsAppHelper {
         try {
             String url = "https://wa.me/" + WHATSAPP_NUMBER + "?text=" + URLEncoder.encode(mensaje, "UTF-8");
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-            
+
             boolean isWhatsappInstalled = isPackageInstalled(context, "com.whatsapp") || isPackageInstalled(context, "com.whatsapp.w4b");
-            
+
             if (isWhatsappInstalled) {
                 intent.setPackage(isPackageInstalled(context, "com.whatsapp") ? "com.whatsapp" : "com.whatsapp.w4b");
             }
-            
+
             context.startActivity(intent);
         } catch (Exception e) {
             Toast.makeText(context, "No se pudo abrir WhatsApp", Toast.LENGTH_SHORT).show();
