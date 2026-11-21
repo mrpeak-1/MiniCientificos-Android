@@ -29,7 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_pill_12_talleres_badge"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/nunito"
                 android:paddingHorizontal="16dp"
                 android:paddingVertical="6dp"
                 android:text="⚛️ 12 talleres · presenciales y virtuales"
@@ -176,96 +176,117 @@
         </LinearLayout>
 
         <!-- ========================================================= -->
-        <!-- BLOQUE 2 - BUSCADOR CIENTÍFICO Y SISTEMA DE DOBLE FILTRO CROSS -->
+        <!-- BLOQUE 2 - BUSCADOR CIENTÍFICO Y PANEL DE FILTROS COLORIDOS -->
         <!-- ========================================================= -->
         <LinearLayout
             android:id="@+id/layoutFiltrosTalleres"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="32dp"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp">
+            android:paddingHorizontal="20dp">
 
-            <!-- Buscador -->
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:boxBackgroundColor="#FFFFFF"
-                app:boxCornerRadiusBottomEnd="24dp"
-                app:boxCornerRadiusBottomStart="24dp"
-                app:boxCornerRadiusTopEnd="24dp"
-                app:boxCornerRadiusTopStart="24dp"
-                app:boxStrokeColor="#64B5F6"
-                app:boxStrokeWidth="1.5dp"
-                app:boxStrokeWidthFocused="2dp"
-                app:hintEnabled="false"
-                app:startIconDrawable="@drawable/ic_search"
-                app:startIconTint="#64B5F6">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/etBuscarTaller"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/poppins"
-                    android:hint="Busca un taller (Ej: Bobina Tesla, Huerto...)"
-                    android:inputType="text"
-                    android:paddingVertical="14dp"
-                    android:textColor="#0B2C5E"
-                    android:textColorHint="#90A4AE"
-                    android:textSize="14sp" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <!-- Categorías -->
+            <!-- 1. BARRA DE BÚSQUEDA RENOVADA -->
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:layout_height="54dp"
+                android:background="@drawable/bg_workshop_search_pill"
+                android:elevation="3dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="14dp">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="Buscar"
+                    android:src="@drawable/ic_search"
+                    app:tint="#0066CC" />
+
+                <EditText
+                    android:id="@+id/etBuscarTaller"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:fontFamily="@font/nunito"
+                    android:hint="¿Qué taller estás buscando?"
+                    android:inputType="text"
+                    android:textColor="#0B2C5E"
+                    android:textColorHint="#94A3B8"
+                    android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/btnCatTodo"
+                    android:id="@+id/btnAccionBuscarTaller"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_filter_pill_green_active"
+                    android:layout_height="38dp"
+                    android:background="@drawable/bg_btn_search_blue_pill"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/fredoka"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:text="TODO"
+                    android:gravity="center"
+                    android:paddingHorizontal="20dp"
+                    android:text="Buscar"
                     android:textColor="#FFFFFF"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/btnCatCiencia"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:background="@drawable/bg_filter_pill_white_inactive"
-                    android:fontFamily="@font/fredoka"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:text="CIENCIA"
-                    android:textColor="#78909C"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/btnCatNaturaleza"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:background="@drawable/bg_filter_pill_white_inactive"
-                    android:fontFamily="@font/fredoka"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:text="NATURALEZA"
-                    android:textColor="#78909C"
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- Modalidades -->
+            <!-- 2. GRAN BOTÓN VERDE "VER TODOS LOS TALLERES ✓" -->
+            <LinearLayout
+                android:id="@+id/btnFiltroVerTodos"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/bg_btn_ver_todos_green"
+                android:clickable="true"
+                android:elevation="3dp"
+                android:focusable="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp">
+
+                <FrameLayout
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="@drawable/bg_circle_white_icon">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="⊞"
+                        android:textColor="#16A34A"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvTextoVerTodos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/fredoka"
+                    android:text="VER TODOS LOS TALLERES ✓"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14.5sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- 3. SECCIÓN "✨ Elige el tipo de curso: ✨" -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/fredoka"
+                android:text="✨ Elige el tipo de curso: ✨"
+                android:textColor="#0B2C5E"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <!-- 3 Botones Píldora de Categoría -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -273,100 +294,249 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/btnModPresencial"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_filter_pill_white_inactive"
-                    android:fontFamily="@font/fredoka"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:text="PRESENCIAL"
-                    android:textColor="#78909C"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                <!-- Categoría: CIENCIA -->
+                <LinearLayout
+                    android:id="@+id/btnCatCiencia"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_cat_ciencia"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="6dp">
 
-                <TextView
-                    android:id="@+id/btnModVirtual"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:background="@drawable/bg_filter_pill_white_inactive"
-                    android:fontFamily="@font/fredoka"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:text="VIRTUAL"
-                    android:textColor="#78909C"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    <FrameLayout
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/bg_circle_white_icon">
 
-                <TextView
-                    android:id="@+id/btnModHibrido"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="🧪"
+                            android:textSize="13sp" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvLabelCatCiencia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/fredoka"
+                        android:text="CIENCIA →"
+                        android:textColor="#0B2C5E"
+                        android:textSize="12.5sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Categoría: NATURALEZA -->
+                <LinearLayout
+                    android:id="@+id/btnCatNaturaleza"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
                     android:layout_marginStart="8dp"
-                    android:background="@drawable/bg_filter_pill_white_inactive"
-                    android:fontFamily="@font/fredoka"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:text="HÍBRIDO"
-                    android:textColor="#78909C"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_cat_naturaleza"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="6dp">
+
+                    <FrameLayout
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/bg_circle_white_icon">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="🍃"
+                            android:textSize="13sp" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvLabelCatNaturaleza"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/fredoka"
+                        android:text="NATURALEZA →"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Categoría: TECNOLOGÍA -->
+                <LinearLayout
+                    android:id="@+id/btnCatTecnologia"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_cat_tecnologia"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="6dp">
+
+                    <FrameLayout
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/bg_circle_white_icon">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="🟣"
+                            android:textSize="13sp" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvLabelCatTecnologia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:fontFamily="@font/fredoka"
+                        android:text="TECNOLOGÍA →"
+                        android:textColor="#FFFFFF"
+                        android:textSize="11.5sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
 
+            <!-- 4. SECCIÓN "Elige la modalidad:" CON FRANJA RESALTADORA AMARILLA -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/bg_marker_yellow_highlighter" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="8dp"
+                    android:text="Elige la modalidad:"
+                    android:textColor="#0B2C5E"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
+
+            <!-- 2 Botones Píldora de Modalidad -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fredoka"
-                    android:text="Elige tu próxima aventura:"
-                    android:textColor="#0B2C5E"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
+                <!-- Modalidad: PRESENCIAL -->
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:id="@+id/btnModPresencial"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_mod_presencial"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp">
+
+                    <FrameLayout
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/bg_circle_white_icon">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="👥"
+                            android:textSize="14sp" />
+                    </FrameLayout>
 
                     <TextView
+                        android:id="@+id/tvLabelModPresencial"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:fontFamily="@font/fredoka"
-                        android:text="todos nuestros TALLERES"
-                        android:textColor="#FF7A00"
-                        android:textSize="22sp"
+                        android:text="PRESENCIAL →"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
                         android:textStyle="bold" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="4dp"
-                        android:layout_marginTop="-2dp"
-                        android:background="@drawable/bg_underline_marker_orange" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvSubtituloFiltroDinamico"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/nunito"
-                    android:text="Mostrando 12 talleres disponibles"
-                    android:textColor="#546E7A"
-                    android:textSize="14sp" />
+                <!-- Modalidad: VIRTUAL -->
+                <LinearLayout
+                    android:id="@+id/btnModVirtual"
+                    android:layout_width="0dp"
+                    android:layout_height="46dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_btn_mod_virtual"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="10dp">
+
+                    <FrameLayout
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/bg_circle_white_icon">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="💻"
+                            android:textSize="14sp" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvLabelModVirtual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/fredoka"
+                        android:text="VIRTUAL →"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
+
+            <!-- Subtítulo dinámico -->
+            <TextView
+                android:id="@+id/tvSubtituloFiltroDinamico"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nunito"
+                android:text="Mostrando 12 talleres disponibles"
+                android:textColor="#546E7A"
+                android:textSize="14sp" />
 
         </LinearLayout>
 
         <!-- ========================================================= -->
-        <!-- BLOQUE 3 - CATÁLOGO DE LAS 12 TARJETAS ESTILO PÓSTER -->
+        <!-- BLOQUE 3 - CATÁLOGO DE LAS 12 TARJETAS ESTILO PÓSTER       -->
         <!-- ========================================================= -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvTalleres"
@@ -416,59 +586,15 @@
         </LinearLayout>
 
         <!-- ========================================================= -->
-        <!-- BLOQUE 4 - PIE DE PÁGINA CORPORATIVO -->
+        <!-- BLOQUE 4 - PIE DE PÁGINA CORPORATIVO                       -->
         <!-- ========================================================= -->
-        <LinearLayout
+        <include
+            android:id="@+id/layout_corporate_footer"
+            layout="@layout/layout_corporate_footer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:background="#0B2C5E"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="32dp">
-
-            <ImageView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/ic_flask"
-                app:tint="#FDC500" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:fontFamily="@font/fredoka"
-                android:text="MINICIENTÍFICOS"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/nunito"
-                android:gravity="center"
-                android:text="Despertando la curiosidad y la pasión por la ciencia y la naturaleza en niños."
-                android:textColor="#90CAF9"
-                android:textSize="13sp" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginVertical="16dp"
-                android:background="#1E4785" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins"
-                android:text="WhatsApp: +51 916 313 634"
-                android:textColor="#FFFFFF"
-                android:textSize="14sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
+            android:layout_marginTop="32dp" />
 
     </LinearLayout>
+
 </androidx.core.widget.NestedScrollView>

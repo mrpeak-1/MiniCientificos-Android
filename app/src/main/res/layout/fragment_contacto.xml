@@ -2,287 +2,908 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollContacto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_light"
+    android:background="@drawable/bg_contact_page_gradient"
     android:fillViewport="true"
     tools:context=".ui.ContactoFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_m">
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="36dp">
 
-        <!-- HEADER Y TÍTULO "KAWAII CIENTÍFICO" -->
-        <TextView
-            android:id="@+id/tv_contacto_titulo"
-            android:layout_width="0dp"
+        <!-- ========================================================= -->
+        <!-- BLOQUE 1 - HERO "¡HABLEMOS DE CIENCIA!" CON TITAN Y TESLA  -->
+        <!-- ========================================================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_s"
-            android:fontFamily="@font/fredoka"
-            android:gravity="center"
-            android:text="Contacto Espacial 🌌"
-            android:textColor="@color/pc_navy"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_contacto_sub"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/nunito"
-            android:gravity="center"
-            android:text="Envíanos una transmisión desde cualquier rincón del planeta o la galaxia"
-            android:textColor="@color/text_secondary"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_contacto_titulo" />
+            <!-- Píldora blanca superior -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_workshop_search_pill"
+                android:elevation="2dp"
+                android:fontFamily="@font/fredoka"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="6dp"
+                android:text="📬 Contáctanos"
+                android:textColor="#EA580C"
+                android:textSize="12.5sp"
+                android:textStyle="bold" />
 
-        <!-- BANNER KAWAII: TITAN Y TESLA LISTOS PARA LEER TU MENSAJE -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_mascotas_banner"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_m"
-            app:cardBackgroundColor="@color/pc_sky"
-            app:cardCornerRadius="18dp"
-            app:cardElevation="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_contacto_sub"
-            app:strokeColor="@color/pc_sky_border"
-            app:strokeWidth="1.5dp">
+            <!-- Gran Título: "¡Hablemos de ciencia!" -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="¡Hablemos de "
+                    android:textColor="#0B2C5E"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="ciencia"
+                        android:textColor="#FF7A00"
+                        android:textSize="30sp"
+                        android:textStyle="bold" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:layout_marginTop="-2dp"
+                        android:background="#FDC500" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="!"
+                    android:textColor="#0B2C5E"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Subtítulo -->
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/spacing_m">
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:text="Cuéntanos tu duda, la de tus papás, o cuál taller te llama más la atención. ¡Te respondemos volando! 🚀"
+                android:textColor="#334155"
+                android:textSize="14.5sp" />
 
-                <!-- Avatares de Titan y Tesla juntos -->
-                <ImageView
-                    android:id="@+id/iv_titan_contact"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:scaleType="fitCenter"
-                    android:contentDescription="@string/titan_name"
-                    android:src="@drawable/tesla_head"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <!-- Fila de 2 Botones 3D -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <ImageView
-                    android:id="@+id/iv_tesla_contact"
-                    android:layout_width="56dp"
-                    android:layout_height="56dp"
-                    android:layout_marginStart="-16dp"
-                    android:scaleType="fitCenter"
-                    android:contentDescription="@string/tesla_name"
-                    android:src="@drawable/teslita_head"
-                    app:layout_constraintStart_toEndOf="@id/iv_titan_contact"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <!-- Mensaje de los personajes -->
                 <TextView
-                    android:id="@+id/tv_mascotas_title"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_s"
+                    android:id="@+id/btnHeroContactoEscribir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_btn_green_3d"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:fontFamily="@font/fredoka"
-                    android:text="¡Titan y Tesla están listos para leer tu mensaje! 💌"
-                    android:textColor="@color/pc_navy"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/iv_tesla_contact"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:gravity="center"
+                    android:paddingHorizontal="20dp"
+                    android:text="💬 Escríbenos ya"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14.5sp"
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/tv_mascotas_sub"
+                    android:id="@+id/btnHeroContactoVerTalleres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="10dp"
+                    android:background="@drawable/bg_btn_yellow_3d"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/fredoka"
+                    android:gravity="center"
+                    android:paddingHorizontal="20dp"
+                    android:text="🧪 Ver talleres"
+                    android:textColor="#0B2C5E"
+                    android:textSize="14.5sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Ilustración Circular de Titan y Tesla con Globo de Diálogo -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:clipChildren="false"
+                android:clipToPadding="false">
+
+                <!-- Círculo crema con borde punteado celeste -->
+                <FrameLayout
+                    android:layout_width="160dp"
+                    android:layout_height="160dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@drawable/bg_contact_titan_tesla_circle">
+
+                    <ImageView
+                        android:layout_width="135dp"
+                        android:layout_height="135dp"
+                        android:layout_gravity="center"
+                        android:contentDescription="Titan y Tesla"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/personajes" />
+                </FrameLayout>
+
+                <!-- Globo de Diálogo en la esquina superior derecha -->
+                <LinearLayout
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top|end"
+                    android:layout_marginStart="100dp"
+                    android:layout_marginTop="-8dp"
+                    android:background="@drawable/bg_contact_speech_bubble"
+                    android:elevation="4dp"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="¡Titan y Tesla están listos para leer tu mensaje!"
+                        android:textColor="#0B2C5E"
+                        android:textSize="12.5sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <!-- ========================================================= -->
+        <!-- BLOQUE 2 - LAS 3 TARJETAS DE ACCESO RÁPIDO (PASTELEADO)    -->
+        <!-- ========================================================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="vertical">
+
+            <!-- Tarjeta 1: WhatsApp -->
+            <LinearLayout
+                android:id="@+id/cardQuickWhatsapp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_contact_card_quick_wa"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <FrameLayout
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_icon_box_wa">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_whatsapp"
+                        app:tint="#16A34A" />
+                </FrameLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_s"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/kalam"
-                    android:text="Escríbenos tu consulta y te responderemos a la velocidad de la luz..."
-                    android:textColor="@color/pc_navy_deep"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="WhatsApp"
+                        android:textColor="#0B2C5E"
+                        android:textSize="15.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="916 313 634"
+                        android:textColor="#475569"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="Chat →"
+                    android:textColor="#16A34A"
                     android:textSize="13sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/iv_tesla_contact"
-                    app:layout_constraintTop_toBottomOf="@id/tv_mascotas_title" />
+                    android:textStyle="bold" />
+            </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.card.MaterialCardView>
+            <!-- Tarjeta 2: Síguenos (Redes Sociales) -->
+            <LinearLayout
+                android:id="@+id/cardQuickSiguenos"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_contact_card_quick_social"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="14dp">
 
-        <!-- TARJETA CONTENEDORA DEL FORMULARIO -->
+                <FrameLayout
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_icon_box_social">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="💬"
+                        android:textSize="22sp" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="Síguenos"
+                        android:textColor="#0B2C5E"
+                        android:textSize="15.5sp"
+                        android:textStyle="bold" />
+
+                    <!-- 3 Botones Circulares Interactivos -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/btnSocialFacebook"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:background="@drawable/bg_circle_social_fb"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:text="f"
+                            android:textColor="#FFFFFF"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnSocialInstagram"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_circle_social_ig"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:text="📷"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/btnSocialTiktok"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="8dp"
+                            android:background="@drawable/bg_circle_social_tt"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:text="🎵"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Tarjeta 3: Talleres -->
+            <LinearLayout
+                android:id="@+id/cardQuickTalleres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_contact_card_quick_workshops"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="14dp">
+
+                <FrameLayout
+                    android:layout_width="46dp"
+                    android:layout_height="46dp"
+                    android:background="@drawable/bg_icon_box_workshops">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="🚀"
+                        android:textSize="22sp" />
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="Talleres"
+                        android:textColor="#0B2C5E"
+                        android:textSize="15.5sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/nunito"
+                        android:text="Mira los próximos talleres"
+                        android:textColor="#475569"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="Ver →"
+                    android:textColor="#EAB308"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ========================================================= -->
+        <!-- BLOQUE 3 - FORMULARIO CON TOLDO NARANJA ONDULADO           -->
+        <!-- ========================================================= -->
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_form_container"
-            android:layout_width="0dp"
+            android:id="@+id/cardFormularioContacto"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_m"
-            app:cardBackgroundColor="@color/white"
-            app:cardCornerRadius="@dimen/corner_radius_l"
-            app:cardElevation="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_mascotas_banner"
-            app:strokeColor="@color/pc_sky_border"
-            app:strokeWidth="1.5dp">
+            android:layout_marginTop="20dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="24dp"
+            app:cardElevation="5dp"
+            app:strokeColor="#BFDBFE"
+            app:strokeWidth="1dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/spacing_l">
+                android:orientation="vertical">
 
-                <!-- CAMPO 1: NOMBRE COMPLETO -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_nombre"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                <!-- Cabecera Naranja-Amarilla con Toldo Ondulado -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Nombre Completo *"
-                    android:textColorHint="@color/text_light"
-                    app:boxStrokeColor="@color/pc_blue"
-                    app:boxStrokeWidth="1.5dp"
-                    app:hintTextColor="@color/pc_blue"
-                    app:startIconDrawable="@drawable/ic_person"
-                    app:startIconTint="@color/pc_blue">
+                    android:background="@drawable/bg_contact_awning_header"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="18dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_nombre"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:inputType="textPersonName"
-                        android:textColor="@color/pc_navy"
-                        android:textSize="14sp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                <!-- CAMPO 2: CORREO ELECTRÓNICO -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_email"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka"
+                            android:text="Envíanos un mensaje"
+                            android:textColor="#FFFFFF"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/nunito"
+                            android:text="Completa tus datos y te escribimos por WhatsApp"
+                            android:textColor="#FFFBEB"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
+                        android:gravity="center"
+                        android:text="✉️"
+                        android:textSize="32sp" />
+                </LinearLayout>
+
+                <!-- Cuerpo del Formulario -->
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_m"
-                    android:hint="Correo Electrónico *"
-                    android:textColorHint="@color/text_light"
-                    app:boxStrokeColor="@color/pc_blue"
-                    app:boxStrokeWidth="1.5dp"
-                    app:hintTextColor="@color/pc_blue"
-                    app:startIconDrawable="@drawable/ic_mail"
-                    app:startIconTint="@color/pc_blue">
+                    android:orientation="vertical"
+                    android:padding="18dp">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_email"
+                    <!-- Campo 1: Nombre completo -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_contact_input_sky_box"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="10dp">
+
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_circle_yellow_icon"
+                            android:gravity="center"
+                            android:text="👤"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/etContactoNombre"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:background="@null"
+                            android:fontFamily="@font/nunito"
+                            android:hint="Nombre completo *"
+                            android:inputType="textPersonName"
+                            android:textColor="#0B2C5E"
+                            android:textColorHint="#94A3B8"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!-- Campo 2: Celular -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_contact_input_sky_box"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="10dp">
+
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_circle_yellow_icon"
+                            android:gravity="center"
+                            android:text="📞"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/etContactoCelular"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:background="@null"
+                            android:fontFamily="@font/nunito"
+                            android:hint="Número de celular *"
+                            android:inputType="phone"
+                            android:maxLength="9"
+                            android:textColor="#0B2C5E"
+                            android:textColorHint="#94A3B8"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!-- Campo 3: Correo electrónico -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_contact_input_sky_box"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="10dp">
+
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_circle_yellow_icon"
+                            android:gravity="center"
+                            android:text="✉️"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/etContactoCorreo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:background="@null"
+                            android:fontFamily="@font/nunito"
+                            android:hint="Correo electrónico *"
+                            android:inputType="textEmailAddress"
+                            android:textColor="#0B2C5E"
+                            android:textColorHint="#94A3B8"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!-- Campo 4: Motivo desplegable -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:layout_marginTop="12dp"
+                        android:background="@drawable/bg_contact_input_sky_box"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingHorizontal="10dp">
+
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_circle_yellow_icon"
+                            android:gravity="center"
+                            android:text="🏷️"
+                            android:textSize="18sp" />
+
+                        <AutoCompleteTextView
+                            android:id="@+id/actvContactoMotivo"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:completionThreshold="0"
+                            android:dropDownHeight="200dp"
+                            android:fontFamily="@font/nunito"
+                            android:hint="Motivo del mensaje *"
+                            android:inputType="none"
+                            android:textColor="#0B2C5E"
+                            android:textColorHint="#94A3B8"
+                            android:textSize="13.5sp" />
+
+                        <TextView
+                            android:id="@+id/btnFlechaMotivo"
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/bg_circle_yellow_icon"
+                            android:gravity="center"
+                            android:text="▾"
+                            android:textColor="#0B2C5E"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Campo 5: Mensaje multilínea -->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:inputType="textEmailAddress"
-                        android:textColor="@color/pc_navy"
-                        android:textSize="14sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- CAMPO 3: TELÉFONO / WHATSAPP -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_telefono"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_m"
-                    android:hint="Teléfono / WhatsApp *"
-                    android:textColorHint="@color/text_light"
-                    app:boxStrokeColor="@color/pc_blue"
-                    app:boxStrokeWidth="1.5dp"
-                    app:hintTextColor="@color/pc_blue"
-                    app:startIconDrawable="@drawable/ic_phone"
-                    app:startIconTint="@color/pc_blue">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_telefono"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:inputType="phone"
-                        android:textColor="@color/pc_navy"
-                        android:textSize="14sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- CAMPO 4: ASUNTO DE LA TRANSMISIÓN -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_asunto"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_m"
-                    android:hint="Asunto *"
-                    android:textColorHint="@color/text_light"
-                    app:boxStrokeColor="@color/pc_blue"
-                    app:boxStrokeWidth="1.5dp"
-                    app:hintTextColor="@color/pc_blue"
-                    app:startIconDrawable="@drawable/ic_subject"
-                    app:startIconTint="@color/pc_blue">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_asunto"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
-                        android:inputType="text"
-                        android:textColor="@color/pc_navy"
-                        android:textSize="14sp" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- CAMPO 5: MENSAJE ESPACIAL -->
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/til_mensaje"
-                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_m"
-                    android:hint="Mensaje Espacial *"
-                    android:textColorHint="@color/text_light"
-                    app:boxStrokeColor="@color/pc_blue"
-                    app:boxStrokeWidth="1.5dp"
-                    app:hintTextColor="@color/pc_blue"
-                    app:startIconDrawable="@drawable/ic_message"
-                    app:startIconTint="@color/pc_blue">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/et_mensaje"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nunito"
+                        android:layout_marginTop="12dp"
+                        android:minHeight="110dp"
+                        android:background="@drawable/bg_contact_input_sky_box"
                         android:gravity="top"
-                        android:inputType="textMultiLine"
-                        android:lines="4"
-                        android:textColor="@color/pc_navy"
-                        android:textSize="14sp" />
-                </com.google.android.material.textfield.TextInputLayout>
+                        android:orientation="horizontal"
+                        android:padding="10dp">
 
-                <!-- BOTÓN LLAMATIVO DE ENVÍO REDONDEADO -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_enviar_contacto"
-                    style="@style/Widget.MiniCientificos.Button.Primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="56dp"
-                    android:layout_marginTop="@dimen/spacing_l"
-                    android:fontFamily="@font/fredoka"
-                    android:text="🚀 ENVIAR MENSAJE ESPACIAL"
-                    android:textColor="@color/white"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    app:cornerRadius="28dp"
-                    app:icon="@drawable/ic_rocket"
-                    app:iconGravity="textStart"
-                    app:iconPadding="10dp" />
+                        <TextView
+                            android:layout_width="36dp"
+                            android:layout_height="36dp"
+                            android:background="@drawable/bg_circle_yellow_icon"
+                            android:gravity="center"
+                            android:text="💬"
+                            android:textSize="18sp" />
+
+                        <EditText
+                            android:id="@+id/etContactoMensaje"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@null"
+                            android:fontFamily="@font/nunito"
+                            android:gravity="top"
+                            android:hint="Escribe tu consulta aquí... *"
+                            android:inputType="textMultiLine"
+                            android:minLines="3"
+                            android:textColor="#0B2C5E"
+                            android:textColorHint="#94A3B8"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!-- Botón Principal Verde 3D -->
+                    <TextView
+                        android:id="@+id/btnEnviarContactoWhatsapp"
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@drawable/bg_btn_whatsapp_green_3d"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka"
+                        android:gravity="center"
+                        android:text="💬 Enviar por WhatsApp"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <!-- Nota inferior -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/nunito"
+                        android:gravity="center"
+                        android:text="Un adulto responsable puede completar este formulario."
+                        android:textColor="#64748B"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
 
             </LinearLayout>
+
         </com.google.android.material.card.MaterialCardView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <!-- ========================================================= -->
+        <!-- BLOQUE 4 - TARJETA "¿CÓMO FUNCIONA? 🧐"                    -->
+        <!-- ========================================================= -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_contact_card_howitworks"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="¿Cómo funciona? 🧐"
+                android:textColor="#0B2C5E"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <!-- Línea de Tiempo Vertical de 3 Pasos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <!-- Paso 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/bg_circle_yellow_icon"
+                        android:backgroundTint="#F97316"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka"
+                            android:text="Completa el formulario"
+                            android:textColor="#0B2C5E"
+                            android:textSize="14.5sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunito"
+                            android:text="Tu nombre, celular y lo que nos quieres contar."
+                            android:textColor="#475569"
+                            android:textSize="12.5sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Conector -->
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="15dp"
+                    android:background="#CBD5E1" />
+
+                <!-- Paso 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/bg_circle_yellow_icon"
+                        android:backgroundTint="#16A34A"
+                        android:gravity="center"
+                        android:text="2"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka"
+                            android:text="Se abre WhatsApp"
+                            android:textColor="#0B2C5E"
+                            android:textSize="14.5sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunito"
+                            android:text="Tu mensaje aparece listo, solo toca enviar."
+                            android:textColor="#475569"
+                            android:textSize="12.5sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Conector -->
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="15dp"
+                    android:background="#CBD5E1" />
+
+                <!-- Paso 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="@drawable/bg_circle_yellow_icon"
+                        android:backgroundTint="#0284C7"
+                        android:gravity="center"
+                        android:text="3"
+                        android:textColor="#FFFFFF"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka"
+                            android:text="Te respondemos"
+                            android:textColor="#0B2C5E"
+                            android:textSize="14.5sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunito"
+                            android:text="Nuestro equipo te escribe con toda la info."
+                            android:textColor="#475569"
+                            android:textSize="12.5sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Caja de Cita de Titán -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_titan_quote_box"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🐱"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito"
+                    android:text="¡Titán dice que ninguna pregunta es demasiado pequeña!"
+                    android:textColor="#0B2C5E"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- ========================================================= -->
+        <!-- BLOQUE 5 - FOOTER CORPORATIVO                              -->
+        <!-- ========================================================= -->
+        <include
+            android:id="@+id/layout_corporate_footer"
+            layout="@layout/layout_corporate_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+
 </androidx.core.widget.NestedScrollView>

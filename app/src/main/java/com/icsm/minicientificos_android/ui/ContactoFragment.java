@@ -1,19 +1,23 @@
 package com.icsm.minicientificos_android.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.icsm.minicientificos_android.MainActivity;
+import com.icsm.minicientificos_android.R;
 import com.icsm.minicientificos_android.databinding.FragmentContactoBinding;
 import com.icsm.minicientificos_android.utils.WhatsAppHelper;
 
@@ -37,121 +41,157 @@ public class ContactoFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        setupTextChangeListeners();
-
-        binding.btnEnviarContacto.setOnClickListener(v -> validarYEnviarFormulario());
+        setupMotivoDropdown();
+        setupHeroButtons();
+        setupQuickAccessCards();
+        setupFormSubmit();
+        setupCorporateFooter();
     }
 
-    private void setupTextChangeListeners() {
-        binding.etNombre.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                binding.tilNombre.setError(null);
-            }
+    private void setupMotivoDropdown() {
+        String[] opcionesMotivo = new String[]{
+                "Talleres Científicos (Presencial / Virtual)",
+                "Eventos Especiales / Cumpleaños Científicos",
+                "Feria de Ciencias / Colegios",
+                "Tienda Oficial / Kits Científicos",
+                "Otra consulta espacial"
+        };
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                requireContext(),
+                android.R.layout.simple_dropdown_item_1line,
+                opcionesMotivo
+        );
+
+        binding.actvContactoMotivo.setAdapter(adapter);
+
+        binding.actvContactoMotivo.setOnClickListener(v -> binding.actvContactoMotivo.showDropDown());
+        binding.btnFlechaMotivo.setOnClickListener(v -> binding.actvContactoMotivo.showDropDown());
+    }
+
+    private void setupHeroButtons() {
+        // Botón "💬 Escríbenos ya": SmoothScroll al formulario y focus en nombre
+        binding.btnHeroContactoEscribir.setOnClickListener(v -> {
+            binding.scrollContacto.smoothScrollTo(0, binding.cardFormularioContacto.getTop());
+            binding.etContactoNombre.requestFocus();
         });
 
-        binding.etEmail.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                binding.tilEmail.setError(null);
-            }
-        });
+        // Botón "🧪 Ver talleres": Navega a la pestaña de Talleres
+        binding.btnHeroContactoVerTalleres.setOnClickListener(v -> navegarATalleres());
+    }
 
-        binding.etTelefono.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                binding.tilTelefono.setError(null);
-            }
-        });
+    private void setupQuickAccessCards() {
+        // Tarjeta WhatsApp directo
+        binding.cardQuickWhatsapp.setOnClickListener(v -> 
+            WhatsAppHelper.abrirSoporteDirecto(requireContext(), 
+                "¡Hola Mini Científicos! 💬 Quisiera hacer una consulta rápida por WhatsApp.")
+        );
 
-        binding.etAsunto.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                binding.tilAsunto.setError(null);
-            }
-        });
+        // Tarjeta Síguenos - Botones Sociales
+        binding.btnSocialFacebook.setOnClickListener(v -> 
+            abrirUrl("https://facebook.com/minicientificosoficial")
+        );
+        binding.btnSocialInstagram.setOnClickListener(v -> 
+            abrirUrl("https://instagram.com/minicientificosoficial")
+        );
+        binding.btnSocialTiktok.setOnClickListener(v -> 
+            abrirUrl("https://tiktok.com/@minicientificos")
+        );
 
-        binding.etMensaje.addTextChangedListener(new SimpleTextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                binding.tilMensaje.setError(null);
+        // Tarjeta Talleres
+        binding.cardQuickTalleres.setOnClickListener(v -> navegarATalleres());
+    }
+
+    private void navegarATalleres() {
+        if (getActivity() instanceof MainActivity) {
+            BottomNavigationView nav =
+                    getActivity().findViewById(R.id.bottom_navigation);
+            if (nav != null) {
+                nav.setSelectedItemId(R.id.nav_workshops);
+                return;
             }
-        });
+        }
+        if (getActivity() != null) {
+            getActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, new WorkshopsFragment())
+                    .addToBackStack(null)
+                    .commit();
+        }
+    }
+
+    private void abrirUrl(String url) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(requireContext(), "No se pudo abrir la dirección: " + url, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void setupFormSubmit() {
+        binding.btnEnviarContactoWhatsapp.setOnClickListener(v -> validarYEnviarFormulario());
     }
 
     private void validarYEnviarFormulario() {
-        boolean esValido = true;
+        String nombre = binding.etContactoNombre.getText() != null ? binding.etContactoNombre.getText().toString().trim() : "";
+        String celular = binding.etContactoCelular.getText() != null ? binding.etContactoCelular.getText().toString().trim() : "";
+        String correo = binding.etContactoCorreo.getText() != null ? binding.etContactoCorreo.getText().toString().trim() : "";
+        String motivo = binding.actvContactoMotivo.getText() != null ? binding.actvContactoMotivo.getText().toString().trim() : "";
+        String mensaje = binding.etContactoMensaje.getText() != null ? binding.etContactoMensaje.getText().toString().trim() : "";
 
-        String nombre = binding.etNombre.getText() != null ? binding.etNombre.getText().toString().trim() : "";
-        String email = binding.etEmail.getText() != null ? binding.etEmail.getText().toString().trim() : "";
-        String telefono = binding.etTelefono.getText() != null ? binding.etTelefono.getText().toString().trim() : "";
-        String asunto = binding.etAsunto.getText() != null ? binding.etAsunto.getText().toString().trim() : "";
-        String mensaje = binding.etMensaje.getText() != null ? binding.etMensaje.getText().toString().trim() : "";
-
-        // Validar Nombre
+        // Validaciones
         if (TextUtils.isEmpty(nombre)) {
-            binding.tilNombre.setError("Ingresa tu nombre completo");
-            esValido = false;
+            binding.etContactoNombre.setError("Por favor ingresa tu nombre completo");
+            binding.etContactoNombre.requestFocus();
+            return;
         }
 
-        // Validar Email
-        if (TextUtils.isEmpty(email)) {
-            binding.tilEmail.setError("Ingresa tu correo electrónico");
-            esValido = false;
-        } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            binding.tilEmail.setError("Formato de correo inválido (ejemplo@dominio.com)");
-            esValido = false;
+        if (TextUtils.isEmpty(celular) || celular.length() < 7) {
+            binding.etContactoCelular.setError("Ingresa un número de celular válido (mínimo 7 dígitos)");
+            binding.etContactoCelular.requestFocus();
+            return;
         }
 
-        // Validar Teléfono
-        if (TextUtils.isEmpty(telefono)) {
-            binding.tilTelefono.setError("Ingresa tu número de teléfono / WhatsApp");
-            esValido = false;
-        } else if (telefono.length() < 7) {
-            binding.tilTelefono.setError("Ingresa un número telefónico válido (mín. 7 dígitos)");
-            esValido = false;
+        if (TextUtils.isEmpty(correo) || !Patterns.EMAIL_ADDRESS.matcher(correo).matches()) {
+            binding.etContactoCorreo.setError("Ingresa un correo electrónico válido (ejemplo@dominio.com)");
+            binding.etContactoCorreo.requestFocus();
+            return;
         }
 
-        // Validar Asunto
-        if (TextUtils.isEmpty(asunto)) {
-            binding.tilAsunto.setError("Ingresa el asunto del mensaje");
-            esValido = false;
+        if (TextUtils.isEmpty(motivo)) {
+            Toast.makeText(requireContext(), "Por favor selecciona un motivo de consulta", Toast.LENGTH_SHORT).show();
+            binding.actvContactoMotivo.showDropDown();
+            return;
         }
 
-        // Validar Mensaje
         if (TextUtils.isEmpty(mensaje)) {
-            binding.tilMensaje.setError("Escribe tu mensaje espacial");
-            esValido = false;
+            binding.etContactoMensaje.setError("Por favor escribe tu consulta o mensaje");
+            binding.etContactoMensaje.requestFocus();
+            return;
         }
 
-        if (esValido) {
-            WhatsAppHelper.abrirConsultaContacto(requireContext(), nombre, email, telefono, asunto, mensaje);
-            
-            // Limpiar formulario
-            binding.etNombre.setText("");
-            binding.etEmail.setText("");
-            binding.etTelefono.setText("");
-            binding.etAsunto.setText("");
-            binding.etMensaje.setText("");
+        // Si todo es válido -> Abrir WhatsApp con el mensaje estructurado
+        WhatsAppHelper.abrirConsultaContacto(requireContext(), nombre, correo, celular, motivo, mensaje);
 
-            // Limpiar foco y errores
-            binding.getRoot().clearFocus();
+        // Limpiar campos
+        binding.etContactoNombre.setText("");
+        binding.etContactoCelular.setText("");
+        binding.etContactoCorreo.setText("");
+        binding.actvContactoMotivo.setText("");
+        binding.etContactoMensaje.setText("");
 
-            Toast.makeText(requireContext(),
-                    "🚀 ¡Abriendo WhatsApp para enviar mensaje!",
-                    Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(requireContext(),
-                    "⚠️ Por favor, corrige los errores señalados en el formulario.",
-                    Toast.LENGTH_SHORT).show();
-        }
+        binding.getRoot().clearFocus();
+
+        Toast.makeText(requireContext(),
+                "🚀 ¡Abriendo WhatsApp para enviar tu mensaje!",
+                Toast.LENGTH_LONG).show();
     }
 
-    private abstract static class SimpleTextWatcher implements TextWatcher {
-        @Override
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-        @Override
-        public void afterTextChanged(Editable s) {}
+    private void setupCorporateFooter() {
+        if (binding.layoutCorporateFooter != null) {
+            CorporateFooterHelper.setupFooter(requireContext(), binding.layoutCorporateFooter);
+        }
     }
 
     @Override

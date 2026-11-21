@@ -52,8 +52,18 @@ public class TallerAdapter extends RecyclerView.Adapter<TallerAdapter.TallerView
         return listaFiltrada.size();
     }
 
+    private String normalizarTexto(String input) {
+        if (input == null) return "";
+        return input.toLowerCase().trim()
+                .replace("á", "a")
+                .replace("é", "e")
+                .replace("í", "i")
+                .replace("ó", "o")
+                .replace("ú", "u");
+    }
+
     public void aplicarFiltros(String texto, String categoria, String modalidad) {
-        this.textoFiltroActual = texto != null ? texto.toLowerCase().trim() : "";
+        this.textoFiltroActual = texto != null ? normalizarTexto(texto) : "";
         if (categoria != null) {
             this.categoriaFiltroActual = categoria;
         }
@@ -61,16 +71,25 @@ public class TallerAdapter extends RecyclerView.Adapter<TallerAdapter.TallerView
             this.modalidadFiltroActual = modalidad;
         }
 
+        String catNormalizada = normalizarTexto(categoriaFiltroActual);
+        String modNormalizada = normalizarTexto(modalidadFiltroActual);
+
         listaFiltrada.clear();
         for (Taller item : listaOriginal) {
-            boolean coincideTexto = item.getTitulo().toLowerCase().contains(textoFiltroActual)
-                    || item.getDescripcionCorta().toLowerCase().contains(textoFiltroActual);
+            String itemTituloNorm = normalizarTexto(item.getTitulo());
+            String itemDescNorm = normalizarTexto(item.getDescripcionCorta());
+            String itemCatNorm = normalizarTexto(item.getCategoria());
+            String itemModNorm = normalizarTexto(item.getModalidad());
 
-            boolean coincideCategoria = categoriaFiltroActual.equalsIgnoreCase("Todas")
-                    || item.getCategoria().equalsIgnoreCase(categoriaFiltroActual);
+            boolean coincideTexto = textoFiltroActual.isEmpty()
+                    || itemTituloNorm.contains(textoFiltroActual)
+                    || itemDescNorm.contains(textoFiltroActual);
 
-            boolean coincideModalidad = modalidadFiltroActual.equalsIgnoreCase("Todas")
-                    || item.getModalidad().toLowerCase().contains(modalidadFiltroActual.toLowerCase());
+            boolean coincideCategoria = catNormalizada.equalsIgnoreCase("todas")
+                    || itemCatNorm.equalsIgnoreCase(catNormalizada);
+
+            boolean coincideModalidad = modNormalizada.equalsIgnoreCase("todas")
+                    || itemModNorm.contains(modNormalizada);
 
             if (coincideTexto && coincideCategoria && coincideModalidad) {
                 listaFiltrada.add(item);

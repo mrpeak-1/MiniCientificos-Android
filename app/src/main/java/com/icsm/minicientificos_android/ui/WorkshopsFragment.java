@@ -8,13 +8,13 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.google.android.material.chip.Chip;
 import com.icsm.minicientificos_android.R;
 import com.icsm.minicientificos_android.adapters.TallerAdapter;
 import com.icsm.minicientificos_android.databinding.FragmentWorkshopsBinding;
@@ -66,6 +66,19 @@ public class WorkshopsFragment extends Fragment implements TallerAdapter.OnTalle
         binding.rvTalleres.setLayoutManager(new LinearLayoutManager(requireContext()));
         binding.rvTalleres.setAdapter(adapter);
 
+        setupBuscador();
+        setupBotonVerTodos();
+        setupBotonesCategoria();
+        setupBotonesModalidad();
+        setupHeroActions();
+        setupCorporateFooter();
+
+        actualizarUIStateFiltros();
+        actualizarSubtituloDinamico();
+        manejarDeepLinking();
+    }
+
+    private void setupBuscador() {
         binding.etBuscarTaller.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -74,20 +87,73 @@ public class WorkshopsFragment extends Fragment implements TallerAdapter.OnTalle
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 textoBusquedaActual = s.toString();
                 filtrarLista();
+                actualizarSubtituloDinamico();
             }
 
             @Override
             public void afterTextChanged(Editable s) {}
         });
 
-        configurarBotonCategoria(binding.btnCatTodo, "Todas");
+        binding.btnAccionBuscarTaller.setOnClickListener(v -> {
+            textoBusquedaActual = binding.etBuscarTaller.getText() != null ? 
+                    binding.etBuscarTaller.getText().toString().trim() : "";
+            filtrarLista();
+            actualizarSubtituloDinamico();
+            binding.etBuscarTaller.clearFocus();
+        });
+    }
+
+    private void setupBotonVerTodos() {
+        binding.btnFiltroVerTodos.setOnClickListener(v -> {
+            filtroCategoriaSeleccionada = "Todas";
+            filtroModalidadSeleccionada = "Todas";
+            textoBusquedaActual = "";
+            binding.etBuscarTaller.setText("");
+            
+            actualizarUIStateFiltros();
+            filtrarLista();
+            actualizarSubtituloDinamico();
+        });
+    }
+
+    private void setupBotonesCategoria() {
         configurarBotonCategoria(binding.btnCatCiencia, "Ciencia");
         configurarBotonCategoria(binding.btnCatNaturaleza, "Naturaleza");
+        configurarBotonCategoria(binding.btnCatTecnologia, "Tecnología");
+    }
 
+    private void configurarBotonCategoria(View btn, String categoria) {
+        btn.setOnClickListener(v -> {
+            if (filtroCategoriaSeleccionada.equalsIgnoreCase(categoria)) {
+                filtroCategoriaSeleccionada = "Todas"; // Toggle des-seleccionar
+            } else {
+                filtroCategoriaSeleccionada = categoria;
+            }
+            actualizarUIStateFiltros();
+            filtrarLista();
+            actualizarSubtituloDinamico();
+        });
+    }
+
+    private void setupBotonesModalidad() {
         configurarBotonModalidad(binding.btnModPresencial, "Presencial");
         configurarBotonModalidad(binding.btnModVirtual, "Virtual");
-        configurarBotonModalidad(binding.btnModHibrido, "Híbrido");
+    }
 
+    private void configurarBotonModalidad(View btn, String modalidad) {
+        btn.setOnClickListener(v -> {
+            if (filtroModalidadSeleccionada.equalsIgnoreCase(modalidad)) {
+                filtroModalidadSeleccionada = "Todas"; // Toggle des-seleccionar
+            } else {
+                filtroModalidadSeleccionada = modalidad;
+            }
+            actualizarUIStateFiltros();
+            filtrarLista();
+            actualizarSubtituloDinamico();
+        });
+    }
+
+    private void setupHeroActions() {
         binding.btnHeroVerTalleres.setOnClickListener(v -> 
             binding.scrollWorkshops.smoothScrollTo(0, binding.layoutFiltrosTalleres.getTop())
         );
@@ -98,79 +164,54 @@ public class WorkshopsFragment extends Fragment implements TallerAdapter.OnTalle
             "No especificado", 
             "Información General de Talleres", 
             "¡Hola Mini Científicos! 🔬 Quisiera recibir información general sobre sus 12 talleres presenciales y virtuales para niños."));
-
-        actualizarSubtituloDinamico();
-        
-        manejarDeepLinking();
     }
-    
-    private void manejarDeepLinking() {
-        if (getArguments() != null && getArguments().containsKey("taller_query")) {
-            String query = getArguments().getString("taller_query", "").toLowerCase();
-            if (!query.isEmpty()) {
-                for (Taller t : listaTalleres) {
-                    if (t.getId().equals(query) || t.getTituloCorto().toLowerCase().contains(query)) {
-                        onVerDetalleClick(t);
-                        // Limpiar argumentos para que no reabra al rotar
-                        getArguments().remove("taller_query");
-                        break;
-                    }
-                }
-            }
+
+    private void setupCorporateFooter() {
+        if (binding.layoutCorporateFooter != null) {
+            CorporateFooterHelper.setupFooter(requireContext(), binding.layoutCorporateFooter);
         }
     }
 
-    private void animarOrb(View orb, long startDelay) {
-        ObjectAnimator animator = ObjectAnimator.ofFloat(orb, "translationY", -10f, 10f);
-        animator.setDuration(1500);
-        animator.setRepeatMode(ValueAnimator.REVERSE);
-        animator.setRepeatCount(ValueAnimator.INFINITE);
-        animator.setStartDelay(startDelay);
-        animator.start();
+    private void actualizarUIStateFiltros() {
+        // Categorías
+        boolean catCienciaActiva = filtroCategoriaSeleccionada.equalsIgnoreCase("Ciencia");
+        boolean catNaturalezaActiva = filtroCategoriaSeleccionada.equalsIgnoreCase("Naturaleza");
+        boolean catTecnologiaActiva = filtroCategoriaSeleccionada.equalsIgnoreCase("Tecnología");
+
+        aplicarEstadoBoton(binding.btnCatCiencia, binding.tvLabelCatCiencia, "CIENCIA", catCienciaActiva);
+        aplicarEstadoBoton(binding.btnCatNaturaleza, binding.tvLabelCatNaturaleza, "NATURALEZA", catNaturalezaActiva);
+        aplicarEstadoBoton(binding.btnCatTecnologia, binding.tvLabelCatTecnologia, "TECNOLOGÍA", catTecnologiaActiva);
+
+        // Modalidades
+        boolean modPresencialActiva = filtroModalidadSeleccionada.equalsIgnoreCase("Presencial");
+        boolean modVirtualActiva = filtroModalidadSeleccionada.equalsIgnoreCase("Virtual");
+
+        aplicarEstadoBoton(binding.btnModPresencial, binding.tvLabelModPresencial, "PRESENCIAL", modPresencialActiva);
+        aplicarEstadoBoton(binding.btnModVirtual, binding.tvLabelModVirtual, "VIRTUAL", modVirtualActiva);
+
+        // Botón Ver Todos
+        boolean nadaFiltrado = filtroCategoriaSeleccionada.equalsIgnoreCase("Todas") 
+                && filtroModalidadSeleccionada.equalsIgnoreCase("Todas")
+                && textoBusquedaActual.isEmpty();
+
+        binding.btnFiltroVerTodos.setElevation(nadaFiltrado ? 6f : 2f);
+        binding.tvTextoVerTodos.setText(nadaFiltrado ? "VER TODOS LOS TALLERES ✓" : "VER TODOS LOS TALLERES");
     }
 
-    private void configurarBotonCategoria(View btn, String categoria) {
-        btn.setOnClickListener(v -> {
-            filtroCategoriaSeleccionada = categoria;
-            actualizarUIBotonesCategoria();
-            filtrarLista();
-            actualizarSubtituloDinamico();
-        });
-    }
-
-    private void configurarBotonModalidad(View btn, String modalidad) {
-        btn.setOnClickListener(v -> {
-            if (filtroModalidadSeleccionada.equals(modalidad)) {
-                filtroModalidadSeleccionada = "Todas"; // Toggle off
-            } else {
-                filtroModalidadSeleccionada = modalidad;
+    private void aplicarEstadoBoton(View contenedor, TextView textLabel, String baseText, boolean activo) {
+        if (activo) {
+            contenedor.animate().scaleX(1.04f).scaleY(1.04f).setDuration(150).start();
+            contenedor.setElevation(8f);
+            if (textLabel != null) {
+                textLabel.setText(baseText + " ✓");
             }
-            actualizarUIBotonesModalidad();
-            filtrarLista();
-            actualizarSubtituloDinamico();
-        });
-    }
-
-    private void actualizarUIBotonesCategoria() {
-        binding.btnCatTodo.setBackgroundResource(Objects.equals(filtroCategoriaSeleccionada, "Todas") ? R.drawable.bg_filter_pill_green_active : R.drawable.bg_filter_pill_white_inactive);
-        binding.btnCatTodo.setTextColor(getResources().getColor(Objects.equals(filtroCategoriaSeleccionada, "Todas") ? R.color.white : R.color.text_light, null));
-
-        binding.btnCatCiencia.setBackgroundResource(Objects.equals(filtroCategoriaSeleccionada, "Ciencia") ? R.drawable.bg_filter_pill_green_active : R.drawable.bg_filter_pill_white_inactive);
-        binding.btnCatCiencia.setTextColor(getResources().getColor(Objects.equals(filtroCategoriaSeleccionada, "Ciencia") ? R.color.white : R.color.text_light, null));
-
-        binding.btnCatNaturaleza.setBackgroundResource(Objects.equals(filtroCategoriaSeleccionada, "Naturaleza") ? R.drawable.bg_filter_pill_green_active : R.drawable.bg_filter_pill_white_inactive);
-        binding.btnCatNaturaleza.setTextColor(getResources().getColor(Objects.equals(filtroCategoriaSeleccionada, "Naturaleza") ? R.color.white : R.color.text_light, null));
-    }
-
-    private void actualizarUIBotonesModalidad() {
-        binding.btnModPresencial.setBackgroundResource(Objects.equals(filtroModalidadSeleccionada, "Presencial") ? R.drawable.bg_filter_pill_green_active : R.drawable.bg_filter_pill_white_inactive);
-        binding.btnModPresencial.setTextColor(getResources().getColor(Objects.equals(filtroModalidadSeleccionada, "Presencial") ? R.color.white : R.color.text_light, null));
-
-        binding.btnModVirtual.setBackgroundResource(Objects.equals(filtroModalidadSeleccionada, "Virtual") ? R.drawable.bg_filter_pill_green_active : R.drawable.bg_filter_pill_white_inactive);
-        binding.btnModVirtual.setTextColor(getResources().getColor(Objects.equals(filtroModalidadSeleccionada, "Virtual") ? R.color.white : R.color.text_light, null));
-
-        binding.btnModHibrido.setBackgroundResource(Objects.equals(filtroModalidadSeleccionada, "Híbrido") ? R.drawable.bg_filter_pill_green_active : R.drawable.bg_filter_pill_white_inactive);
-        binding.btnModHibrido.setTextColor(getResources().getColor(Objects.equals(filtroModalidadSeleccionada, "Híbrido") ? R.color.white : R.color.text_light, null));
+        } else {
+            contenedor.animate().scaleX(1.0f).scaleY(1.0f).setDuration(150).start();
+            contenedor.setElevation(2f);
+            if (textLabel != null) {
+                textLabel.setText(baseText + " →");
+            }
+        }
     }
 
     private void filtrarLista() {
@@ -195,7 +236,7 @@ public class WorkshopsFragment extends Fragment implements TallerAdapter.OnTalle
         String mod = Objects.equals(filtroModalidadSeleccionada, "Todas") ? "" : filtroModalidadSeleccionada;
         
         StringBuilder textoBuilder = new StringBuilder("Mostrando ");
-        textoBuilder.append(adapter.getItemCount()).append(" talleres");
+        textoBuilder.append(adapter != null ? adapter.getItemCount() : 12).append(" talleres");
         if (!cat.isEmpty() && !mod.isEmpty()) {
             textoBuilder.append(" de ").append(cat).append(" en modalidad ").append(mod);
         } else if (!cat.isEmpty()) {
@@ -205,6 +246,30 @@ public class WorkshopsFragment extends Fragment implements TallerAdapter.OnTalle
         }
         
         binding.tvSubtituloFiltroDinamico.setText(textoBuilder.toString());
+    }
+
+    private void manejarDeepLinking() {
+        if (getArguments() != null && getArguments().containsKey("taller_query")) {
+            String query = getArguments().getString("taller_query", "").toLowerCase();
+            if (!query.isEmpty()) {
+                for (Taller t : listaTalleres) {
+                    if (t.getId().equals(query) || t.getTituloCorto().toLowerCase().contains(query)) {
+                        onVerDetalleClick(t);
+                        getArguments().remove("taller_query");
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void animarOrb(View orb, long startDelay) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(orb, "translationY", -10f, 10f);
+        animator.setDuration(1500);
+        animator.setRepeatMode(ValueAnimator.REVERSE);
+        animator.setRepeatCount(ValueAnimator.INFINITE);
+        animator.setStartDelay(startDelay);
+        animator.start();
     }
 
     @Override

@@ -17,7 +17,7 @@ public class TalleresCatalogData {
                 new String[]{"Kit de cohete reciclable", "Mapa estelar giratorio (Planisferio)", "Lentes de observación astronómica", "Manual del pequeño astronauta"},
                 "Sábados 4:00 PM - 6:00 PM", "6 a 12 años", "2 horas", "10 vacantes", 45.00, "astronomia", defaultVideo));
 
-        lista.add(new Taller("2", "Bobina Tesla", "BOBINA DE TESLA", "PARA NIÑOS", "Ciencia", 
+        lista.add(new Taller("2", "Bobina Tesla", "BOBINA DE TESLA", "PARA NIÑOS", "Tecnología", 
                 "Presencial", 
                 "¡Haz que los rayos bailen con tus manos! Descubre la magia de la electricidad y crea relámpagos seguros y divertidos.",
                 "Descubrir los principios del electromagnetismo, la transmisión inalámbrica de energía de Nikola Tesla y los circuitos eléctricos de forma 100% segura.",
@@ -49,7 +49,7 @@ public class TalleresCatalogData {
                 new String[]{"Tubos de ensayo y gradilla infantil", "Pipetas Pasteur y vasos precipitados", "Reactivos seguros de grado alimenticio y colorantes", "Lentes de seguridad y mandil"},
                 "Miércoles 5:00 PM - 6:30 PM", "6 a 12 años", "1.5 horas", "20 vacantes", 45.00, "expe_fisi", defaultVideo));
 
-        lista.add(new Taller("6", "Inteligencia Artificial", "INTELIGENCIA ARTIFICIAL", "SOSTENIBLE PARA NIÑOS", "Ciencia", 
+        lista.add(new Taller("6", "Inteligencia Artificial", "INTELIGENCIA ARTIFICIAL", "SOSTENIBLE PARA NIÑOS", "Tecnología", 
                 "Virtual", 
                 "¡Crea tu propio robot amigo! Aprende cómo piensan las máquinas y dale superpoderes tecnológicos a tus ideas.",
                 "Introducir a los niños en el pensamiento computacional, el entrenamiento de modelos básicos de visión/sonido y el uso ético y ecológico de la IA.",
@@ -65,7 +65,7 @@ public class TalleresCatalogData {
                 new String[]{"Placa Petri con medio de cultivo seguro", "Portaobjetos, cubreobjetos y gotero", "Cuaderno de dibujo microscópico", "Guantes de nitrilo y credencial de microbiólogo"},
                 "Lunes 4:00 PM - 5:30 PM", "6 a 12 años", "1.5 horas", "8 vacantes", 50.00, "microbiologia", defaultVideo));
 
-        lista.add(new Taller("8", "Minería del Futuro", "MINERÍA", "SOSTENIBLE PARA NIÑOS", "Naturaleza", 
+        lista.add(new Taller("8", "Minería del Futuro", "MINERÍA", "SOSTENIBLE PARA NIÑOS", "Tecnología", 
                 "Presencial / Híbrido", 
                 "¡Ayuda a cuidar el planeta mientras buscas tesoros! Descubre cómo los científicos extraen minerales usando inventos geniales y ecológicos.",
                 "Conocer la importancia del cobre, litio y minerales en la tecnología diaria y cómo la ingeniería moderna protege el agua y el ecosistema.",
@@ -97,7 +97,7 @@ public class TalleresCatalogData {
                 new String[]{"Contenedor hidropónico con plancha flotante perforada", "Esponjas agrícolas y plántulas listas para trasplante", "Frascos goteros de nutrientes hidropónicos seguros", "Guía de cosecha en 30 días"},
                 "Viernes 3:00 PM - 4:30 PM", "6 a 12 años", "1.5 horas", "9 vacantes", 50.00, "hidroponia", defaultVideo));
 
-        lista.add(new Taller("12", "Energías Renovables", "ENERGÍAS RENOVABLES", "PARA NIÑOS", "Naturaleza", 
+        lista.add(new Taller("12", "Energías Renovables", "ENERGÍAS RENOVABLES", "PARA NIÑOS", "Tecnología", 
                 "Presencial", 
                 "¡Atrapa la fuerza del sol y del viento! Crea molinos y paneles que funcionan con energía limpia para cuidar nuestro planeta.",
                 "Experimentar con la transformación de la radiación solar, el viento y la fuerza del agua en energía eléctrica limpia para combatir el cambio climático.",
