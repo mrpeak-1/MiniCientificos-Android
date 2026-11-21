@@ -107,6 +107,15 @@ public class HomeFragment extends Fragment {
     private void setupServiciosYModal() {
         if (binding.sectionServiciosPildoras == null) return;
 
+        binding.sectionServiciosPildoras.btnHomeConoceNosotros.setOnClickListener(v -> {
+            abrirFragment(new NosotrosFragment());
+        });
+
+        binding.sectionServiciosPildoras.btnHomeProbarJuego.setOnClickListener(v -> {
+            JuegoPruebaBottomSheetDialog dialog = new JuegoPruebaBottomSheetDialog();
+            dialog.show(getChildFragmentManager(), "JuegoPruebaBottomSheetDialog");
+        });
+
         List<ServicioCientifico> servicios = ServiciosCatalogData.getServicios();
 
         binding.sectionServiciosPildoras.cardServicioTalleres.setOnClickListener(v -> {

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_cart_header_navy"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Barra de arrastre modal -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/bg_washi_tape" />
+
+        <!-- Cabecera Espacial del Juego -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:gravity="center"
+                android:text="🎮"
+                android:textSize="28sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="Motor de Datos y Preguntas HD"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="36 Preguntas, 4 Mundos, 6 Medallas y Progreso en vivo"
+                    android:textColor="#E0F2FE"
+                    android:textSize="11.5sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btnCloseJuegoPrueba"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="Cerrar"
+                android:focusable="true"
+                android:src="@drawable/ic_close"
+                app:tint="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- Tarjeta 1: Perfil de Agente y Rango -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="#0E356B"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="3dp"
+            app:strokeColor="#1E4E8C"
+            app:strokeWidth="1dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvAgenteNombre"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/fredoka"
+                        android:text="👤 Agente: James"
+                        android:textColor="#FDC500"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvAgenteXp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_pill_500_kids"
+                        android:fontFamily="@font/fredoka"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        android:text="⚡ 350 XP"
+                        android:textColor="#00A8E8"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvAgenteRango"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="🏆 Rango: Explorador de Laboratorio"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tarjeta 2: Pregunta Interactiva de Prueba -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="#00A8E8"
+            app:strokeWidth="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvPreguntaMundo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/fredoka"
+                        android:text="🧪 MUNDO 1 · FÍSICA Y QUÍMICA"
+                        android:textColor="#0077CC"
+                        android:textSize="12.5sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSiguientePregunta"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:fontFamily="@font/fredoka"
+                        android:paddingHorizontal="12dp"
+                        android:text="🔀 Otra"
+                        android:textColor="#0077CC"
+                        android:textSize="11sp"
+                        app:cornerRadius="18dp"
+                        app:strokeColor="#0077CC" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPreguntaTexto"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/fredoka"
+                    android:lineSpacingExtra="3dp"
+                    android:text="¿Qué le sucede a un fluido no newtoniano cuando le aplicas una fuerza rápida?"
+                    android:textColor="#0B2C5E"
+                    android:textSize="15.5sp"
+                    android:textStyle="bold" />
+
+                <!-- 4 Opciones de Respuesta -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnOp0"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:backgroundTint="#F8FAFC"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="start|center_vertical"
+                        android:paddingHorizontal="14dp"
+                        android:text="A) Se vuelve completamente gaseoso"
+                        android:textColor="#0B2C5E"
+                        android:textSize="12.5sp"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="#CBD5E1"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnOp1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:backgroundTint="#F8FAFC"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="start|center_vertical"
+                        android:paddingHorizontal="14dp"
+                        android:text="B) Se comporta como un sólido duro"
+                        android:textColor="#0B2C5E"
+                        android:textSize="12.5sp"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="#CBD5E1"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnOp2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:backgroundTint="#F8FAFC"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="start|center_vertical"
+                        android:paddingHorizontal="14dp"
+                        android:text="C) Se evapora de inmediato"
+                        android:textColor="#0B2C5E"
+                        android:textSize="12.5sp"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="#CBD5E1"
+                        app:strokeWidth="1dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnOp3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="3dp"
+                        android:backgroundTint="#F8FAFC"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="start|center_vertical"
+                        android:paddingHorizontal="14dp"
+                        android:text="D) Cambia de color a azul"
+                        android:textColor="#0B2C5E"
+                        android:textSize="12.5sp"
+                        app:cornerRadius="12dp"
+                        app:strokeColor="#CBD5E1"
+                        app:strokeWidth="1dp" />
+                </LinearLayout>
+
+                <!-- Caja de Resultado Explicativo -->
+                <LinearLayout
+                    android:id="@+id/boxResultadoExplicacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:background="#E0F2FE"
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:visibility="gone"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/tvResultadoTexto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="✨ ¡Correcto! +100 XP"
+                        android:textColor="#16A34A"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvPistaTesla"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="⚡ Pista: Tesla recuerda..."
+                        android:textColor="#0B2C5E"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tvSabiasQue"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="💡 Sabías que..."
+                        android:textColor="#334155"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Tarjeta 3: Las 6 Medallas Coleccionables -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/fredoka"
+            android:text="🏅 Medallas Coleccionables (6 Totales):"
+            android:textColor="#FDC500"
+            android:textSize="13.5sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/llContenedorMedallas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical" />
+
+        <!-- Botón de Simulación de Victoria y Cupón -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSimularVictoriaCupon"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="18dp"
+            android:backgroundTint="#FDC500"
+            android:fontFamily="@font/fredoka"
+            android:text="🎁 Simular Victoria y Activar Cupón 'MINI10'"
+            android:textColor="#0B2C5E"
+            android:textSize="13.5sp"
+            android:textStyle="bold"
+            app:cornerRadius="25dp" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

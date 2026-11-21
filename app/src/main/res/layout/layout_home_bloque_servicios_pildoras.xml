@@ -83,6 +83,45 @@
         android:textColor="#4A6583"
         android:textSize="14sp" />
 
+    <!-- ACCESOS DIRECTOS DESTACADOS -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHomeConoceNosotros"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginVertical="4dp"
+            android:backgroundTint="#0077CC"
+            android:fontFamily="@font/fredoka"
+            android:paddingHorizontal="20dp"
+            android:text="🏛️ Conoce Nosotros y Fundador ✨"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:cornerRadius="22dp"
+            app:elevation="3dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHomeProbarJuego"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:layout_marginVertical="4dp"
+            android:backgroundTint="#FDC500"
+            android:fontFamily="@font/fredoka"
+            android:paddingHorizontal="20dp"
+            android:text="🎮 Probar Motor del Videojuego y Preguntas 🧪"
+            android:textColor="#0B2C5E"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:cornerRadius="22dp"
+            app:elevation="3dp" />
+    </LinearLayout>
+
     <!-- CONTENEDOR DE LAS 3 TARJETAS 3D DE SERVICIOS -->
     <LinearLayout
         android:layout_width="match_parent"

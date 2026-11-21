@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_cart_header_navy"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Barra de arrastre modal -->
+        <View
+            android:layout_width="40dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="14dp"
+            android:background="@drawable/bg_washi_tape" />
+
+        <!-- Cabecera del Modal con Estilo Espacial -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:contentDescription="Credenciales"
+                android:src="@drawable/ic_flask"
+                app:tint="#FDC500" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="🪪 Laboratorio de Credenciales HD"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    android:text="Genera y comparte tu Carnet o Diploma Oficial de Mini Científico"
+                    android:textColor="#E0F2FE"
+                    android:textSize="11.5sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btnCloseCredencial"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="Cerrar"
+                android:focusable="true"
+                android:src="@drawable/ic_close"
+                app:tint="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- Selector de Tipo de Documento -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/fredoka"
+            android:text="1. Tipo de Documento Oficial:"
+            android:textColor="#FDC500"
+            android:textSize="13.5sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupTipoDoc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTipoCarnet"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:fontFamily="@font/fredoka"
+                android:text="🪪 Carnet de Agente Científico"
+                android:textColor="@color/chip_credencial_text"
+                app:checkedIconTint="#0B2C5E"
+                app:chipBackgroundColor="@color/chip_credencial_bg"
+                app:chipIconTint="#0B2C5E"
+                app:chipStrokeColor="#00A8E8"
+                app:chipStrokeWidth="1.5dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTipoDiploma"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="🎓 Diploma de Honor Oficial"
+                android:textColor="@color/chip_credencial_text"
+                app:checkedIconTint="#0B2C5E"
+                app:chipBackgroundColor="@color/chip_credencial_bg"
+                app:chipIconTint="#0B2C5E"
+                app:chipStrokeColor="#00A8E8"
+                app:chipStrokeWidth="1.5dp" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Campo Nombre del Niño -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/fredoka"
+            android:text="2. Nombre del Mini Científico(a):"
+            android:textColor="#FDC500"
+            android:textSize="13.5sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:boxBackgroundColor="#FFFFFF"
+            app:boxCornerRadiusBottomEnd="14dp"
+            app:boxCornerRadiusBottomStart="14dp"
+            app:boxCornerRadiusTopEnd="14dp"
+            app:boxCornerRadiusTopStart="14dp"
+            app:boxStrokeColor="#00A8E8"
+            app:hintEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNombreNinoCredencial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:hint="Ej. Mateo Salazar"
+                android:inputType="textPersonName|textCapWords"
+                android:maxLength="32"
+                android:paddingVertical="12dp"
+                android:textColor="#0B2C5E"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Selector de Compañero -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/fredoka"
+            android:text="3. Elige tu Compañero de Laboratorio:"
+            android:textColor="#FDC500"
+            android:textSize="13.5sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCompanero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTitan"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:fontFamily="@font/fredoka"
+                android:text="🐱 Titan Astronauta"
+                android:textColor="@color/chip_credencial_text"
+                app:checkedIconTint="#0B2C5E"
+                app:chipBackgroundColor="@color/chip_credencial_bg"
+                app:chipIconTint="#0B2C5E"
+                app:chipStrokeColor="#00A8E8"
+                app:chipStrokeWidth="1.5dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTesla"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="⚡ Tesla Ecológico"
+                android:textColor="@color/chip_credencial_text"
+                app:checkedIconTint="#0B2C5E"
+                app:chipBackgroundColor="@color/chip_credencial_bg"
+                app:chipIconTint="#0B2C5E"
+                app:chipStrokeColor="#00A8E8"
+                app:chipStrokeWidth="1.5dp" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Selector de Especialidad -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/fredoka"
+            android:text="4. Selecciona tu Especialidad Científica:"
+            android:textColor="#FDC500"
+            android:textSize="13.5sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupEspecialidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            app:singleSelection="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipAstronomia"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:fontFamily="@font/fredoka"
+                android:text="🔭 Astronomía"
+                android:textColor="@color/chip_credencial_text"
+                app:checkedIconTint="#0B2C5E"
+                app:chipBackgroundColor="@color/chip_credencial_bg"
+                app:chipIconTint="#0B2C5E"
+                app:chipStrokeColor="#00A8E8"
+                app:chipStrokeWidth="1.5dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipQuimica"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="🧪 Química Loca"
+                android:textColor="@color/chip_credencial_text"
+                app:checkedIconTint="#0B2C5E"
+                app:chipBackgroundColor="@color/chip_credencial_bg"
+                app:chipIconTint="#0B2C5E"
+                app:chipStrokeColor="#00A8E8"
+                app:chipStrokeWidth="1.5dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipBiohuerto"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="🌱 Biohuerto y Agua"
+                android:textColor="@color/chip_credencial_text"
+                app:checkedIconTint="#0B2C5E"
+                app:chipBackgroundColor="@color/chip_credencial_bg"
+                app:chipIconTint="#0B2C5E"
+                app:chipStrokeColor="#00A8E8"
+                app:chipStrokeWidth="1.5dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipRobotica"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="🤖 Robótica e IA"
+                android:textColor="@color/chip_credencial_text"
+                app:checkedIconTint="#0B2C5E"
+                app:chipBackgroundColor="@color/chip_credencial_bg"
+                app:chipIconTint="#0B2C5E"
+                app:chipStrokeColor="#00A8E8"
+                app:chipStrokeWidth="1.5dp" />
+        </com.google.android.material.chip.ChipGroup>
+
+        <!-- Vista Previa Canvas HD en Tiempo Real -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/fredoka"
+            android:text="🎨 Vista Previa en Tiempo Real (1200x800 Canvas HD):"
+            android:textColor="#FFFFFF"
+            android:textSize="13.5sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:cardBackgroundColor="#000000"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp"
+            app:strokeColor="#00A8E8"
+            app:strokeWidth="2dp">
+
+            <ImageView
+                android:id="@+id/imgPreviewCredencialCanvas"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="Vista Previa Credencial Canvas"
+                android:scaleType="fitCenter"
+                tools:src="@drawable/certificado_minicientifico" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Fila de Botones Inferiores -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnActualizarVistaPrevia"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="#00A8E8"
+                android:fontFamily="@font/fredoka"
+                android:text="🔄 Actualizar"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:cornerRadius="25dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCompartirCredencialPng"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="6dp"
+                android:layout_weight="1"
+                android:backgroundTint="#16A34A"
+                android:fontFamily="@font/fredoka"
+                android:text="📤 Guardar / Compartir"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:cornerRadius="25dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
