@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_cart_header_navy"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_m">
+
+        <!-- HANDLE BAR -->
+        <View
+            android:layout_width="48dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/spacing_s"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="#94A3B8" />
+
+        <!-- CABECERA DE TITULO Y BOTON CERRAR -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_title_shake_lab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/btn_close_shake_lab"
+                android:fontFamily="@font/fredoka"
+                android:text="🧪 Mini-Laboratorio Físico Agitable"
+                android:textColor="@color/gold_yellow"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btn_close_shake_lab"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_close"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/tv_subtitle_shake_lab"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title_shake_lab"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/poppins"
+                android:text="¡Elige un experimento y sacude tu celular para provocar la reacción científica!"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <!-- SELECCIÓN DE EXPERIMENTOS QUÍMICOS -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:fontFamily="@font/fredoka"
+            android:text="⚗️ Selecciona el Experimento:"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chip_group_experimentos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_exp_volcan"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="🌋 Volcán Catalítico"
+                    android:textColor="@color/navy_blue"
+                    app:chipBackgroundColor="@color/gold_yellow" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_exp_fotocatalisis"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="☀️ Fotocatálisis UV"
+                    android:textColor="@color/navy_blue"
+                    app:chipBackgroundColor="@color/white" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_exp_slime"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🧲 Slime Magnético"
+                    android:textColor="@color/navy_blue"
+                    app:chipBackgroundColor="@color/white" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_exp_hidroponia"
+                    style="@style/Widget.Material3.Chip.Filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🌱 Nutriente Hidropónico"
+                    android:textColor="@color/navy_blue"
+                    app:chipBackgroundColor="@color/white" />
+            </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
+
+        <!-- TARJETA PRINCIPAL DEL ESCENARIO DEL MATRAZ Y SENSOR -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_matraz_shake"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            app:cardBackgroundColor="#1E293B"
+            app:cardCornerRadius="@dimen/corner_radius_l"
+            app:cardElevation="6dp"
+            app:strokeColor="@color/gold_yellow"
+            app:strokeWidth="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_m">
+
+                <!-- INFORMACIÓN DE REACTIVOS -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_info_box_celeste"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka"
+                            android:text="🧪 Reactivo A:"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_reactivo_a"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Peróxido + Jabón"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="6dp"
+                        android:fontFamily="@font/fredoka"
+                        android:text="➕"
+                        android:textColor="@color/gold_yellow"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_coupon_box_yellow"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka"
+                            android:text="⚡ Reactivo B:"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_reactivo_b"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="Catalizador Levadura"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- MATRAZ VISUAL ANIMABLE -->
+                <ImageView
+                    android:id="@+id/iv_matraz_icon"
+                    android:layout_width="110dp"
+                    android:layout_height="110dp"
+                    android:layout_marginVertical="@dimen/spacing_m"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_flask"
+                    app:tint="@color/gold_yellow" />
+
+                <!-- BARRA DE PROGRESO DE MEZCLA -->
+                <ProgressBar
+                    android:id="@+id/progress_reaccion_quimica"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="18dp"
+                    android:max="100"
+                    android:progress="0"
+                    android:progressDrawable="@drawable/bg_vitrina_xp_progress" />
+
+                <TextView
+                    android:id="@+id/tv_porcentaje_reaccion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/fredoka"
+                    android:text="0% - ¡Mezcla sin agitar!"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_shake_instruction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="📱 ¡SACUDE TU CELULAR PARA MEZCLAR LOS REACTIVOS!"
+                    android:textColor="@color/gold_yellow"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+
+                <!-- BOTÓN DE EMULADOR (AGITAR CON EL DEDO) -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_agitar_dedo"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:fontFamily="@font/poppins"
+                    android:text="🤚 Agitar con el dedo (+20%)"
+                    android:textColor="@color/gold_yellow"
+                    android:textSize="12sp"
+                    app:strokeColor="@color/gold_yellow" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- CONTENEDOR DE RESULTADO DE REACCIÓN -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_resultado_reaccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:visibility="gone"
+            app:cardBackgroundColor="#16A34A"
+            app:cardCornerRadius="@dimen/corner_radius_l"
+            app:cardElevation="6dp"
+            tools:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_m">
+
+                <TextView
+                    android:id="@+id/tv_resultado_titulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="🎉 ¡REACCIÓN COMPLETADA! (+50 XP)"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_resultado_explicacion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/poppins"
+                    android:lineSpacingExtra="2dp"
+                    android:text="¡Has logrado liberar una espuma gigante mediante catálisis rápida! La levadura aceleró la descomposición del peróxido liberando oxígeno y aire comprimido."
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_escuchar_explicacion_lab"
+                        style="@style/Widget.MiniCientificos.Button.Accent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/fredoka"
+                        android:text="🔊 Escuchar Voz"
+                        android:textSize="12sp"
+                        app:icon="@drawable/ic_flask" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_reiniciar_experimento"
+                        style="@style/Widget.Material3.Button.TonalButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/fredoka"
+                        android:text="✨ Nuevo Exp."
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

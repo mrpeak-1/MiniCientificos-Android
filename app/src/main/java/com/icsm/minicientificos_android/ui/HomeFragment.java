@@ -112,8 +112,7 @@ public class HomeFragment extends Fragment {
         });
 
         binding.sectionServiciosPildoras.btnHomeProbarJuego.setOnClickListener(v -> {
-            JuegoPruebaBottomSheetDialog dialog = new JuegoPruebaBottomSheetDialog();
-            dialog.show(getChildFragmentManager(), "JuegoPruebaBottomSheetDialog");
+            abrirFragment(new VideojuegosFragment());
         });
 
         List<ServicioCientifico> servicios = ServiciosCatalogData.getServicios();

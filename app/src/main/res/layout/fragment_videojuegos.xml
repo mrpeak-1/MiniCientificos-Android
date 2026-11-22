@@ -1,0 +1,756 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light"
+    android:fillViewport="true"
+    tools:context=".ui.VideojuegosFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/spacing_xl">
+
+        <!-- ========================================== -->
+        <!-- VISTA A: LOBBY DEL VIDEOJUEGO -->
+        <!-- ========================================== -->
+        <LinearLayout
+            android:id="@+id/layout_lobby_juego"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <!-- CABECERA DEL JUGADOR -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:background="@color/navy_blue" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-130dp"
+                android:paddingHorizontal="@dimen/spacing_m">
+
+                <TextView
+                    android:id="@+id/tv_lobby_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="🎮 Videojuego Misión Mini Científicos"
+                    android:textColor="@color/gold_yellow"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_lobby_subtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_lobby_title"
+                    android:fontFamily="@font/poppins"
+                    android:text="¡Aprende ciencia real, supera retos y gana premios exclusivos!"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <!-- TARJETA DE ESTADO DEL JUGADOR -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_player_stats"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_lobby_subtitle"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    app:cardBackgroundColor="@color/dark_blue"
+                    app:cardCornerRadius="@dimen/corner_radius_l"
+                    app:cardElevation="6dp"
+                    app:strokeColor="@color/gold_yellow"
+                    app:strokeWidth="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/spacing_m">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_lobby_agente_nombre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fredoka"
+                                android:text="👤 Agente: Mini Científico(a)"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_lobby_rango"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tv_lobby_agente_nombre"
+                                android:fontFamily="@font/poppins"
+                                android:text="🏆 Rango: Cadete Curioso"
+                                android:textColor="@color/gold_yellow"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:id="@+id/tv_lobby_xp_total"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/fredoka"
+                                    android:text="⚡ 0 XP"
+                                    android:textColor="@color/gold_yellow"
+                                    android:textSize="16sp"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tv_lobby_record"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/poppins"
+                                    android:text="🎯 Récord: 0 pts"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="@dimen/spacing_s"
+                            android:background="#33FFFFFF" />
+
+                        <!-- BOTONES ESPECIALES DE LABORATORIO -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_lobby_medallas"
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="4dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/fredoka"
+                                android:paddingHorizontal="4dp"
+                                android:text="🏅 Medallas"
+                                android:textColor="@color/navy_blue"
+                                android:textSize="11sp"
+                                app:backgroundTint="@color/gold_yellow" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_lobby_carnet"
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="2dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/fredoka"
+                                android:paddingHorizontal="4dp"
+                                android:text="🪪 Carnet HD"
+                                android:textColor="@color/navy_blue"
+                                app:backgroundTint="@color/white" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_lobby_shake_lab"
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="4dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/fredoka"
+                                android:paddingHorizontal="4dp"
+                                android:text="🧪 Lab. Shake"
+                                android:textColor="@color/white"
+                                app:backgroundTint="@color/primary_blue" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </RelativeLayout>
+
+            <!-- TITULO DE SELECCIÓN DE MUNDOS -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_m"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:fontFamily="@font/fredoka"
+                android:text="🌍 Elige tu Misión Científica:"
+                android:textColor="@color/navy_blue"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- LISTA DE MUNDOS/NIVELES (CONTAINER) -->
+            <LinearLayout
+                android:id="@+id/container_mundos_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_m">
+                <!-- Se poblará dinámicamente o con tarjetas prediseñadas -->
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ========================================== -->
+        <!-- VISTA B: ARENA DE PARTIDA EN TIEMPO REAL -->
+        <!-- ========================================== -->
+        <LinearLayout
+            android:id="@+id/layout_arena_partida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_m"
+            android:visibility="gone">
+
+            <!-- HUD SUPERIOR (SALIR, VIDAS, RACHA, SCORE, SONIDO, VOZ) -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/btn_exit_arena"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_close"
+                    app:tint="@color/navy_blue" />
+
+                <TextView
+                    android:id="@+id/tv_corazones_vida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_s"
+                    android:layout_toEndOf="@id/btn_exit_arena"
+                    android:fontFamily="@font/fredoka"
+                    android:text="❤️❤️❤️"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_combo_racha"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="@dimen/spacing_s"
+                    android:layout_toEndOf="@id/tv_corazones_vida"
+                    android:background="@drawable/bg_badge_rounded"
+                    android:backgroundTint="#FF6D00"
+                    android:fontFamily="@font/poppins"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:text="🔥 Racha x0"
+                    android:textColor="@color/white"
+                    android:textSize="11sp"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_puntaje_partida"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:fontFamily="@font/fredoka"
+                        android:text="0 Pts"
+                        android:textColor="@color/navy_blue"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/btn_toggle_audio_arena"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_star_decoration"
+                        app:tint="@color/primary_blue" />
+
+                    <ImageButton
+                        android:id="@+id/btn_leer_pregunta_arena"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="4dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_flask"
+                        app:tint="@color/gold_yellow" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- CRONÓMETRO REGRESIVO DE 15s -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:id="@+id/progress_timer_pregunta"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="12dp"
+                    android:layout_weight="1"
+                    android:max="15"
+                    android:progress="15"
+                    android:progressDrawable="@drawable/bg_vitrina_xp_progress" />
+
+                <TextView
+                    android:id="@+id/tv_segundos_restantes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/fredoka"
+                    android:text="15s"
+                    android:textColor="@color/navy_blue"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- COMPAÑERO PERSONAJE (TITAN O TESLA) -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_buddy_character"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                app:cardBackgroundColor="@color/titan_bg"
+                app:cardCornerRadius="@dimen/corner_radius_m"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="8dp">
+
+                    <ImageView
+                        android:id="@+id/iv_buddy_avatar"
+                        android:layout_width="54dp"
+                        android:layout_height="54dp"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/titan_cientifico" />
+
+                    <TextView
+                        android:id="@+id/tv_buddy_bubble"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="¡Aplica tu lógica científica y demuestra tu curiosidad!"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- TARJETA PRINCIPAL DE PREGUNTA -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_pregunta_arena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/corner_radius_l"
+                app:cardElevation="4dp"
+                app:strokeColor="@color/primary_blue"
+                app:strokeWidth="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_m">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tv_pregunta_numero"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka"
+                            android:text="Pregunta 1 de 10"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_pregunta_categoria"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/bg_badge_rounded"
+                            android:backgroundTint="@color/primary_blue"
+                            android:fontFamily="@font/poppins"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="2dp"
+                            android:text="🧪 FÍSICA Y QUÍMICA"
+                            android:textColor="@color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/tv_pregunta_texto"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_s"
+                        android:fontFamily="@font/fredoka"
+                        android:lineSpacingExtra="3dp"
+                        android:text="¿Qué le sucede a un fluido no newtoniano cuando le aplicas una fuerza rápida?"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="16sp" />
+
+                    <!-- LAS 4 OPCIONES DE RESPUESTA -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_opcion_a"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="6dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="A) Opción A"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="13sp"
+                            app:strokeColor="#CBD5E1" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_opcion_b"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="6dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="B) Opción B"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="13sp"
+                            app:strokeColor="#CBD5E1" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_opcion_c"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="6dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="C) Opción C"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="13sp"
+                            app:strokeColor="#CBD5E1" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_opcion_d"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="D) Opción D"
+                            android:textAlignment="textStart"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="13sp"
+                            app:strokeColor="#CBD5E1" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- CÁPSULA EDUCATIVA ¿SABÍAS QUE...? -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_capsula_educativa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:visibility="gone"
+                app:cardBackgroundColor="#F0FDF4"
+                app:cardCornerRadius="@dimen/corner_radius_m"
+                app:strokeColor="#16A34A"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_m">
+
+                    <TextView
+                        android:id="@+id/tv_capsula_titulo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="🧠 ¿Sabías que...?"
+                        android:textColor="#16A34A"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_explicacion_capsula"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/poppins"
+                        android:lineSpacingExtra="2dp"
+                        android:text="Explicación detallada..."
+                        android:textColor="@color/dark_blue"
+                        android:textSize="12sp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_s"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_escuchar_capsula_voz"
+                            style="@style/Widget.Material3.Button.TonalButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/fredoka"
+                            android:text="🔊 Escuchar"
+                            android:textSize="11sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_siguiente_pregunta_arena"
+                            style="@style/Widget.MiniCientificos.Button.Primary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/fredoka"
+                            android:text="Siguiente →"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- BARRA INFERIOR DE 3 COMODINES -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:fontFamily="@font/fredoka"
+                android:text="⚡ Comodines Científicos (1 uso por partida):"
+                android:textColor="@color/navy_blue"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_comodin_5050"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="2dp"
+                    android:text="🧪 50 / 50"
+                    android:textSize="11sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_comodin_congelar"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="2dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="2dp"
+                    android:text="❄️ Pausa 10s"
+                    android:textSize="11sp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_comodin_pista"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/fredoka"
+                    android:paddingHorizontal="2dp"
+                    android:text="💡 Pista Tesla"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- ========================================== -->
+        <!-- VISTA C: PANTALLA DE RESULTADO Y VICTORIA -->
+        <!-- ========================================== -->
+        <LinearLayout
+            android:id="@+id/layout_resultado_partida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_m"
+            android:visibility="gone">
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="@color/dark_blue"
+                app:cardCornerRadius="@dimen/corner_radius_l"
+                app:cardElevation="6dp"
+                app:strokeColor="@color/gold_yellow"
+                app:strokeWidth="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_m">
+
+                    <TextView
+                        android:id="@+id/tv_resultado_estrellas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/fredoka"
+                        android:text="⭐⭐⭐"
+                        android:textSize="36sp" />
+
+                    <TextView
+                        android:id="@+id/tv_resultado_titulo_partida"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/fredoka"
+                        android:text="🎉 ¡MISIÓN COMPLETA!"
+                        android:textColor="@color/gold_yellow"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_resultado_resumen_puntos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Obtuviste 800 Pts (+100 XP)"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+
+                    <!-- TARJETA DORADA DE PREMIO CUPÓN -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_premio_cupon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        app:cardBackgroundColor="@color/gold_yellow"
+                        app:cardCornerRadius="@dimen/corner_radius_m">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_m">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/fredoka"
+                                android:text="🎁 ¡PREMIO CIENTÍFICO DESBLOQUEADO!"
+                                android:textColor="@color/navy_blue"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tv_codigo_cupon_ganado"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginVertical="4dp"
+                                android:background="@drawable/bg_badge_rounded"
+                                android:backgroundTint="@color/navy_blue"
+                                android:fontFamily="@font/fredoka"
+                                android:paddingHorizontal="16dp"
+                                android:paddingVertical="6dp"
+                                android:text="CUPÓN: MINI10"
+                                android:textColor="@color/gold_yellow"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_aplicar_cupon_carrito"
+                                style="@style/Widget.MiniCientificos.Button.Primary"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:fontFamily="@font/fredoka"
+                                android:text="🛒 Aplicar Cupón en mi Carrito"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- BOTONES DE ACCIÓN FINAL -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_m"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_reintentar_mision"
+                            style="@style/Widget.Material3.Button.TonalButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="4dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/fredoka"
+                            android:text="🔄 Reintentar" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_volver_lobby"
+                            style="@style/Widget.MiniCientificos.Button.Accent"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="4dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/fredoka"
+                            android:text="🌍 Ver Mundos" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

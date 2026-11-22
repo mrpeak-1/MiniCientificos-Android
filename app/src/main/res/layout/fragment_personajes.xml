@@ -8,419 +8,421 @@
     android:fillViewport="true"
     tools:context=".ui.PersonajesFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:paddingBottom="@dimen/spacing_xl">
 
         <!-- HEADER BANNER DE PERSONAJES -->
         <View
-            android:id="@+id/v_personajes_header_bg"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="140dp"
-            android:background="@color/navy_blue"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:background="@color/navy_blue" />
 
-        <TextView
-            android:id="@+id/tv_personajes_title"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_m"
-            android:layout_marginTop="@dimen/spacing_m"
-            android:layout_marginEnd="@dimen/spacing_m"
-            android:fontFamily="@font/fredoka"
-            android:text="Nuestros Personajes Científicos"
-            android:textColor="@color/gold_yellow"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="-130dp"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/spacing_m">
 
-        <TextView
-            android:id="@+id/tv_personajes_subtitle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_m"
-            android:layout_marginEnd="@dimen/spacing_m"
-            android:fontFamily="@font/poppins"
-            android:text="¡Conoce a los héroes que inspiran la curiosidad y la tecnología!"
-            android:textColor="@color/white"
-            android:textSize="13sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_personajes_title" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:text="🐱⚡ Caricaturas: Nuestros Héroes"
+                android:textColor="@color/gold_yellow"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
-        <!-- WAVE DIVIDER -->
-        <ImageView
-            android:id="@+id/iv_personajes_wave"
-            android:layout_width="0dp"
-            android:layout_height="32dp"
-            android:contentDescription="@string/app_name"
-            android:scaleType="fitXY"
-            android:src="@drawable/wave_divider"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/v_personajes_header_bg" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/poppins"
+                android:text="¡Conoce la historia, atributos y voz real de Titan y Tesla!"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
-        <!-- ========================================== -->
-        <!-- TARJETA 1: FICHA DE TITAN (TECNOLOGÍA / ESPACIAL) -->
-        <!-- ========================================== -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_titan_ficha"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_m"
-            android:layout_marginTop="@dimen/spacing_m"
-            android:layout_marginEnd="@dimen/spacing_m"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardBackgroundColor="@color/titan_bg"
-            app:cardCornerRadius="@dimen/corner_radius_l"
-            app:cardElevation="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_personajes_wave"
-            app:strokeColor="@color/primary_blue"
-            app:strokeWidth="2dp">
-
+            <!-- CONMUTADOR SUPERIOR DE PERSONAJES -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/spacing_m">
+                android:layout_marginTop="@dimen/spacing_m"
+                android:orientation="horizontal">
 
-                <!-- ENCABEZADO DE TITAN -->
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/iv_titan_avatar"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_alignParentStart="true"
-                        android:scaleType="fitCenter"
-                        android:contentDescription="@string/titan_name"
-                        android:src="@drawable/tesla_fullbody" />
-
-                    <TextView
-                        android:id="@+id/tv_titan_badge"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:background="@drawable/bg_badge_rounded"
-                        android:backgroundTint="@color/navy_blue"
-                        android:fontFamily="@font/poppins"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="4dp"
-                        android:text="🚀 Ciencia Espacial"
-                        android:textColor="@color/gold_yellow"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_titan_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/iv_titan_avatar"
-                        android:layout_toStartOf="@id/tv_titan_badge"
-                        android:layout_marginStart="@dimen/spacing_m"
-                        android:fontFamily="@font/fredoka"
-                        android:text="Titan"
-                        android:textColor="@color/navy_blue"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_titan_role"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_titan_name"
-                        android:layout_toEndOf="@id/iv_titan_avatar"
-                        android:layout_marginStart="@dimen/spacing_m"
-                        android:fontFamily="@font/poppins"
-                        android:text="El Experimento Viviente"
-                        android:textColor="@color/primary_blue"
-                        android:textSize="14sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_titan_tagline"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_titan_role"
-                        android:layout_toEndOf="@id/iv_titan_avatar"
-                        android:layout_marginStart="@dimen/spacing_m"
-                        android:fontFamily="@font/poppins"
-                        android:text="Intrépido &amp; Curioso"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp" />
-                </RelativeLayout>
-
-                <!-- DESCRIPCIÓN PRINCIPAL -->
-                <TextView
-                    android:id="@+id/tv_titan_desc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_m"
-                    android:fontFamily="@font/poppins"
-                    android:lineSpacingExtra="3dp"
-                    android:text="Titan es un explorador intrépido apasionado por la física, las reacciones químicas explosivas y la astronáutica. Su misión es llevar experimentos divertidos a todos los rincones de la galaxia."
-                    android:textColor="@color/dark_blue"
-                    android:textSize="13sp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="@dimen/spacing_s"
-                    android:background="#8000A8E8" />
-
-                <!-- SECCIÓN DE HABILIDADES CIENTÍFICAS DE TITAN -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fredoka"
-                    android:text="⚡ Habilidades Especiales:"
-                    android:textColor="@color/navy_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.chip.ChipGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp">
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.Material3.Chip.Assist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🌋 Volcanes de Espuma"
-                        app:chipIcon="@drawable/ic_flask"
-                        app:chipIconTint="@color/primary_blue" />
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.Material3.Chip.Assist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🚀 Cohetes Hidráulicos"
-                        app:chipIcon="@drawable/ic_rocket"
-                        app:chipIconTint="@color/primary_blue" />
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.Material3.Chip.Assist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🧪 Slime Fluido No-Newtoniano"
-                        app:chipIcon="@drawable/ic_flask"
-                        app:chipIconTint="@color/primary_blue" />
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.Material3.Chip.Assist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🌌 Observación de Constelaciones"
-                        app:chipIcon="@drawable/ic_star_decoration"
-                        app:chipIconTint="@color/gold_yellow" />
-                </com.google.android.material.chip.ChipGroup>
-
-                <!-- BOTÓN INTERACTIVO TITAN -->
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_titan_interact"
-                    style="@style/Widget.MiniCientificos.Button.Primary"
-                    android:layout_width="match_parent"
+                    android:id="@+id/btn_select_titan"
+                    style="@style/Widget.Material3.Button.TonalButton"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_s"
+                    android:layout_marginEnd="6dp"
+                    android:layout_weight="1"
                     android:fontFamily="@font/fredoka"
-                    android:text="🚀 Activar Superpoder de Titan"
-                    android:textSize="14sp"
-                    app:icon="@drawable/ic_rocket"
-                    app:iconGravity="textStart" />
+                    android:text="🐱 Titan Astronauta"
+                    android:textColor="@color/navy_blue"
+                    app:backgroundTint="@color/gold_yellow" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_select_tesla"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/fredoka"
+                    android:text="⚡ Tesla Duende Andino"
+                    android:textColor="@color/white"
+                    app:strokeColor="@color/gold_yellow" />
             </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
 
-        <!-- ========================================== -->
-        <!-- TARJETA 2: FICHA DE TESLA (DUENDE DE LOS ANDES) -->
-        <!-- ========================================== -->
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_tesla_ficha"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/spacing_m"
-            android:layout_marginTop="@dimen/spacing_l"
-            android:layout_marginEnd="@dimen/spacing_m"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardBackgroundColor="@color/tesla_bg"
-            app:cardCornerRadius="@dimen/corner_radius_l"
-            app:cardElevation="6dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_titan_ficha"
-            app:strokeColor="@color/tesla_accent"
-            app:strokeWidth="2dp">
-
-            <LinearLayout
+            <!-- ========================================== -->
+            <!-- FICHA 1: TITAN EL GATO ASTRONAUTA -->
+            <!-- ========================================== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_titan_ficha"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/spacing_m">
+                android:layout_marginTop="@dimen/spacing_m"
+                android:visibility="visible"
+                app:cardBackgroundColor="@color/titan_bg"
+                app:cardCornerRadius="@dimen/corner_radius_l"
+                app:cardElevation="6dp"
+                app:strokeColor="@color/primary_blue"
+                app:strokeWidth="2dp">
 
-                <!-- ENCABEZADO DE TESLA -->
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_m">
 
-                    <ImageView
-                        android:id="@+id/iv_tesla_avatar"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_alignParentStart="true"
-                        android:scaleType="fitCenter"
-                        android:contentDescription="@string/tesla_name"
-                        android:src="@drawable/teslita_fullbody" />
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/iv_titan_avatar"
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:layout_alignParentStart="true"
+                            android:contentDescription="@string/titan_name"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/titan_astronauta" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/bg_badge_rounded"
+                            android:backgroundTint="@color/navy_blue"
+                            android:fontFamily="@font/poppins"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:text="🚀 Física &amp; Cohetes"
+                            android:textColor="@color/gold_yellow"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_titan_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_toEndOf="@id/iv_titan_avatar"
+                            android:fontFamily="@font/fredoka"
+                            android:text="Titan"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_titan_name"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_toEndOf="@id/iv_titan_avatar"
+                            android:fontFamily="@font/poppins"
+                            android:text="El Gato Astronauta Explorador"
+                            android:textColor="@color/primary_blue"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/tv_tesla_badge"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentTop="true"
-                        android:background="@drawable/bg_badge_rounded"
-                        android:backgroundTint="#F57F17"
+                        android:layout_marginTop="@dimen/spacing_m"
                         android:fontFamily="@font/poppins"
-                        android:paddingHorizontal="10dp"
-                        android:paddingVertical="4dp"
-                        android:text="🏔️ Sabiduría Andina"
-                        android:textColor="@color/white"
-                        android:textSize="11sp"
-                        android:textStyle="bold" />
+                        android:lineSpacingExtra="3dp"
+                        android:text="Titan es un intrépido felino explorador apasionado por las reacciones químicas explosivas, los fluidos no newtonianos y la física de cohetes. ¡Navega por las galaxias llevando la ciencia a cada rincón!"
+                        android:textColor="@color/dark_blue"
+                        android:textSize="13sp" />
 
-                    <TextView
-                        android:id="@+id/tv_tesla_name"
-                        android:layout_width="wrap_content"
+                    <!-- BOTÓN PARA ESCUCHAR LA VOZ DE TITAN -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_titan_voice"
+                        style="@style/Widget.MiniCientificos.Button.Primary"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/iv_tesla_avatar"
-                        android:layout_toStartOf="@id/tv_tesla_badge"
-                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_s"
                         android:fontFamily="@font/fredoka"
-                        android:text="Tesla"
-                        android:textColor="@color/navy_blue"
-                        android:textSize="26sp"
-                        android:textStyle="bold" />
+                        android:text="🔊 Escuchar Mensaje de Titan"
+                        android:textSize="13sp"
+                        app:icon="@drawable/ic_flask" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="@dimen/spacing_s"
+                        android:background="#8000A8E8" />
+
+                    <!-- ATRIBUTOS TÉCNICOS ANIMADOS (TITAN) -->
                     <TextView
-                        android:id="@+id/tv_tesla_role"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_tesla_name"
-                        android:layout_toEndOf="@id/iv_tesla_avatar"
-                        android:layout_marginStart="@dimen/spacing_m"
-                        android:fontFamily="@font/poppins"
-                        android:text="El Duende de los Andes"
-                        android:textColor="@color/tesla_accent"
+                        android:fontFamily="@font/fredoka"
+                        android:text="📊 Atributos Científicos de Titan:"
+                        android:textColor="@color/navy_blue"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="🔍 Curiosidad Explosiva (98%)"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="11sp" />
+
+                        <ProgressBar
+                            android:id="@+id/progress_titan_curiosidad"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="8dp"
+                            android:max="100"
+                            android:progress="98"
+                            android:progressDrawable="@drawable/bg_vitrina_xp_progress" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="🚀 Inventiva Aeroespacial (92%)"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="11sp" />
+
+                        <ProgressBar
+                            android:id="@+id/progress_titan_inventiva"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="8dp"
+                            android:max="100"
+                            android:progress="92"
+                            android:progressDrawable="@drawable/bg_vitrina_xp_progress" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ========================================== -->
+            <!-- FICHA 2: TESLA LA DUENDE ANDINA ECOLÓGICA -->
+            <!-- ========================================== -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_tesla_ficha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_m"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/tesla_bg"
+                app:cardCornerRadius="@dimen/corner_radius_l"
+                app:cardElevation="6dp"
+                app:strokeColor="@color/tesla_accent"
+                app:strokeWidth="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/spacing_m">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/iv_tesla_avatar"
+                            android:layout_width="110dp"
+                            android:layout_height="110dp"
+                            android:layout_alignParentStart="true"
+                            android:contentDescription="@string/tesla_name"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/teslita_png" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentTop="true"
+                            android:background="@drawable/bg_badge_rounded"
+                            android:backgroundTint="#F57F17"
+                            android:fontFamily="@font/poppins"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp"
+                            android:text="🌱 Ecología &amp; Robótica"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_tesla_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_toEndOf="@id/iv_tesla_avatar"
+                            android:fontFamily="@font/fredoka"
+                            android:text="Tesla"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="26sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_tesla_name"
+                            android:layout_marginStart="@dimen/spacing_m"
+                            android:layout_toEndOf="@id/iv_tesla_avatar"
+                            android:fontFamily="@font/poppins"
+                            android:text="La Duende de los Andes"
+                            android:textColor="@color/tesla_accent"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </RelativeLayout>
+
                     <TextView
-                        android:id="@+id/tv_tesla_tagline"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tv_tesla_role"
-                        android:layout_toEndOf="@id/iv_tesla_avatar"
-                        android:layout_marginStart="@dimen/spacing_m"
+                        android:layout_marginTop="@dimen/spacing_m"
                         android:fontFamily="@font/poppins"
-                        android:text="Ingeniosa &amp; Ecológica"
-                        android:textColor="@color/text_secondary"
-                        android:textSize="12sp" />
-                </RelativeLayout>
+                        android:lineSpacingExtra="3dp"
+                        android:text="Originaria de las altas cumbres andinas, Tesla combina la sabiduría mística de la Pachamama con la fotocatálisis del agua, la energía solar y la robótica educativa para construir un futuro limpio."
+                        android:textColor="@color/dark_blue"
+                        android:textSize="13sp" />
 
-                <!-- HISTORIA CULTURAL Y ORIGEN -->
-                <TextView
-                    android:id="@+id/tv_tesla_history_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_m"
-                    android:fontFamily="@font/fredoka"
-                    android:text="🌿 Historia Cultural y Sabiduría:"
-                    android:textColor="@color/navy_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
+                    <!-- BOTÓN PARA ESCUCHAR LA VOZ DE TESLA -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_tesla_voice"
+                        style="@style/Widget.MiniCientificos.Button.Accent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_s"
+                        android:fontFamily="@font/fredoka"
+                        android:text="🔊 Escuchar Mensaje de Tesla"
+                        android:textSize="13sp"
+                        app:icon="@drawable/ic_star_decoration" />
 
-                <TextView
-                    android:id="@+id/tv_tesla_history_desc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:fontFamily="@font/poppins"
-                    android:lineSpacingExtra="3dp"
-                    android:text="Originaria de las altas cumbres andinas, Tesla es el Duende místico del conocimiento. Conecta la sabiduría ancestral de la Pachamama con la robótica moderna, la energía solar y la conservación ecológica."
-                    android:textColor="@color/dark_blue"
-                    android:textSize="13sp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="@dimen/spacing_s"
+                        android:background="#80F57F17" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginVertical="@dimen/spacing_s"
-                    android:background="#80F57F17" />
-
-                <!-- CURIOSIDADES Y DATOS ANDINOS -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/fredoka"
-                    android:text="✨ Curiosidades Místicas:"
-                    android:textColor="@color/navy_blue"
-                    android:textSize="15sp"
-                    android:textStyle="bold" />
-
-                <com.google.android.material.chip.ChipGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp">
-
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.Material3.Chip.Assist"
+                    <!-- ATRIBUTOS TÉCNICOS ANIMADOS (TESLA) -->
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="⚡ Bobina de plasma con cuarzos andinos"
-                        app:chipIcon="@drawable/ic_star_decoration"
-                        app:chipIconTint="@color/tesla_accent" />
+                        android:fontFamily="@font/fredoka"
+                        android:text="📊 Atributos Científicos de Tesla:"
+                        android:textColor="@color/navy_blue"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.Material3.Chip.Assist"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="🗣️ Habla Quechua y Código Binario"
-                        app:chipIcon="@drawable/ic_flask"
-                        app:chipIconTint="@color/tesla_accent" />
+                        android:layout_marginTop="6dp"
+                        android:orientation="vertical">
 
-                    <com.google.android.material.chip.Chip
-                        style="@style/Widget.Material3.Chip.Assist"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🌱 Diseña Minibiohuertos de Altura"
-                        app:chipIcon="@drawable/ic_flask"
-                        app:chipIconTint="@color/tesla_accent" />
-                </com.google.android.material.chip.ChipGroup>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins"
+                            android:text="🌱 Conciencia Ecológica (99%)"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="11sp" />
 
-                <!-- BOTÓN INTERACTIVO TESLA -->
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_tesla_interact"
-                    style="@style/Widget.MiniCientificos.Button.Accent"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/spacing_s"
-                    android:fontFamily="@font/fredoka"
-                    android:text="✨ Descubrir Secreto de Tesla"
-                    android:textSize="14sp"
-                    app:icon="@drawable/ic_star_decoration"
-                    app:iconGravity="textStart" />
-            </LinearLayout>
-        </com.google.android.material.card.MaterialCardView>
+                        <ProgressBar
+                            android:id="@+id/progress_tesla_ecologia"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="8dp"
+                            android:max="100"
+                            android:progress="99"
+                            android:progressDrawable="@drawable/bg_vitrina_xp_progress" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:fontFamily="@font/poppins"
+                            android:text="⚡ Energía Renovable (95%)"
+                            android:textColor="@color/navy_blue"
+                            android:textSize="11sp" />
+
+                        <ProgressBar
+                            android:id="@+id/progress_tesla_energia"
+                            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="8dp"
+                            android:max="100"
+                            android:progress="95"
+                            android:progressDrawable="@drawable/bg_vitrina_xp_progress" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ACCIONES GENERALES EN LA PARTE INFERIOR -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_l"
+                android:fontFamily="@font/fredoka"
+                android:text="🚀 Pasa a la Acción con los Héroes:"
+                android:textColor="@color/navy_blue"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_personajes_play_game"
+                style="@style/Widget.MiniCientificos.Button.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:fontFamily="@font/fredoka"
+                android:text="🎮 Jugar Misión MIni Científicos"
+                android:textSize="14sp"
+                app:icon="@drawable/ic_rocket" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_personajes_open_lab"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:fontFamily="@font/fredoka"
+                android:text="🧪 Abrir Mini-Laboratorio Shake (Acelerómetro)"
+                android:textColor="@color/navy_blue"
+                android:textSize="13sp"
+                app:backgroundTint="@color/gold_yellow" />
+
+        </LinearLayout>
+    </LinearLayout>
 </androidx.core.widget.NestedScrollView>
