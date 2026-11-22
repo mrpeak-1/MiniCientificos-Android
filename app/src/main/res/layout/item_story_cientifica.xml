@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/llStoryItemRoot"
+    android:layout_width="86dp"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingVertical="4dp">
+
+    <!-- Anillo degradado multicolor de 72dp x 72dp -->
+    <FrameLayout
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:background="@drawable/bg_story_ring_gradient"
+        android:padding="3dp">
+
+        <!-- Separador blanco interior estilo Instagram -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_circle_white_icon"
+            android:padding="2.5dp">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivStoryCover"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="Story Científica"
+                android:scaleType="centerCrop"
+                app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
+                tools:src="@drawable/fotocatalisis_1" />
+        </FrameLayout>
+
+        <!-- Emoji flotante en esquina inferior derecha -->
+        <TextView
+            android:id="@+id/tvStoryEmoji"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:layout_gravity="bottom|end"
+            android:background="@drawable/bg_circle_white_icon"
+            android:elevation="2dp"
+            android:gravity="center"
+            android:textSize="11sp"
+            tools:text="⚡" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvStoryLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/nunito"
+        android:gravity="center"
+        android:maxLines="1"
+        android:textColor="#0B2C5E"
+        android:textSize="11.5sp"
+        android:textStyle="bold"
+        tools:text="Fotocatálisis" />
+
+</LinearLayout>

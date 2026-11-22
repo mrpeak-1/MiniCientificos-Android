@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F2051329">
+
+    <!-- Visor Zoomable con Pinch-to-Zoom y Doble Toque -->
+    <com.icsm.minicientificos_android.ui.ZoomableImageView
+        android:id="@+id/ivFullscreenZoom"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Fotografía en pantalla completa"
+        app:layout_constraintBottom_toTopOf="@id/cardFullscreenInfo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llFullscreenTopBar"
+        tools:src="@drawable/tratamiento_agua_1" />
+
+    <!-- Barra Superior: Contador + Hint Zoom + Botón Cerrar -->
+    <LinearLayout
+        android:id="@+id/llFullscreenTopBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="18dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tvPhotoCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="#33FFFFFF"
+            android:fontFamily="@font/fredoka"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="5dp"
+            android:textColor="#FFFFFF"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            tools:text="Foto 1 de 43" />
+
+        <TextView
+            android:id="@+id/tvZoomHint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:maxLines="1"
+            android:text="🔍 Pellizca o doble toque"
+            android:textColor="#BAE6FD"
+            android:textSize="11.5sp" />
+
+        <TextView
+            android:id="@+id/btnCloseFullscreen"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_fullscreen_nav_circle"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/fredoka"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Botón Lateral Izquierdo (<) -->
+    <TextView
+        android:id="@+id/btnPrevPhoto"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/bg_fullscreen_nav_circle"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/fredoka"
+        android:gravity="center"
+        android:text="‹"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ivFullscreenZoom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivFullscreenZoom" />
+
+    <!-- Botón Lateral Derecho (>) -->
+    <TextView
+        android:id="@+id/btnNextPhoto"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/bg_fullscreen_nav_circle"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/fredoka"
+        android:gravity="center"
+        android:text="›"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/ivFullscreenZoom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/ivFullscreenZoom" />
+
+    <!-- Ficha Inferior con Explicación + Botón WhatsApp -->
+    <LinearLayout
+        android:id="@+id/cardFullscreenInfo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#E60B2C5E"
+        android:orientation="vertical"
+        android:paddingHorizontal="18dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvFullscreenSubgrupo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_badge_rounded"
+                android:backgroundTint="#FDC500"
+                android:fontFamily="@font/fredoka"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="3dp"
+                android:textColor="#0B2C5E"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                tools:text="Tratamiento de Agua" />
+
+            <TextView
+                android:id="@+id/tvFullscreenFechaLugar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:fontFamily="@font/nunito"
+                android:maxLines="1"
+                android:textColor="#BAE6FD"
+                android:textSize="11.5sp"
+                tools:text="Taller ICSM · Laboratorio Infantil" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvFullscreenTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/fredoka"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="Cascos Blancos ICSM en Laboratorio" />
+
+        <TextView
+            android:id="@+id/tvFullscreenDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/nunito"
+            android:lineSpacingExtra="2dp"
+            android:textColor="#E2E8F0"
+            android:textSize="13sp"
+            tools:text="Equipos equipados con cascos blancos oficiales ICSM listos para investigar la calidad del agua." />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnFullscreenWhatsApp"
+            style="@style/Widget.MiniCientificos.Button.WhatsApp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:text="💬 Consultar por este taller/evento en WhatsApp"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            app:cornerRadius="24dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,134 +1,327 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scroll_galeria_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_light"
+    android:background="@drawable/bg_galeria_page_gradient"
+    android:fillViewport="true"
     tools:context=".ui.GaleriaFragment">
 
-    <!-- Header / Banner de Título -->
     <LinearLayout
-        android:id="@+id/ll_header_galeria"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/navy_blue"
-        android:orientation="vertical"
-        android:padding="@dimen/spacing_m"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_galeria_header_title"
+        <!-- =============================================================== -->
+        <!-- BLOQUE 1: CABECERA, ACCIONES NATIVAS Y STORIES CIENTÍFICAS      -->
+        <!-- =============================================================== -->
+        <LinearLayout
+            android:id="@+id/ll_header_galeria"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/fredoka"
-            android:text="Galería de Fotos Científicas"
-            android:textColor="@color/gold_yellow"
-            android:textSize="22sp"
-            android:textStyle="bold" />
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="10dp">
 
-        <TextView
-            android:id="@+id/tv_galeria_header_sub"
+            <TextView
+                android:id="@+id/tv_galeria_header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:gravity="center"
+                android:letterSpacing="0.04"
+                android:text="GALERÍA"
+                android:textColor="#0096D6"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="64dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_line_accent_title" />
+
+            <TextView
+                android:id="@+id/tv_galeria_header_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito"
+                android:gravity="center"
+                android:lineSpacingExtra="2dp"
+                android:text="Explora los mejores momentos de nuestros talleres, eventos y ferias científicas"
+                android:textColor="#475569"
+                android:textSize="13.5sp" />
+
+            <!-- Botones de Acciones Nativas: Photo Booth + Vitrina de Medallas -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnAbrirPhotoBooth"
+                    android:layout_width="0dp"
+                    android:layout_height="44dp"
+                    android:layout_weight="1.45"
+                    android:background="@drawable/bg_photo_booth_btn"
+                    android:clickable="true"
+                    android:ellipsize="end"
+                    android:focusable="true"
+                    android:fontFamily="@font/fredoka"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingHorizontal="12dp"
+                    android:text="📸 Marco Fotográfico Científico"
+                    android:textColor="#0B2C5E"
+                    android:textSize="12.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnAbrirVitrinaMedallas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="44dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@drawable/bg_subgrupo_chip_active"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/fredoka"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingHorizontal="14dp"
+                    android:text="🏆 Medallas"
+                    android:textColor="#FDC500"
+                    android:textSize="12.5sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!-- Etiqueta Carrusel Stories -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/fredoka"
+                    android:text="✨ Stories Científicas"
+                    android:textColor="#0B2C5E"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:text="Toca para ver ▶"
+                    android:textColor="#0096D6"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Carrusel Horizontal de Stories Científicas -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGaleriaStories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:fontFamily="@font/poppins"
-            android:text="Explora los mejores momentos de nuestros talleres y proyectos"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false"
+            android:orientation="horizontal"
+            android:paddingHorizontal="12dp"
+            android:paddingBottom="8dp"
+            tools:itemCount="5"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_story_cientifica" />
+
+        <!-- =============================================================== -->
+        <!-- BLOQUE 2: SISTEMA DE FILTROS DE 2 NIVELES                       -->
+        <!-- =============================================================== -->
+        <LinearLayout
+            android:id="@+id/ll_filtros_galeria_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="6dp"
+            android:paddingBottom="8dp">
+
+            <!-- NIVEL 1: 4 Botones Píldora Principales -->
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="4dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/btnGaleriaTodo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_galeria_pill_active"
+                        android:clickable="true"
+                        android:elevation="4dp"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka"
+                        android:gravity="center"
+                        android:minWidth="74dp"
+                        android:paddingHorizontal="18dp"
+                        android:text="TODO"
+                        android:textColor="#FFFFFF"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnGaleriaTalleres"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_galeria_pill_inactive"
+                        android:clickable="true"
+                        android:elevation="0dp"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka"
+                        android:gravity="center"
+                        android:paddingHorizontal="18dp"
+                        android:text="TALLERES"
+                        android:textColor="#0B2C5E"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnGaleriaEventos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/bg_galeria_pill_inactive"
+                        android:clickable="true"
+                        android:elevation="0dp"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka"
+                        android:gravity="center"
+                        android:paddingHorizontal="18dp"
+                        android:text="EVENTOS"
+                        android:textColor="#0B2C5E"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnGaleriaFerias"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_galeria_pill_inactive"
+                        android:clickable="true"
+                        android:elevation="0dp"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka"
+                        android:gravity="center"
+                        android:paddingHorizontal="18dp"
+                        android:text="FERIAS"
+                        android:textColor="#0B2C5E"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- NIVEL 2: Barra Animada de Chips de Subgrupos -->
+            <HorizontalScrollView
+                android:id="@+id/hsvSubgruposGaleria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:clipToPadding="false"
+                android:paddingHorizontal="14dp"
+                android:paddingVertical="2dp"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:id="@+id/layoutSubgruposGaleria"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" />
+            </HorizontalScrollView>
+
+            <!-- Contador de Fotografías Visibles -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:id="@+id/tvContadorGaleria"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/nunito"
+                    android:text="Mostrando 43 de 43 fotografías científicas"
+                    android:textColor="#475569"
+                    android:textSize="12.5sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:text="🔍 Toca para Zoom"
+                    android:textColor="#0096D6"
+                    android:textSize="11.5sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- =============================================================== -->
+        <!-- BLOQUE 3: GRILLA DE FOTOGRAFÍAS (2/3 COLUMNAS) + FOOTER         -->
+        <!-- =============================================================== -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvGaleriaFotos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:nestedScrollingEnabled="false"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="16dp"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_galeria_foto" />
+
+        <TextView
+            android:id="@+id/tvGaleriaVacio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nunito"
+            android:gravity="center"
+            android:padding="28dp"
+            android:text="No se encontraron fotografías en esta categoría."
+            android:textColor="#64748B"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <!-- Footer Corporativo Oficial -->
+        <include
+            android:id="@+id/sectionCorporateFooterGaleria"
+            layout="@layout/layout_corporate_footer" />
+
     </LinearLayout>
-
-    <!-- Scroll de Chips de Filtro Temático -->
-    <HorizontalScrollView
-        android:id="@+id/hsv_chips"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:paddingHorizontal="@dimen/spacing_m"
-        android:paddingVertical="@dimen/spacing_s"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_header_galeria">
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chip_group_galeria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:selectionRequired="true"
-            app:singleLine="true"
-            app:singleSelection="true">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_todos"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="Todos"
-                android:textColor="@color/navy_blue"
-                app:chipBackgroundColor="@color/colorPrimaryContainer" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_fotocatalisis"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fotocatálisis" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_minibiohuertos"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Minibiohuertos" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_minicompostaje"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Minicompostaje" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chip_voluntariado"
-                style="@style/Widget.Material3.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Voluntariado" />
-
-        </com.google.android.material.chip.ChipGroup>
-    </HorizontalScrollView>
-
-    <!-- RecyclerView Grid de 2 Columnas -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_galeria"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:clipToPadding="false"
-        android:paddingHorizontal="@dimen/spacing_s"
-        android:paddingBottom="@dimen/spacing_m"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hsv_chips"
-        tools:listitem="@layout/item_galeria" />
-
-    <!-- Estado vacío / Sin resultados -->
-    <TextView
-        android:id="@+id/tv_galeria_vacio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins"
-        android:text="No se encontraron imágenes en esta categoría."
-        android:textColor="@color/text_secondary"
-        android:textSize="14sp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/hsv_chips" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

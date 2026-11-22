@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_cart_header_navy"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <!-- Barra de arrastre modal -->
+        <View
+            android:layout_width="42dp"
+            android:layout_height="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/bg_washi_tape" />
+
+        <!-- Cabecera + Toggle Sonido + Cerrar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka"
+                    android:text="🏆 Vitrina de Medallas ICSM"
+                    android:textColor="#FDC500"
+                    android:textSize="19sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nunito"
+                    android:text="Tu progreso oficial, insignias y recompensas"
+                    android:textColor="#BAE6FD"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btnToggleSonidoVitrina"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_badge_rounded"
+                android:backgroundTint="#22FFFFFF"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/fredoka"
+                android:gravity="center"
+                android:paddingHorizontal="10dp"
+                android:text="🔊 ON"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btnCloseVitrina"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:contentDescription="Cerrar"
+                android:focusable="true"
+                android:padding="4dp"
+                android:src="@drawable/ic_close"
+                app:tint="#FFFFFF" />
+        </LinearLayout>
+
+        <!-- Tarjeta de Perfil del Jugador -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardPerfilVitrina"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            app:cardBackgroundColor="#123A6E"
+            app:cardCornerRadius="18dp"
+            app:cardElevation="4dp"
+            app:strokeColor="#00A8E8"
+            app:strokeWidth="1.5dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- Avatares Titan y Tesla -->
+                    <FrameLayout
+                        android:layout_width="76dp"
+                        android:layout_height="56dp">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/ivVitrinaTitan"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="start|center_vertical"
+                            android:background="@drawable/bg_circle_white_icon"
+                            android:contentDescription="Titan"
+                            android:padding="2dp"
+                            android:scaleType="centerCrop"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
+                            tools:src="@drawable/titan_cientifico" />
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/ivVitrinaTesla"
+                            android:layout_width="46dp"
+                            android:layout_height="46dp"
+                            android:layout_gravity="end|bottom"
+                            android:background="@drawable/bg_circle_yellow_icon"
+                            android:contentDescription="Tesla"
+                            android:padding="2dp"
+                            android:scaleType="centerCrop"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
+                            tools:src="@drawable/teslita_png" />
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvVitrinaAgenteNombre"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="@font/fredoka"
+                            android:maxLines="1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            tools:text="Agente: Mini Científico(a)" />
+
+                        <TextView
+                            android:id="@+id/tvVitrinaRangoActual"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="2dp"
+                            android:fontFamily="@font/fredoka"
+                            android:textColor="#FDC500"
+                            android:textSize="13.5sp"
+                            android:textStyle="bold"
+                            tools:text="🎖️ Cadete Curioso" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Métricas XP Total y Récord -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_badge_rounded"
+                        android:backgroundTint="#1E4E8C"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:id="@+id/tvVitrinaXpTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka"
+                            android:textColor="#FDC500"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            tools:text="350 XP" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunito"
+                            android:text="XP Total Acumulado"
+                            android:textColor="#E0F2FE"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_badge_rounded"
+                        android:backgroundTint="#1E4E8C"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingVertical="8dp">
+
+                        <TextView
+                            android:id="@+id/tvVitrinaRecordPuntos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka"
+                            android:textColor="#7DD3FC"
+                            android:textSize="17sp"
+                            android:textStyle="bold"
+                            tools:text="600 pts" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/nunito"
+                            android:text="Récord de Puntos"
+                            android:textColor="#E0F2FE"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Barra de Progreso hacia el Siguiente Rango -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvVitrinaProgresoLabel"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nunito"
+                            android:textColor="#BAE6FD"
+                            android:textSize="11.5sp"
+                            android:textStyle="bold"
+                            tools:text="Próximo rango: Explorador de Laboratorio" />
+
+                        <TextView
+                            android:id="@+id/tvVitrinaProgresoMeta"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/fredoka"
+                            android:textColor="#FDC500"
+                            android:textSize="11.5sp"
+                            android:textStyle="bold"
+                            tools:text="150 / 300 XP" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/pbVitrinaSiguienteRango"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="12dp"
+                        android:layout_marginTop="6dp"
+                        android:max="100"
+                        android:progress="50"
+                        android:progressDrawable="@drawable/bg_vitrina_xp_progress" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Título Cuadrícula de 6 Medallas -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/fredoka"
+                android:text="🏅 Medallas Científicas (6)"
+                android:textColor="#FFFFFF"
+                android:textSize="15.5sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvVitrinaConteoMedallas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:textColor="#FDC500"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                tools:text="2 / 6 desbloqueadas" />
+        </LinearLayout>
+
+        <!-- Cuadrícula 2 columnas de las 6 Medallas -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvVitrinaMedallas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:nestedScrollingEnabled="false"
+            tools:itemCount="6"
+            tools:listitem="@layout/item_medalla_vitrina" />
+
+        <!-- Botón Directo: Generar Carnet y Diploma -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVitrinaGenerarCredencial"
+            style="@style/Widget.MiniCientificos.Button.Accent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="14dp"
+            android:text="🪪 Generar mi Carnet y Diploma con este Rango"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            app:cornerRadius="25dp" />
+
+        <!-- Botón Directo: Ver Cupones Ganados para la Tienda -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnVitrinaVerCupones"
+            style="@style/Widget.MiniCientificos.Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="🛒 Ver mis Cupones Ganados para la Tienda"
+            android:textAllCaps="false"
+            android:textSize="13sp"
+            app:cornerRadius="25dp" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

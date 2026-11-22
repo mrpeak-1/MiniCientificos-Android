@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#051329">
+
+    <!-- Fotografía full-bleed de la Story -->
+    <ImageView
+        android:id="@+id/ivStoryFotoActual"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="Story Científica"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/fotocatalisis_1" />
+
+    <!-- Degradado superior para legibilidad de barras y cabecera -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:background="@drawable/bg_video_fade_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Degradado inferior para legibilidad de texto y CTA -->
+    <View
+        android:layout_width="0dp"
+        android:layout_height="240dp"
+        android:background="@drawable/bg_gradient_scrim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <!-- Zonas táctiles izquierda (retroceder) y derecha (avanzar) -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/llStoryBottomOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llStoryHeader">
+
+        <View
+            android:id="@+id/viewStoryTapPrev"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <View
+            android:id="@+id/viewStoryTapNext"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:clickable="true"
+            android:focusable="true" />
+    </LinearLayout>
+
+    <!-- Barras de Progreso Segmentadas (5s por foto) -->
+    <LinearLayout
+        android:id="@+id/llStoryProgressContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Cabecera estilo Instagram Stories con Avatar Titan/Tesla -->
+    <LinearLayout
+        android:id="@+id/llStoryHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="14dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llStoryProgressContainer">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivStoryMascotAvatar"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:background="@drawable/bg_circle_white_icon"
+            android:contentDescription="Mascota Científica"
+            android:padding="2dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Circle"
+            tools:src="@drawable/titan_cientifico" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvStorySubgrupoTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka"
+                android:shadowColor="#99000000"
+                android:shadowDy="1"
+                android:shadowRadius="4"
+                android:textColor="#FFFFFF"
+                android:textSize="15.5sp"
+                android:textStyle="bold"
+                tools:text="⚡ Fotocatálisis · Mini Científicos" />
+
+            <TextView
+                android:id="@+id/tvStoryStepInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito"
+                android:textColor="#E0F2FE"
+                android:textSize="11.5sp"
+                tools:text="Historia 1 de 4 · 5s" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btnCloseStory"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_fullscreen_nav_circle"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/fredoka"
+            android:gravity="center"
+            android:text="✕"
+            android:textColor="#FFFFFF"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Panel Inferior con Título, Descripción y Botón CTA -->
+    <LinearLayout
+        android:id="@+id/llStoryBottomOverlay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="18dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="22dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/tvStoryFotoTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka"
+            android:shadowColor="#B3000000"
+            android:shadowDy="1"
+            android:shadowRadius="4"
+            android:textColor="#FDC500"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            tools:text="Reactor Solar de Fotocatálisis" />
+
+        <TextView
+            android:id="@+id/tvStoryFotoDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/nunito"
+            android:lineSpacingExtra="2dp"
+            android:shadowColor="#B3000000"
+            android:shadowDy="1"
+            android:shadowRadius="4"
+            android:textColor="#FFFFFF"
+            android:textSize="13.5sp"
+            tools:text="Presentación en vivo de reactores solares diseñados para purificar agua mediante energía luminosa." />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnStoryQuieroVivir"
+            style="@style/Widget.MiniCientificos.Button.Accent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="14dp"
+            android:text="🔬 Quiero vivir esta experiencia"
+            android:textAllCaps="false"
+            android:textSize="14sp"
+            app:cornerRadius="25dp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
