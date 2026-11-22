@@ -1,9 +1,12 @@
 package com.icsm.minicientificos_android;
 
 import android.os.Bundle;
+import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.icsm.minicientificos_android.databinding.ActivityMainBinding;
 import com.icsm.minicientificos_android.ui.ContactFragment;
@@ -20,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements CartManager.OnCar
 
     private ActivityMainBinding binding;
     private CartBadgeHelper cartBadgeHelper;
+    private FragmentManager.FragmentLifecycleCallbacks fragmentLifecycleCallbacks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,21 @@ public class MainActivity extends AppCompatActivity implements CartManager.OnCar
 
         // Inicializar Badge de Carrito en el FAB o BottomNav
         cartBadgeHelper = new CartBadgeHelper(binding.bottomNavigation, R.id.nav_shop);
-        
+
+        // Ocultar FAB del carrito por defecto (solo visible en Tienda)
+        binding.fabCart.setVisibility(View.GONE);
+
+        // Mantener sincronizada la visibilidad del FAB cuando cambian los fragmentos
+        fragmentLifecycleCallbacks = new FragmentManager.FragmentLifecycleCallbacks() {
+            @Override
+            public void onFragmentResumed(@NonNull FragmentManager fm, @NonNull Fragment f) {
+                if (f.getId() == R.id.fragment_container) {
+                    actualizarVisibilidadFabCarrito(f);
+                }
+            }
+        };
+        getSupportFragmentManager().registerFragmentLifecycleCallbacks(fragmentLifecycleCallbacks, false);
+
         // Clic en FAB Carrito
         binding.fabCart.setOnClickListener(v -> {
             CartBottomSheetDialog bottomSheet = new CartBottomSheetDialog();
@@ -42,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements CartManager.OnCar
         // Fragment por defecto (HomeFragment)
         if (savedInstanceState == null) {
             loadFragment(new HomeFragment());
+        } else {
+            Fragment current = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+            actualizarVisibilidadFabCarrito(current);
         }
 
         // Listener para la navegación inferior (BottomNavigationView)
@@ -70,10 +91,16 @@ public class MainActivity extends AppCompatActivity implements CartManager.OnCar
     }
 
     private void loadFragment(Fragment fragment) {
+        actualizarVisibilidadFabCarrito(fragment);
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .commit();
+    }
+
+    private void actualizarVisibilidadFabCarrito(Fragment fragment) {
+        if (binding == null) return;
+        binding.fabCart.setVisibility(fragment instanceof ShopFragment ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -96,6 +123,9 @@ public class MainActivity extends AppCompatActivity implements CartManager.OnCar
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (fragmentLifecycleCallbacks != null) {
+            getSupportFragmentManager().unregisterFragmentLifecycleCallbacks(fragmentLifecycleCallbacks);
+        }
         com.icsm.minicientificos_android.cart.CartManager.getInstance().removeListener(this);
     }
 }
